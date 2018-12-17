@@ -1,19 +1,58 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World!</title>
+  <link rel="stylesheet" href="public/css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+          integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+          crossorigin="anonymous"></script>
+  <script> window.$ = window.jQuery = require('jquery');</script>
+</head>
+<body>
+<div class="container">
+  <h1>Society</h1>
+  <div class="col-md-12" align="center" style="margin-bottom: 20px">
+    <form class="search">
+      <div class="search__wrapper">
+        <input type="text" name="" placeholder="Search for..." class="search__field">
+        <button type="submit" class="fa fa-search search__icon"></button>
+      </div>
+    </form>
+  </div>
+  <div class="row" id="test">
+  
+  </div>
+</div>
 
-    <script>
-      // You can also require other files to run in this process
-      require('./renderer.js')
-    </script>
-  </body>
+<script>
+  html = "";
+  for (i = 0; i < 10; i++) {
+    html += "<div class=\"col-md-4\" style='margin-top: 15px'>" +
+      "  <div class=\"card\" style=\"width: 100%;\">" +
+      "    <img class=\"card-img-top\" src=\"https://upload.wikimedia.org/wikipedia/commons/1/1f/SGP_LOGO_CMJN_130416.png\"\n" +
+      "         alt=\"Card image\">" +
+      "    <div class=\"card-body\">" +
+      "      <h4 class=\"card-title\">John Doe</h4>" +
+      "      <p class=\"card-text\">Some example text.</p>" +
+      "      <a href=\"#\" class=\"btn btn-primary\">See Profile</a>" +
+      "    </div>" +
+      "  </div>" +
+      "</div>"
+  }
+
+  $('#test').html(html);
+
+</script>
+<script>
+
+  // You can also require other files to run in this process
+  require('./renderer.js')
+</script>
+</body>
+
 </html>

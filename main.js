@@ -5,15 +5,16 @@ const {app, BrowserWindow} = require('electron')
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
-function createWindow () {
+function createWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 800, height: 600})
+  mainWindow = new BrowserWindow({width: 1000, height: 600})
 
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
+  mainWindow.loadFile('public/society/society_list.html');
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
+  let server = require('./server/server');
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
