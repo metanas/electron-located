@@ -16,3 +16,15 @@ module.exports.getBuildingList = function (id) {
     })
   })
 };
+
+module.exports.postBuilding = function (name, address, nb_floor, city, postcode, telephone, society_id) {
+  return new Promise(function (resolve, reject) {
+
+    db.serialize(function () {
+      var stmt = db.prepare('INSERT INTO building VALUES(null, ?, ?, ?, ?, ?, ?, ?)');
+      stmt.run([name, address, postcode, city, telephone, nb_floor, society_id]);
+      resolve("Success")
+    });
+
+  });
+};

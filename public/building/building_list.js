@@ -1,10 +1,8 @@
 $(document).ready(function () {
-  console.log("localhost:3000/building_list?id=" + document.location.search.split("=")[1]);
   $.ajax({
     method: "GET",
     url: "http://localhost:3000/building_list?id=" + document.location.search.split("=")[1]
   }).then(function (response) {
-    console.log(response);
     var html = "";
     response.forEach(function (item) {
       html += "<div class=\"col-md-4\" style='margin-top: 15px'>" +
