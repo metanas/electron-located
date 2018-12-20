@@ -1,8 +1,12 @@
 let express = require('express');
+var bodyParser = require('body-parser');
 let dashboard = require('./models/dashboard');
 let society = require('./models/society');
 let building = require('./models/building');
+let apartment = require('./models/apartment');
 let app = express();
+app.use(bodyParser.json());
+
 
 app.get('/dashboard', function (req, res) {
   dashboard.getDashboard().then(function (response) {
@@ -30,6 +34,18 @@ app.get('/building_list', function (req, res) {
 
 app.get('/building_form', function (req, res) {
   building.postBuilding(req.query.name, req.query.address, req.query.nb_floor, req.query.city, req.query.postcode, req.query.telephone, req.query.society_id).then(function (response) {
+    res.json(response)
+  })
+});
+
+app.get('/apartment_list', function (req, res) {
+  apartment.getApartmentList(req.query.id).then(function (response) {
+    res.json(response)
+  })
+});
+
+app.post('/apartment_form', function (req, res) {
+  apartment.postApartment(req.body).then(function (response) {
     res.json(response)
   })
 });

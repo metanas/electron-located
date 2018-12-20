@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+          integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+          crossorigin="anonymous"></script>
+  <script> window.$ = window.jQuery = require('jquery');</script>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 form-group">
+      <label for="society_list">Society:</label>
+      <select name="id_society" id="society_list" class="form-control">
+    
+      </select>
+    </div>
+    <div class="col-md-12 form-group">
+      <label for="building_list">Bâtiment:</label>
+      <select name="id_building" id="building_list" class="form-control">
+      
+      </select>
+    </div>
+    <div class="col-md-12 form-group">
+      <label for="input-floor">Numero:</label>
+      <input type="number" name="number" class="form-control" id="input-number" placeholder="Numero">
+    </div>
+    <div class="col-md-12 form-group">
+      <label for="input-floor">Etage:</label>
+      <input type="number" name="floor" class="form-control" id="input-floor" placeholder="Etage">
+    </div>
+    <div class="col-md-12 form-group">
+      <label for="input-area">Surface:</label>
+      <input type="text" name="area" class="form-control" id="input-area" placeholder="Surface">
+    </div>
+    <div class="col-md-12 form-group">
+      <label for="input-number-bed">Nombre des chambres:</label>
+      <input type="text" name="nb_bed" class="form-control" id="input-number-bed" placeholder="Nombre des chambres">
+    </div>
+    <div class="col-md-12 form-group">
+      <label for="input-description">Description:</label>
+      <textarea name="description" class="form-control" id="input-description" placeholder="Description">
+      </textarea>
+    </div>
+    <div class="col-md-12 form-group">
+      <label for="input-location-price">Prix de location:</label>
+      <input type="text" name="location_price" class="form-control" id="input-location-price"
+             placeholder="Prix de location">
+    </div>
+    <div class="col-md-12 form-group">
+      <label for="input-advance-price">Prix d'avance:</label>
+      <input type="text" name="advance_price" class="form-control" id="input-advance-price"
+             placeholder="Prix d'avance">
+    </div>
+    <div class="col-md-12 form-group">
+      <label for="input-tax">Tax:</label>
+      <input type="text" name="tax" class="form-control" id="input-tax"
+             placeholder="Tax">
+    </div>
+    <div class="col-md-12 form-group">
+      <label for="input-other-charge">Autre charge:</label>
+      <input type="text" name="other_charge" class="form-control" id="input-other-charge"
+             placeholder="Autre charge">
+    </div>
+  </div>
+  <div class="clearfix">
+    <button class="float-right btn btn-primary" id="add-button">Ajouter</button>
+  </div>
+</div>
+<script src="apartment_form.js"></script>
+</body>
+</html>

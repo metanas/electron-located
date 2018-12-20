@@ -1,7 +1,8 @@
 $(document).ready(function () {
+  console.log('test');
   $.ajax({
-    method: "GET",
-    url: "http://localhost:3000/building_list?id=" + document.location.search.split("=")[1]
+    method: 'GET',
+    url: 'http://localhost:3000/apartment_list?id=' + document.location.search.split("=")[1]
   }).then(function (response) {
     var html = "";
     response.forEach(function (item) {
@@ -10,9 +11,9 @@ $(document).ready(function () {
         "    <img class=\"card-img-top\" src=\"https://upload.wikimedia.org/wikipedia/commons/1/1f/SGP_LOGO_CMJN_130416.png\"\n" +
         "         alt=\"Card image\">" +
         "    <div class=\"card-body\">" +
-        "      <h4 class=\"card-title\">" + item['name'] + "</h4>" +
-        "      <p class=\"card-text\">" + item['address'] + "</p>" +
-        '      <a href="../apartment/apartment_list.html?id=' + item['id'] + '" class="btn btn-primary">See Profile</a>' +
+        "      <h4 class=\"card-title\">" + item['number'] + "</h4>" +
+        "      <p class=\"card-text\">" + item['description'] + "</p>" +
+        '      <a href=\"' + item["id"] + '" class=\"btn btn-primary\">See Profile</a>' +
         "    </div>" +
         "  </div>" +
         "</div>"
