@@ -1,19 +1,54 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, Menu} = require('electron');
+const electron = require('electron');
+const fs = require('fs');
+const os = require('os');
+const path = require('path');
+const ipc = electron.ipcMain;
+const shell = electron.shell;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow
+let mainWindow;
 
 function createWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 1000, height: 600})
+  mainWindow = new BrowserWindow({width: 1500, height: 600});
 
+  var menu = Menu.buildFromTemplate([
+    {
+      label: 'File',
+      submenu: [
+        {
+          label: 'Société',
+        },
+        {
+          label: 'Exit', click() {
+            app.quit()
+          }
+        }
+      ]
+    }, {
+      label: 'Edit',
+      submenu: [{
+        label: 'Undo',
+        role: 'undo'
+      }, {
+        label: 'Copier',
+        role: 'copy'
+      },
+        {
+          label: "couper",
+          role: 'cut'
+        }, {label: 'coller', role: 'paste'}]
+    }
+  ]);
+  Menu.setApplicationMenu(menu);
   // and load the index.html of the app.
-  mainWindow.loadFile('public/society/society_list.html');
+  mainWindow.loadFile('public/common/home.html');
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
   let server = require('./server/server');
 
   // Emitted when the window is closed.
@@ -49,3 +84,16 @@ app.on('activate', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+ipc.on('print-to-pdf', function (event) {
+  const pdfPath = path.join(os.tmpdir(), 'print.pdf');
+  const win = BrowserWindow.fromWebContents(event.sender);
+
+  win.webContents.printToPDF({}, function (error, data) {
+    if(error) return console.error(error.message);
+    fs.writeFile(pdfPath, data, function (err) {
+      if(err) return console.error(err);
+      shell.openExternal('file://' + pdfPath);
+      event.sender.send('wrote-pdf', pdfPath)
+    })
+  })
+})

@@ -1,3 +1,14 @@
+// const ipc = require('electron').ipcRenderer;
+// $('#add').on('click', function (event) {
+//   ipc.send('print-to-pdf')
+// });
+//
+// ipc.on('wrote-pdf',function (event, path) {
+//   const message = `Wrote PDF to: ${path}`;
+//   console.log(message);
+// })
+
+
 $(document).ready(function () {
   $.ajax({
     method: 'GET',
@@ -12,7 +23,7 @@ $(document).ready(function () {
         "    <div class=\"card-body\">" +
         "      <h4 class=\"card-title\">" + item['name'] + "</h4>" +
         "      <p class=\"card-text\">" + item['headquarters'] + "</p>" +
-        '      <a href=\"../building/building_list.html?n='+ item["id"] +'" class=\"btn btn-primary\">See Profile</a>' +
+        '      <a href="#" class=\"btn btn-primary\" onclick="$(\'#page-content-wrapper\').load(\'../building/building_list.html\', \'id=' + item['id'] + '\')">See Profile</a>' +
         "    </div>" +
         "  </div>" +
         "</div>"

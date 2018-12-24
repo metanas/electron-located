@@ -4,6 +4,7 @@ let dashboard = require('./models/dashboard');
 let society = require('./models/society');
 let building = require('./models/building');
 let apartment = require('./models/apartment');
+let client = require('./models/client');
 let app = express();
 app.use(bodyParser.json());
 
@@ -47,6 +48,12 @@ app.get('/apartment_list', function (req, res) {
 app.post('/apartment_form', function (req, res) {
   apartment.postApartment(req.body).then(function (response) {
     res.json(response)
+  })
+});
+
+app.post('/client', function (req, res) {
+  client.postClient(req.body).then(function (response) {
+    res.json(response);
   })
 });
 

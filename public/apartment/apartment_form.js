@@ -3,7 +3,7 @@ $(document).ready(
     url: 'http://localhost:3000/society_list',
     method: "GET"
   }).then(function (response) {
-    var html = "<option value=''>Selectionner une societe..</option>";
+    var html = "<option value=''>Selectionner une Société..</option>";
     response.forEach(function (item) {
       html += '<option value="' + item['id'] + '">' + item['name'] + '</option>'
     });
@@ -22,7 +22,7 @@ $('#society_list').change(function () {
     });
     $('#building_list').html(html)
   })
-})
+});
 $('#add-button').on('click', function () {
   var data = {
     number: $('input[name="number"]').val(),

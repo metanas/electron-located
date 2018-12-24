@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  console.log(id);
   $.ajax({
     method: "GET",
     url: "http://localhost:3000/building_list?id=" + document.location.search.split("=")[1]
@@ -12,7 +13,7 @@ $(document).ready(function () {
         "    <div class=\"card-body\">" +
         "      <h4 class=\"card-title\">" + item['name'] + "</h4>" +
         "      <p class=\"card-text\">" + item['address'] + "</p>" +
-        '      <a href="../apartment/apartment_list.html?id=' + item['id'] + '" class="btn btn-primary">See Profile</a>' +
+        '      <a href="#" class="btn btn-primary" onclick="$(\'#page-content-wrapper\').load(\'../apartment/apartment_list.html\', { id: 2 } )">See Profile</a>' +
         "    </div>" +
         "  </div>" +
         "</div>"
