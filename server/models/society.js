@@ -19,14 +19,13 @@ module.exports.getSocietyList = function () {
   })
 };
 
-module.exports.postSociety = function (name, headquarters, telephone, image) {
+module.exports.postSociety = function (data) {
   return new Promise(function (resolve, reject) {
 
     db.serialize(function () {
       var stmt = db.prepare('INSERT INTO Society VALUES(null, ?, ?, ?, ?)');
-      stmt.run([name, headquarters, telephone, image]);
+      stmt.run([data.name, data.headquarters, data.telephone, data.image]);
       resolve("Success")
     });
-
   });
 };

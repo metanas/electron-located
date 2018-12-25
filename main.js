@@ -96,4 +96,4 @@ ipc.on('print-to-pdf', function (event) {
       event.sender.send('wrote-pdf', pdfPath)
     })
   })
-})
+});

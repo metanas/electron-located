@@ -5,14 +5,5 @@ $('#add-button').on('click', function () {
     cin: $('input[name="cin"]').val(),
     gender: $('input[name="gender"]:checked').val()
   };
-
-  $.ajax({
-    url: "http://localhost:3000/client",
-    method: "POST",
-    contentType: "application/json",
-    data: JSON.stringify(data),
-    dataType: 'json'
-  }).then(function (response) {
-
-  })
-})
+  ipc.send('client_form', data);
+});
