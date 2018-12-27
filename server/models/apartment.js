@@ -3,34 +3,68 @@ let path = require('path');
 
 let db = new sqlite.Database(path.join(__dirname, '../../database.db'));
 
-module.exports.getApartmentList = function (id) {
+module.exports.getApartmentsFromBuilding = function (id) {
   return new Promise(function (resolve, reject) {
     db.serialize(function () {
-      if (id !== null) {
-        db.all('SELECT * FROM apartment where id_building=?', [id], function (err, rows) {
-          if (!err) {
-            resolve(rows)
-          } else {
-            reject(err)
-          }
-        })
-      } else {
-        db.all('SELECT * FROM apartment', function (err, rows) {
-          if (!err) {
-            resolve(rows)
-          } else {
-            reject(err)
-          }
-        })
-      }
+      db.all('SELECT * FROM apartment where id_building=?', [id], function (err, rows) {
+        if (!err) {
+          resolve(rows)
+        } else {
+          reject(err)
+        }
+      })
     })
   })
+};
+
+module.exports.getApartments = function () {
+  return new Promise(function (resolve, reject) {
+    db.serialize(function () {
+      db.all('SELECT * FROM apartment', function (err, rows) {
+        if (!err) {
+          resolve(rows)
+        } else {
+          reject(err)
+        }
+      })
+    })
+  });
 };
 
 module.exports.getApartment = function (id) {
   return new Promise(function (resolve, reject) {
     db.serialize(function () {
       db.all('SELECT * FROM apartment where id=?', [id], function (err, rows) {
+        if (!err) {
+          resolve(rows)
+        } else {
+          reject(err)
+        }
+      })
+    })
+  })
+};
+
+module.exports.getTotalBuildingApartments = function (id) {
+  return new Promise(function (resolve, reject) {
+    let query = "SELECT total(*) FROM apartment where id_building=?";
+    db.serialize(function () {
+      db.all(query, [id], function (err, rows) {
+        if (!err) {
+          resolve(rows)
+        } else {
+          reject(err)
+        }
+      })
+    })
+  })
+};
+
+module.exports.getTotalApartments = function () {
+  return new Promise(function (resolve, reject) {
+    let query = "SELECT total(*) FROM apartment";
+    db.serialize(function () {
+      db.all(query, function (err, rows) {
         if (!err) {
           resolve(rows)
         } else {
@@ -50,4 +84,10 @@ module.exports.postApartment = function (data) {
       resolve("Success")
     });
   })
-}
+};
+
+module.exports.deleteApartment = (id) => {
+  db.serialize(function () {
+    db.run("DELETE FROM apartment WHERE id=?", [id])
+  })
+};

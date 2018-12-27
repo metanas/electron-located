@@ -1,24 +1,19 @@
-let express = require('express');
-var bodyParser = require('body-parser');
 let dashboard = require('./models/dashboard');
 let society = require('./models/society');
 let building = require('./models/building');
 let apartment = require('./models/apartment');
 let client = require('./models/client');
 let ipc = require('electron').ipcMain;
-let app = express();
-app.use(bodyParser.json());
 
-
-app.get('/dashboard', function (req, res) {
-  dashboard.getDashboard().then(function (response) {
-    res.json(response);
-  })
-});
+// app.get('/dashboard', function (req, res) {
+//   dashboard.getDashboard().then(function (response) {
+//     res.json(response);
+//   })
+// });
 // Society Function
 // ==========================================================================
 ipc.on('society_list', (event) => {
-  society.getSocietyList().then(function (response) {
+  society.getSocieties().then(function (response) {
     event.sender.send('society_list_reply', response)
   })
 });
@@ -35,9 +30,15 @@ ipc.on('society_form', function (event, data) {
 // Building Function
 // ==========================================================================
 ipc.on('building_list', function (event, id) {
-  building.getBuildingList(id).then(function (response) {
-    event.sender.send('building_list_reply', response)
-  })
+  if (id !== null) {
+    building.getBuildingsFromSociety(id).then(function (response) {
+      event.sender.send('building_list_reply', response)
+    })
+  } else {
+    building.getBuildings().then(function (response) {
+      event.sender.send('building_list_reply', response)
+    })
+  }
 });
 
 ipc.on('building_form', function (event, data) {
@@ -50,9 +51,15 @@ ipc.on('building_form', function (event, data) {
 // Apartment Function
 // ==========================================================================
 ipc.on('apartment_list', (event, id) => {
-  apartment.getApartmentList(id).then(function (response) {
-    event.sender.send("apartment_list_reply", response);
-  })
+  if (id !== null) {
+    apartment.getApartmentsFromBuilding(id).then(function (response) {
+      event.sender.send("apartment_list_reply", response);
+    })
+  } else {
+    apartment.getApartments().then(function (response) {
+      event.sender.send("apartment_list_reply", response);
+    })
+  }
 });
 
 ipc.on('apartment_form', function (event, data) {
@@ -77,7 +84,3 @@ ipc.on('client_form', (event, data) => {
 });
 
 // ==========================================================================
-
-app.listen(3000, function (response) {
-
-});

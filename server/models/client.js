@@ -31,11 +31,29 @@ module.exports.getClient = function (id) {
   })
 };
 
+module.exports.getTotalClients = function () {
+  return new Promise(function (resolve, reject) {
+    let query = "SELECT total(*) FROM cliet";
+    db.serialize(function () {
+      db.all(query, function (err, rows) {
+        if (!err) {
+          resolve(rows)
+        } else {
+          reject(err)
+        }
+      })
+    })
+  })
+};
+
+module.exports.deleteClient = function (id) {
+  db.serialize(function () {
+    db.run("DELETE FROM client WHERE id=?", [id])
+  })
+};
 
 module.exports.postClient = function (data) {
-
   return new Promise(function (resolve, reject) {
-
     db.serialize(function () {
       var stmt = db.prepare("INSERT INTO client (firstname, lastname, cin, gender) VALUES (?, ? ,? ,?)");
       stmt.run([data.firstname, data.lastname, data.cin, data.gender])
