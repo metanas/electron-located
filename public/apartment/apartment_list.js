@@ -13,15 +13,17 @@ ipc.on('apartment_list_reply', (event, data) => {
       "    <div class=\"card-body\">" +
       "      <h4 class=\"card-title\">" + item['number'] + "</h4>" +
       "      <p class=\"card-text\">" + item['description'] + "</p>" +
-      '      <a href="#" onclick="goto(id)" class=\"btn btn-primary\">See Profile</a>' +
-      "    </div>" +
+      '      <a href="#" onclick="goto(id)" class=\"btn btn-primary\">See Profile</a>';
+    if (item['status'] === 1)
+      html += '<a href="#" class="fas fa-user float-right"></a>';
+    html += "</div>" +
       "  </div>" +
       "</div>"
   });
-  $('#content').prepend(html)
+  $('#content').html(html)
 });
 
-function goto(id){
+function goto(id) {
   global_id = id;
-  $('#page-content-wrapper').load('../apartment/apartment_list.html')
+  myLoad('../apartment/apartment_list.html')
 }

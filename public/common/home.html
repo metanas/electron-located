@@ -6,9 +6,11 @@
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/sidebar.css">
   <link rel="stylesheet" href="../css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
   <script src="../js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css"/>
   <script> window.$ = window.jQuery = require('jquery');</script>
 </head>
 <body>
@@ -26,16 +28,19 @@
         <a href="#">Dashboard</a>
       </li>
       <li>
-        <a href="#" onclick="$('#page-content-wrapper').load('../society/society_list.html')">Société</a>
+        <a href="#" onclick="myLoad('../society/society_list.html')">Société</a>
       </li>
       <li>
-        <a href="#" onclick="$('#page-content-wrapper').load('../building/building_list.html')">Immeuble</a>
+        <a href="#" onclick="myLoad('../building/building_list.html')">Immeuble</a>
       </li>
       <li>
-        <a href="#" onclick="$('#page-content-wrapper').load('../apartment/apartment_list.html')">Appartement</a>
+        <a href="#" onclick="myLoad('../apartment/apartment_list.html')">Appartement</a>
       </li>
       <li>
-        <a href="#" onclick="$('#page-content-wrapper').load('../client/client_list.html')">Client</a>
+        <a href="#" onclick="myLoad('../client/client_list.html')">Client</a>
+      </li>
+      <li>
+        <a href="#" onclick="myLoad('../contract/contract_list.html')">Contrat</a>
       </li>
     </ul>
   </div>
@@ -50,6 +55,16 @@
 <script>
   let global_id = null;
   const ipc = require('electron').ipcRenderer;
+  
+  function myLoad(url) {
+    $.ajax({
+      url: url,
+      dataType: "html",
+      success: function(html) {
+        $("#page-content-wrapper").html(html);
+      }
+    });
+  }
 </script>
 </body>
 </html>

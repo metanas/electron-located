@@ -18,11 +18,11 @@ ipc.on('building_list_reply', (event, data) => {
       "  </div>" +
       "</div>"
   });
-  $('#content').prepend(html)
+  $('#content').html(html)
 });
 
 
 function goto(id) {
   global_id = id;
-  $('#page-content-wrapper').load('../apartment/apartment_list.html')
+  myLoad('../apartment/apartment_list.html')
 }

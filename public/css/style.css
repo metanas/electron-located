@@ -1,4 +1,4 @@
-html ,body {
+html, body {
   margin: 0;
   padding: 0;
   min-width: 100%;
@@ -93,7 +93,7 @@ html ,body {
   background: rgba(131, 131, 131, 0.52);
 }
 
-.logo{
+.logo {
   max-width: 100px;
 }
 
@@ -123,7 +123,7 @@ html ,body {
   width: 22px;
   background-color: white;
   border-radius: 50%;
-  border:1px solid #BEBEBE;
+  border: 1px solid #BEBEBE;
 }
 
 /* On mouse-over, add a grey background color */
@@ -134,7 +134,7 @@ html ,body {
 /* When the radio button is checked, add a blue background */
 .custom-radio input:checked ~ .checkmark {
   background-color: white;
-  border:1px solid #BEBEBE;
+  border: 1px solid #BEBEBE;
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */
@@ -157,4 +157,16 @@ html ,body {
   height: 16px;
   border-radius: 50%;
   background: #41fb4b;
+}
+
+.add-button {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  background-color: aqua;
+  border-radius: 50%;
+  padding: 8px 0 0 13px;
+  cursor: pointer;
 }

@@ -3,7 +3,7 @@ $(document).ready(function () {
 });
 
 ipc.on('client_list_reply', (event, data) => {
-  let html = ""
+  let html = "";
   data.forEach((item) => {
     html += "<div class=\"col-md-4\" style='margin-top: 15px'>" +
       "  <div class=\"card\" style=\"width: 100%;\">" +
@@ -18,4 +18,4 @@ ipc.on('client_list_reply', (event, data) => {
       "</div>"
   });
   $('#content').html(html);
-})
+});

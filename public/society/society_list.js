@@ -27,10 +27,10 @@ ipc.on('society_list_reply', (event, data) => {
       "  </div>" +
       "</div>"
   });
-  $('#content').prepend(html)
+  $('#content').html(html);
 });
 
 function goto(id) {
   global_id = id;
-  $('#page-content-wrapper').load('../building/building_list.html')
+  myLoad('../building/building_list.html')
 }

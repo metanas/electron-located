@@ -2,6 +2,7 @@ let dashboard = require('./models/dashboard');
 let society = require('./models/society');
 let building = require('./models/building');
 let apartment = require('./models/apartment');
+let contract = require('./models/contract');
 let client = require('./models/client');
 let ipc = require('electron').ipcMain;
 
@@ -84,3 +85,11 @@ ipc.on('client_form', (event, data) => {
 });
 
 // ==========================================================================
+
+// Contract Function
+// ==========================================================================
+ipc.on('contract_list', function (event) {
+  contract.getContracts().then(function (response) {
+    event.sender.send('contract_list_reply', response);
+  })
+});
