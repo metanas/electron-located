@@ -88,8 +88,47 @@ ipc.on('client_form', (event, data) => {
 
 // Contract Function
 // ==========================================================================
-ipc.on('contract_list', function (event) {
+ipc.on('contract_list', function (event, id) {
+  contract.getContracts(id).then(function (response) {
+    event.sender.send('contract_list_reply', response);
+  })
+});
+
+ipc.on('contract_form', function (event, data) {
+  contract.postContract(data).then(function (response) {
+    event.sender.send('contract_form_reply')
+  })
+});
+
+ipc.on('contract_delete', function (event, id) {
+  contract.deleteContract(id);
   contract.getContracts().then(function (response) {
     event.sender.send('contract_list_reply', response);
   })
 });
+
+// PDF Function
+// ==========================================================================
+
+ipc.on('pdf_get_data', function (event, id) {
+  contract.getContracts(id).then(function (response) {
+    event.sender.send('pdf_get_data_replay', response);
+  })
+});
+// ipc.on('print-to-pdf', function (e, data) {
+//   pdfWindow.webContents.send('pdf_data', data);
+//   pdfWindow.on('ready-to-show', function (event) {
+//
+//     // const pdfPath = path.join(os.tmpdir(), 'print.pdf');
+//     // const win = BrowserWindow.fromWebContents(event.sender);
+//     //
+//     // win.webContents.printToPDF({}, function (error, data) {
+//     //   if (error) return console.error(error.message);
+//     //   fs.writeFile(pdfPath, data, function (err) {
+//     //     if (err) return console.error(err);
+//     //     shell.openExternal('file://' + pdfPath);
+//     //     event.sender.send('wrote-pdf', pdfPath)
+//     //   })
+//     // })
+//   })
+// });

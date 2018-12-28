@@ -35,10 +35,33 @@ ipc.on('apartment_list_reply', function (event, data) {
   $('#select-apartment').html(html)
 });
 
-ipc.on('client_list_reply', function (event, data){
+ipc.on('client_list_reply', function (event, data) {
   let html = "<option value=''>Choisie un Client</option>";
   data.forEach(function (item) {
     html += '<option value="' + item['id'] + '">' + item['firstname'] + ' ' + item['lastname'] + '</option>'
   });
   $("#select-client").html(html)
+});
+
+$(function () {
+  $('#datetimepickerbegin').datetimepicker({
+    viewMode: 'years',
+    format: 'MM/YYYY',
+  });
+
+  $('#datetimepickerend').datetimepicker({
+    viewMode: 'years',
+    format: 'MM/YYYY',
+  });
+
+});
+
+$('#add-button').on('click', function () {
+  var data = {
+    apartment: $('#select-apartment').val(),
+    client: $('#select-client').val(),
+    dateBegin: $('#input-date-begin').val(),
+    dateEnd: $('#input-date-end').val()
+  };
+  ipc.send('contract_form', data);
 });

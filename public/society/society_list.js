@@ -17,7 +17,7 @@ ipc.on('society_list_reply', (event, data) => {
   data.forEach(function (item) {
     html += "<div class=\"col-md-4\" style='margin-top: 15px'>" +
       "  <div class=\"card\" style=\"width: 100%;\">" +
-      "    <img class=\"card-img-top\" src=\"https://upload.wikimedia.org/wikipedia/commons/1/1f/SGP_LOGO_CMJN_130416.png\"\n" +
+      "    <img class=\"card-img-top\" src=\"https://upload.wikimedia.org/wikipedia/commons/f/ff/Logo_Societe.png\"\n" +
       "         alt=\"Card image\">" +
       "    <div class=\"card-body\">" +
       "      <h4 class=\"card-title\">" + item['name'] + "</h4>" +

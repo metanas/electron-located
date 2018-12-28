@@ -10,11 +10,14 @@ const shell = electron.shell;
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
-
+let pdfWindow
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({width: 1500, height: 600});
+  pdfWindow = new BrowserWindow({width: 1500, height: 600});
+  pdfWindow.loadFile('public/common/pdf.html');
 
+  pdfWindow.webContents.openDevTools();
   var menu = Menu.buildFromTemplate([
     {
       label: 'File',
@@ -48,7 +51,7 @@ function createWindow() {
   mainWindow.loadFile('public/common/home.html');
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools();
   let server = require('./server/server');
 
   // Emitted when the window is closed.
@@ -57,7 +60,8 @@ function createWindow() {
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     mainWindow = null
-  })
+  });
+
 }
 
 // This method will be called when Electron has finished
@@ -72,7 +76,7 @@ app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') {
     app.quit()
   }
-})
+});
 
 app.on('activate', function () {
   // On macOS it's common to re-create a window in the app when the
@@ -80,20 +84,24 @@ app.on('activate', function () {
   if (mainWindow === null) {
     createWindow()
   }
-})
+});
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
-ipc.on('print-to-pdf', function (event) {
-  const pdfPath = path.join(os.tmpdir(), 'print.pdf');
-  const win = BrowserWindow.fromWebContents(event.sender);
+ipc.on('print-to-pdf', function (e, data) {
+  pdfWindow.webContents.send('pdf_data', data);
+  pdfWindow.on('ready-to-show', function (event) {
 
-  win.webContents.printToPDF({}, function (error, data) {
-    if(error) return console.error(error.message);
-    fs.writeFile(pdfPath, data, function (err) {
-      if(err) return console.error(err);
-      shell.openExternal('file://' + pdfPath);
-      event.sender.send('wrote-pdf', pdfPath)
-    })
+    // const pdfPath = path.join(os.tmpdir(), 'print.pdf');
+    // const win = BrowserWindow.fromWebContents(event.sender);
+    //
+    // win.webContents.printToPDF({}, function (error, data) {
+    //   if (error) return console.error(error.message);
+    //   fs.writeFile(pdfPath, data, function (err) {
+    //     if (err) return console.error(err);
+    //     shell.openExternal('file://' + pdfPath);
+    //     event.sender.send('wrote-pdf', pdfPath)
+    //   })
+    // })
   })
 });

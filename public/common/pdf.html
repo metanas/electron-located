@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script> window.$ = window.jQuery = require('jquery');</script>
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row" id="content">
+  
+  </div>
+</div>
+<script>
+  let ipcRenderer = require('electron').ipcRenderer;
+
+  ipcRenderer.on('pdf_data', function (event, data) {
+    ipcRenderer.send('pdf_get_data', data)
+  });
+
+  ipcRenderer.on('pdf_get_data_replay', function (event, data) {
+    var html = "";
+    data.forEach(function (item) {
+      html += "<div class=\"col-md-6 col-sm-12\">\n" +
+        "      <div class=\"row\" style=\"border-bottom: 1px dashed;border-right: 1px dashed\">\n" +
+        "        <h2 class=\"w-100\">name society</h2>\n" +
+        "        <div class=\"w-100\">headquarters</div>\n" +
+        "        <div class=\"w-100\">address society</div>\n" +
+        "        <table class=\"w-100\">\n" +
+        "          <tr>\n" +
+        "            <td class=\"w-25\">Loyer:</td>\n" +
+        "            <td>1000.00DH</td>\n" +
+        "          </tr>\n" +
+        "          <tr>\n" +
+        "            <td class=\"w-25\">Tax:</td>\n" +
+        "            <td>1000.00DH</td>\n" +
+        "          </tr>\n" +
+        "          <tr>\n" +
+        "            <td class=\"w-25\">Timber:</td>\n" +
+        "            <td>1000.00DH</td>\n" +
+        "          </tr>\n" +
+        "          <tr>\n" +
+        "            <td class=\"w-25\">Total:</td>\n" +
+        "            <td>1000.00DH</td>\n" +
+        "          </tr>\n" +
+        "        </table>\n" +
+        "        <table>\n" +
+        "          <tr>\n" +
+        "            <td>Reçu de:</td>\n" +
+        "            <td>\"name\"</td>\n" +
+        "          </tr>\n" +
+        "          <tr>\n" +
+        "            <td>Pour le loyer de:</td>\n" +
+        "            <td>\"name\"</td>\n" +
+        "          </tr>\n" +
+        "          <tr>\n" +
+        "            <td>Qui est occuper a:</td>\n" +
+        "            <td>\"name\"</td>\n" +
+        "          </tr>\n" +
+        "          <tr>\n" +
+        "            <td>Mois:</td>\n" +
+        "            <td>\"name\"</td>\n" +
+        "          </tr>\n" +
+        "        </table>\n" +
+        "        <p class=\"float-right\">L'administrateur</p>\n" +
+        "      </div>\n" +
+        "    </div>"
+    })
+  })
+</script>
+</body>
+</html>
