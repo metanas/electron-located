@@ -59,6 +59,10 @@
   let global_id = null;
   const ipc = require('electron').ipcRenderer;
   
+  $(document).ready(function () {
+    myLoad('../society/society_list.html')
+  });
+  
   function myLoad(url) {
     $.ajax({
       url: url,

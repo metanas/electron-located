@@ -4,6 +4,7 @@ let building = require('./models/building');
 let apartment = require('./models/apartment');
 let contract = require('./models/contract');
 let client = require('./models/client');
+let payment = require('./models/payment');
 let ipc = require('electron').ipcMain;
 
 // app.get('/dashboard', function (req, res) {
@@ -109,26 +110,17 @@ ipc.on('contract_delete', function (event, id) {
 
 // PDF Function
 // ==========================================================================
+ipc.on('payment_form', function (event, data) {
+  payment.postPayment(data).then(function (response) {
+    event.sender.send('contract_form_reply')
+  })
+});
+
+// PDF Function
+// ==========================================================================
 
 ipc.on('pdf_get_data', function (event, id) {
   contract.getContracts(id).then(function (response) {
     event.sender.send('pdf_get_data_replay', response);
   })
 });
-// ipc.on('print-to-pdf', function (e, data) {
-//   pdfWindow.webContents.send('pdf_data', data);
-//   pdfWindow.on('ready-to-show', function (event) {
-//
-//     // const pdfPath = path.join(os.tmpdir(), 'print.pdf');
-//     // const win = BrowserWindow.fromWebContents(event.sender);
-//     //
-//     // win.webContents.printToPDF({}, function (error, data) {
-//     //   if (error) return console.error(error.message);
-//     //   fs.writeFile(pdfPath, data, function (err) {
-//     //     if (err) return console.error(err);
-//     //     shell.openExternal('file://' + pdfPath);
-//     //     event.sender.send('wrote-pdf', pdfPath)
-//     //   })
-//     // })
-//   })
-// });

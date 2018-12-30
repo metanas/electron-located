@@ -2,6 +2,7 @@ $('#add-button').on('click', function () {
   var data = {
     name: $('input[name="name"]').val(),
     headquateres: $('input[name="headquateres"]').val(),
+    address: $('input[name="address"]').val(),
     telephone: $('input[name="telephone"]').val(),
   };
 

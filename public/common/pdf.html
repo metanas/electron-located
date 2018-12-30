@@ -20,54 +20,73 @@
   });
 
   ipcRenderer.on('pdf_get_data_replay', function (event, data) {
+    var d = new Date();
+    var date = (d.getUTCMonth() + 1) + "/" + d.getUTCFullYear();
     var html = "";
+    var i = 0;
     data.forEach(function (item) {
-      html += "<div class=\"col-md-6 col-sm-12\">\n" +
-        "      <div class=\"row\" style=\"border-bottom: 1px dashed;border-right: 1px dashed\">\n" +
-        "        <h2 class=\"w-100\">name society</h2>\n" +
-        "        <div class=\"w-100\">headquarters</div>\n" +
-        "        <div class=\"w-100\">address society</div>\n" +
-        "        <table class=\"w-100\">\n" +
-        "          <tr>\n" +
-        "            <td class=\"w-25\">Loyer:</td>\n" +
-        "            <td>1000.00DH</td>\n" +
-        "          </tr>\n" +
-        "          <tr>\n" +
-        "            <td class=\"w-25\">Tax:</td>\n" +
-        "            <td>1000.00DH</td>\n" +
-        "          </tr>\n" +
-        "          <tr>\n" +
-        "            <td class=\"w-25\">Timber:</td>\n" +
-        "            <td>1000.00DH</td>\n" +
-        "          </tr>\n" +
-        "          <tr>\n" +
-        "            <td class=\"w-25\">Total:</td>\n" +
-        "            <td>1000.00DH</td>\n" +
-        "          </tr>\n" +
-        "        </table>\n" +
-        "        <table>\n" +
-        "          <tr>\n" +
-        "            <td>Reçu de:</td>\n" +
-        "            <td>\"name\"</td>\n" +
-        "          </tr>\n" +
-        "          <tr>\n" +
-        "            <td>Pour le loyer de:</td>\n" +
-        "            <td>\"name\"</td>\n" +
-        "          </tr>\n" +
-        "          <tr>\n" +
-        "            <td>Qui est occuper a:</td>\n" +
-        "            <td>\"name\"</td>\n" +
-        "          </tr>\n" +
-        "          <tr>\n" +
-        "            <td>Mois:</td>\n" +
-        "            <td>\"name\"</td>\n" +
-        "          </tr>\n" +
-        "        </table>\n" +
-        "        <p class=\"float-right\">L'administrateur</p>\n" +
-        "      </div>\n" +
+      html += "<div class=\"col-md-12 col-sm-12\">"
+      if (i % 2 === 0)
+        html += "      <div class=\"row\" style=\"border-bottom: 1px dashed;border-right: 1px dashed;padding: 4px\">";
+      else
+        html += "      <div class=\"row\" style=\"border-bottom: 1px dashed;padding: 4px\">";
+      html += "        <h2 class=\"w-100\">" + item['nSociety'] + "</h2>" +
+        "        <div class=\"w-100\">" + item['headquarters'] + "</div>" +
+        "        <div class=\"w-100\">" + item['aSociety'] + "</div>" +
+        "<hr class='w-100' style='margin-bottom: 0;margin-top: 0'>" +
+        "        <table class=\"w-100\">" +
+        "          <tr>" +
+        "            <td class=\"w-25\">Loyer:</td>" +
+        "            <td>" + parseFloat(item['location_price']) + " DHS</td>" +
+        "          </tr>" +
+        "          <tr>" +
+        "            <td class=\"w-25\">Tax:</td>" +
+        "            <td>" + parseFloat(item['tax']) + " DHS</td>" +
+        "          </tr>" +
+        "          <tr>" +
+        "            <td class=\"w-25\">Timber:</td>" +
+        "            <td>" + parseFloat(item['other_charge']) + " DHS</td>" +
+        "          </tr>" +
+        "          <tr>" +
+        "            <td class=\"w-25\">Total:</td>" +
+        "            <td>" + (parseFloat(item['location_price']) + parseFloat(item['tax']) + parseFloat(item['other_charge'])) + " DHS</td>" +
+        "          </tr>" +
+        "        </table>" +
+        "<hr class='w-100' style='margin-bottom: 0;margin-top: 0'>" +
+        "        <table class='w-100'>" +
+        "          <tr>" +
+        "            <td class='w-25'>Reçu de:</td>" +
+        "            <td class='w-25 text-capitalize'>" + item['firstname'] + " " + item['lastname'] + "</td>" +
+        "            <td class='text-right w-50'>Administrateur</td>" +
+        "          </tr>" +
+        "          <tr>" +
+        "            <td>Pour le loyer de:</td>" +
+        "            <td>N° " + item['nApartment'] + " étage " + item['floor'] + "</td>" +
+        "            <td></td>" +
+        "          </tr>" +
+        "          <tr>" +
+        "            <td>Qui est occupé a:</td>" +
+        "            <td>" + item['aBuilding'] + "</td>" +
+        "            <td></td>" +
+        "          </tr>" +
+        "          <tr>" +
+        "            <td>Mois:</td>" +
+        "            <td>" + date + "</td>" +
+        "            <td></td>" +
+        "          </tr>" +
+        "        </table>" +
+        "      </div>" +
         "    </div>"
-    })
-  })
+      i++;
+      ipcRenderer.send('payment_form', {date : date, id_client: item['id_client'], id_apartment: item['id_apartment'], price_paid: (parseFloat(item['location_price']) + parseFloat(item['tax']) + parseFloat(item['other_charge']))})
+    });
+    $('#content').html(html);
+    ipcRenderer.send('ready-to-print');
+  });
+
+  ipcRenderer.on('wrote-pdf', function (event, path) {
+    console.log(path);
+  });
 </script>
 </body>
 </html>

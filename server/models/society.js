@@ -36,7 +36,7 @@ module.exports.getTotalSocietyBuildings = function (id) {
   return new Promise(function (resolve, reject) {
     let query = "SELECT total(*) FROM building where id_society=?";
     db.serialize(function () {
-      db.all(query, [id],function (err, rows) {
+      db.all(query, [id], function (err, rows) {
         if (!err) {
           resolve(rows)
         } else {
@@ -77,8 +77,8 @@ module.exports.postSociety = function (data) {
   return new Promise(function (resolve, reject) {
 
     db.serialize(function () {
-      var stmt = db.prepare('INSERT INTO Society VALUES(null, ?, ?, ?, ?)');
-      stmt.run([data.name, data.headquarters, data.telephone, data.image]);
+      var stmt = db.prepare('INSERT INTO Society VALUES(null, ?, ?, ?, ?, ?)');
+      stmt.run([data.name, data.headquarters, data.telephone, data.image, data.address]);
       resolve("Success")
     });
   });
