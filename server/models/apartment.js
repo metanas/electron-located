@@ -79,7 +79,7 @@ module.exports.getTotalApartments = function () {
 module.exports.postApartment = function (data) {
   return new Promise(function (resolve, reject) {
     db.serialize(function () {
-      var stmt = db.prepare('INSERT INTO apartment (number, floor, area, description, nb_bed, location_price, advance_price, tax, other_charge, id_building) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+      var stmt = db.prepare("INSERT INTO apartment (number, floor, area, description, nb_bed, location_price, advance_price, tax, other_charge, id_building, date_added) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, strftime('%d/%m/%Y','now'))");
       stmt.run([data.number, data.floor, data.area, data.description, data.nb_bed, data.location_price, data.advance_price, data.tax, data.other_charge, data.id_building]);
       resolve("Success")
     });

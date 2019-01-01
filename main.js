@@ -15,7 +15,7 @@ let pdfWindow;
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({width: 1500, height: 600});
-  pdfWindow = new BrowserWindow({width: 1500, height: 600, show: false});
+  pdfWindow = new BrowserWindow({width: 1500, height: 600, show: false, parent: mainWindow});
   pdfWindow.loadFile('public/common/pdf.html');
 
   pdfWindow.webContents.openDevTools();
@@ -52,7 +52,7 @@ function createWindow() {
   mainWindow.loadFile('public/common/home.html');
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
   let server = require('./server/server');
 
   // Emitted when the window is closed.

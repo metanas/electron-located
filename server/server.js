@@ -26,6 +26,12 @@ ipc.on('society_form', function (event, data) {
 
   })
 });
+
+ipc.on('society_info', function (event, id) {
+  society.getSociety(id).then(function (response) {
+    event.sender.send('society_info_reply', response)
+  })
+});
 // ==========================================================================
 
 

@@ -174,3 +174,8 @@ html, body {
 .datetimepicker-input{
   border-radius: 5px;
 }
+
+#top{
+  height: 40px;
+  background: #6c757d;
+}

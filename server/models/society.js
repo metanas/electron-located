@@ -7,7 +7,7 @@ let db = new sqlite.Database(path.join(__dirname, '../../database.db'));
 module.exports.getSocieties = function () {
   return new Promise(function (resolve, reject) {
     db.serialize(function () {
-      db.all('SELECT * FROM Society', function (err, rows) {
+      db.all('SELECT * FROM society', function (err, rows) {
         if (!err) {
           resolve(rows)
         } else {
@@ -21,7 +21,7 @@ module.exports.getSocieties = function () {
 module.exports.getSociety = function (id) {
   return new Promise(function (resolve, reject) {
     db.serialize(function () {
-      db.get("SELECT * FROM Society Where id=?", [id], function (err, row) {
+      db.get("select s.*, count(b.id) as nb_building, sum(a.location_price + a.tax + a.other_charge) as total_charge, sum(a.advance_price) as total_adv_price from society as s LEFT JOIN building b on s.id = b.id_society left join apartment a on b.id = a.id_building Where s.id=?", [id], function (err, row) {
         if (!err) {
           resolve(row)
         } else {
@@ -49,7 +49,7 @@ module.exports.getTotalSocietyBuildings = function (id) {
 
 module.exports.getTotalSocieties = function () {
   return new Promise(function (resolve, reject) {
-    let query = "SELECT total(*) FROM Society";
+    let query = "SELECT total(*) FROM society";
     db.serialize(function () {
       db.all(query, function (err, rows) {
         if (!err) {
@@ -69,7 +69,7 @@ module.exports.deleteSociety = function (id) {
         building.deleteBuilding(id_building)
       })
     });
-    db.run("DELETE FROM Society WHERE id=?", [id])
+    db.run("DELETE FROM society WHERE id=?", [id])
   })
 };
 
@@ -77,7 +77,7 @@ module.exports.postSociety = function (data) {
   return new Promise(function (resolve, reject) {
 
     db.serialize(function () {
-      var stmt = db.prepare('INSERT INTO Society VALUES(null, ?, ?, ?, ?, ?)');
+      var stmt = db.prepare("INSERT INTO society (name, headquarters, telephone, image, address, date_added) VALUES(?, ?, ?, ?, ?, strftime('%d/%m/%Y','now'))");
       stmt.run([data.name, data.headquarters, data.telephone, data.image, data.address]);
       resolve("Success")
     });

@@ -9,28 +9,35 @@
 
 
 $(document).ready(function () {
-  ipc.send('society_list');
+    ipc.send('society_list');
 });
 
 ipc.on('society_list_reply', (event, data) => {
-  html = "";
-  data.forEach(function (item) {
-    html += "<div class=\"col-md-4\" style='margin-top: 15px'>" +
-      "  <div class=\"card\" style=\"width: 100%;\">" +
-      "    <img class=\"card-img-top\" src=\"https://upload.wikimedia.org/wikipedia/commons/f/ff/Logo_Societe.png\"\n" +
-      "         alt=\"Card image\">" +
-      "    <div class=\"card-body\">" +
-      "      <h4 class=\"card-title\">" + item['name'] + "</h4>" +
-      "      <p class=\"card-text\">" + item['headquarters'] + "</p>" +
-      '      <a href="#" class=\"btn btn-primary\" onclick="goto(' + item['id'] + ')">See Profile</a>' +
-      "    </div>" +
-      "  </div>" +
-      "</div>"
-  });
-  $('#content').html(html);
+    if (data) {
+        html = "";
+        data.forEach(function (item) {
+            html += "<tr>" +
+                "<td><input type='checkbox' name='society[]'></td>" +
+                "<td>" + item['name'] + "</td>" +
+                "<td>" + item['address'] + "</td>" +
+                "<td>" + item['headquarters'] + "</td>" +
+                "<td>" + item['telephone'] + "</td>" +
+                "<td>" + item['nb_building'] + "</td>" +
+                "<td>" + item['rev_total'] + "</td>" +
+                "<td>" + item['rev_refund'] + "</td>" +
+                "<td><span class='fas fa-eye' onclick='goto_info(" + item['id'] + ")'></span></td>" +
+                "</tr>"
+        });
+        $('#content').html(html);
+    }
 });
 
 function goto(id) {
-  global_id = id;
-  myLoad('../building/building_list.html')
+    global_id = id;
+    myLoad('../building/building_list.html')
+}
+
+function goto_info(id) {
+    global_id = id;
+    myLoad('../society/society_info.html')
 }

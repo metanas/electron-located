@@ -33,7 +33,7 @@ module.exports.getClient = function (id) {
 
 module.exports.getTotalClients = function () {
   return new Promise(function (resolve, reject) {
-    let query = "SELECT total(*) FROM cliet";
+    let query = "SELECT total(*) FROM client";
     db.serialize(function () {
       db.all(query, function (err, rows) {
         if (!err) {
@@ -55,7 +55,7 @@ module.exports.deleteClient = function (id) {
 module.exports.postClient = function (data) {
   return new Promise(function (resolve, reject) {
     db.serialize(function () {
-      var stmt = db.prepare("INSERT INTO client (firstname, lastname, cin, gender) VALUES (?, ? ,? ,?)");
+      var stmt = db.prepare("INSERT INTO client (firstname, lastname, cin, gender, date_added) VALUES (?, ? ,? ,?, strftime('%d/%m/%Y','now'))");
       stmt.run([data.firstname, data.lastname, data.cin, data.gender])
     })
   })
