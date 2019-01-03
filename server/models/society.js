@@ -21,7 +21,7 @@ module.exports.getSocieties = function () {
 module.exports.getSociety = function (id) {
   return new Promise(function (resolve, reject) {
     db.serialize(function () {
-      db.get("select s.*, count(b.id) as nb_building, sum(a.location_price + a.tax + a.other_charge) as total_charge, sum(a.advance_price) as total_adv_price from society as s LEFT JOIN building b on s.id = b.id_society left join apartment a on b.id = a.id_building Where s.id=?", [id], function (err, row) {
+      db.get("select s.*, count(b.id) as nb_building, count(a.id) as apart_count, count(cn.id) as apart_taked ,sum(a.location_price + a.tax + a.other_charge) as total_charge, sum(a.advance_price) as total_adv_price from society as s LEFT JOIN building b on s.id = b.id_society left join apartment a on b.id = a.id_building left join contract as cn on cn.id_apartment = a.id Where s.id=?", [id], function (err, row) {
         if (!err) {
           resolve(row)
         } else {
@@ -78,7 +78,7 @@ module.exports.postSociety = function (data) {
 
     db.serialize(function () {
       var stmt = db.prepare("INSERT INTO society (name, headquarters, telephone, image, address, date_added) VALUES(?, ?, ?, ?, ?, strftime('%d/%m/%Y','now'))");
-      stmt.run([data.name, data.headquarters, data.telephone, data.image, data.address]);
+      stmt.run([data.name, data.headquarters, data.telephone, data.image_name, data.address]);
       resolve("Success")
     });
   });

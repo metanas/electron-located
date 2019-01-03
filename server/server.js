@@ -6,6 +6,8 @@ let contract = require('./models/contract');
 let client = require('./models/client');
 let payment = require('./models/payment');
 let ipc = require('electron').ipcMain;
+let fs = require('fs');
+let path = require('path');
 
 // app.get('/dashboard', function (req, res) {
 //   dashboard.getDashboard().then(function (response) {
@@ -22,9 +24,19 @@ ipc.on('society_list', (event) => {
 
 
 ipc.on('society_form', function (event, data) {
-  society.postSociety(data).then(function (response) {
+  console.log(data);
+  var image_path = data.image_path;
+  var image_name = data.image_name;
+console.log(__dirname);
+  fs.copyFile(image_path, __dirname + "/../assert/" + image_name,function (err) {
+    if(!err){
+        society.postSociety(data).then(function (response) {
 
-  })
+        })
+    }else{
+        console.log(err)
+    }
+  });
 });
 
 ipc.on('society_info', function (event, id) {
