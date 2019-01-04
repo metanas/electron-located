@@ -27,11 +27,9 @@ ipc.on('society_form', function (event, data) {
   console.log(data);
   var image_path = data.image_path;
   var image_name = data.image_name;
-console.log(__dirname);
   fs.copyFile(image_path, __dirname + "/../assert/" + image_name,function (err) {
     if(!err){
         society.postSociety(data).then(function (response) {
-
         })
     }else{
         console.log(err)
