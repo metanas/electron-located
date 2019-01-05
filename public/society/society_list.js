@@ -1,21 +1,11 @@
-// $('#add').on('click', function (event) {
-//   ipc.send('print-to-pdf')
-// });
-//
-// ipc.on('wrote-pdf',function (event, path) {
-//   const message = `Wrote PDF to: ${path}`;
-//   console.log(message);
-// })
-
-
 $(document).ready(function () {
-    ipc.send('society_list');
+    ipc.send('society_list', 1);
 });
 
 ipc.on('society_list_reply', (event, data) => {
     if (data) {
-        html = "";
-        data.forEach(function (item) {
+        let html = "";
+        data.society_list.forEach(function (item) {
             html += "<tr>" +
                 "<td><input type='checkbox' name='society[]'></td>" +
                 "<td>" + item['name'] + "</td>" +
@@ -28,7 +18,16 @@ ipc.on('society_list_reply', (event, data) => {
                 "<td><span class='fas fa-eye' onclick='goto_info(" + item['id'] + ")'></span></td>" +
                 "</tr>"
         });
+
         $('#content').html(html);
+        let total = (data.total_item.total / 20);
+        if (total > 1) {
+            Pagination.Init(document.getElementById('pagination'), {
+                size: total, // pages size
+                page: 1,  // selected page
+                step: 3   // pages before and after current
+            });
+        }
     }
 });
 
@@ -40,4 +39,8 @@ function goto(id) {
 function goto_info(id) {
     global_id = id;
     myLoad('../society/society_info.html')
+}
+
+function getData() {
+    console.log($('a.current').val());
 }

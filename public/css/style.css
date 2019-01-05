@@ -6,88 +6,6 @@ html, body {
   overflow-x: hidden;
 }
 
-.search {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translateX(-50%) translateY(-50%);
-  transform: translateX(-50%) translateY(-50%);
-}
-
-.search * {
-  outline: none;
-  box-sizing: border-box;
-}
-
-.search__wrapper {
-  position: relative;
-}
-
-.search__field {
-  width: 50px;
-  height: 50px;
-  color: transparent;
-  font-family: Lato, sans-serif;
-  font-size: 1.35em;
-  padding: 0.35em 50px 0.35em 0;
-  border: 1px solid transparent;
-  border-radius: 0;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-
-.search__field:focus {
-  border-bottom-color: #ccc;
-  width: 50vw;
-  color: #2b2b2b;
-  cursor: default;
-}
-
-.search__field:focus ~ .search__icon {
-  background-color: transparent;
-  cursor: pointer;
-  pointer-events: auto;
-}
-
-.search__icon {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: #e9f1f4;
-  width: 50px;
-  height: 50px;
-  font-size: 1.35em;
-  text-align: center;
-  border-color: transparent;
-  border-radius: 50%;
-  pointer-events: none;
-  display: inline-block;
-  transition: background-color 0.2s ease-in-out;
-}
-
-.search__field::-webkit-input-placeholder {
-  position: relative;
-  top: 0;
-  left: 0;
-  transition-property: top, color;
-  transition-duration: .1s;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-perspective: 1000;
-  perspective: 1000;
-}
-
-.search__field::-webkit-input-placeholder[style*=hidden] {
-  color: #83b0c1;
-  font-size: .65em;
-  font-weight: normal;
-  top: -20px;
-  opacity: 1;
-  visibility: visible !important;
-}
-
 .nav-bar-vertical {
   position: fixed !important;
   background: rgba(131, 131, 131, 0.52);
@@ -178,4 +96,39 @@ html, body {
 #top{
   height: 40px;
   background: #6c757d;
+}
+
+#pagination {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 1px 2px 4px 2px;
+}
+
+#pagination a, #pagination i {
+  display: inline-block;
+  vertical-align: middle;
+  width: 22px;
+  text-align: center;
+  font-size: 14px;
+  padding: 3px 0 2px 0;
+  -webkit-user-select:none;
+}
+
+#pagination a {
+  margin: 0 2px 0 2px;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 0 #FFF, 0 1px 2px #666;
+  text-shadow: 0 1px 1px #FFF;
+  background-color: #E6E6E6;
+  background-image: -webkit-linear-gradient(top, #F3F3F3, #D7D7D7);
+}
+#pagination i {
+  margin: 0 3px 0 3px;
+}
+#pagination a.current {
+  border: 1px solid #E9E9E9;
+  box-shadow: 0 1px 1px #999;
+  background-color: #DFDFDF;
+  background-image: -webkit-linear-gradient(top, #D0D0D0, #EBEBEB);
 }
