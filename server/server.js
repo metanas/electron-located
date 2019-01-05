@@ -17,37 +17,37 @@ let path = require('path');
 // Society Function
 // ==========================================================================
 ipc.on('society_list', async (event, page) => {
-    let json = {};
-    await society.getSocieties(page).then(function (response) {
-        json.society_list = response;
-    });
+  let json = {};
+  await society.getSocieties(page).then(function (response) {
+    json.society_list = response;
+  });
 
-    await society.getTotalSocieties().then(function (response) {
-        json.total_item = response;
-    });
+  await society.getTotalSocieties().then(function (response) {
+    json.total_item = response;
+  });
 
-    event.sender.send('society_list_reply', json)
+  event.sender.send('society_list_reply', json)
 });
 
 
 ipc.on('society_form', function (event, data) {
-    console.log(data);
-    var image_path = data.image_path;
-    var image_name = data.image_name;
-    fs.copyFile(image_path, __dirname + "/../assert/" + image_name, function (err) {
-        if (!err) {
-            society.postSociety(data).then(function (response) {
-            })
-        } else {
-            console.log(err)
-        }
-    });
+  console.log(data);
+  var image_path = data.image_path;
+  var image_name = data.image_name;
+  fs.copyFile(image_path, __dirname + "/../assert/" + image_name, function (err) {
+    if (!err) {
+      society.postSociety(data).then(function (response) {
+      })
+    } else {
+      console.log(err)
+    }
+  });
 });
 
 ipc.on('society_info', function (event, id) {
-    society.getSociety(id).then(function (response) {
-        event.sender.send('society_info_reply', response)
-    })
+  society.getSociety(id).then(function (response) {
+    event.sender.send('society_info_reply', response)
+  })
 });
 // ==========================================================================
 
@@ -55,119 +55,131 @@ ipc.on('society_info', function (event, id) {
 // Building Function
 // ==========================================================================
 ipc.on('building_list', async function (event, page, id) {
-    let json = {};
-    if (id !== null) {
-        await building.getBuildingsFromSociety(page, id).then(function (response) {
-            json.building_list = response;
-        });
+  let json = {};
+  if (id !== null) {
+    await building.getBuildingsFromSociety(page, id).then(function (response) {
+      json.building_list = response;
+    });
 
-        await building.getTotalBuildingApartments(id).then(function (response) {
-            json.total_item = response;
-        })
-    } else {
-        await building.getBuildings(page).then(function (response) {
-            json.building_list = response;
-        });
+    await building.getTotalBuildingApartments(id).then(function (response) {
+      json.total_item = response;
+    })
+  } else {
+    await building.getBuildings(page).then(function (response) {
+      json.building_list = response;
+    });
 
-        await building.getTotalBuildings().then(function (response) {
-            json.total_item = response;
-        })
-    }
+    await building.getTotalBuildings().then(function (response) {
+      json.total_item = response;
+    })
+  }
 
-    event.sender.send('building_list_reply', json)
+  event.sender.send('building_list_reply', json)
 
 });
 
 ipc.on('building_form', function (event, data) {
-    building.postBuilding(data).then(function (response) {
+  building.postBuilding(data).then(function (response) {
 
-    })
+  })
 });
 // ==========================================================================
 
 // Apartment Function
 // ==========================================================================
 ipc.on('apartment_list', async (event, page, id) => {
-    let json = {};
-    if (id !== null) {
-        await apartment.getApartmentsFromBuilding(page, id).then(function (response) {
-            json.apartment_list = response;
-        });
+  let json = {};
+  if (id !== null) {
+    await apartment.getApartmentsFromBuilding(page, id).then(function (response) {
+      json.apartment_list = response;
+    });
 
-        await apartment.getTotalBuildingApartments(id).then(function (response) {
-            json.total_item = response;
-        })
-    } else {
-        await apartment.getApartments(page).then(function (response) {
-            console.log(response);
-            json.apartment_list = response;
-        });
+    await apartment.getTotalBuildingApartments(id).then(function (response) {
+      json.total_item = response;
+    })
+  } else {
+    await apartment.getApartments(page).then(function (response) {
+      console.log(response);
+      json.apartment_list = response;
+    });
 
-        await apartment.getTotalApartments().then((response) => {
-            json.total_item = response;
-        })
-    }
+    await apartment.getTotalApartments().then((response) => {
+      json.total_item = response;
+    })
+  }
 
-    event.sender.send("apartment_list_reply", json);
+  event.sender.send("apartment_list_reply", json);
 });
 
 ipc.on('apartment_form', function (event, data) {
-    apartment.postApartment(data).then(function (response) {
-        event.sender.send('apartment_form_reply', response)
-    })
+  apartment.postApartment(data).then(function (response) {
+    event.sender.send('apartment_form_reply', response)
+  })
 });
 // ==========================================================================
 
 // Client Function
 // ==========================================================================
-ipc.on('client_list', function (event) {
-    client.getClients().then(function (response) {
-        event.sender.send('client_list_reply', response)
-    })
+ipc.on('client_list', async function (event, page) {
+  let json = {};
+  await client.getClients(page).then(function (response) {
+    json.client_list = response
+  });
+
+  await client.getTotalClients().then(function (response) {
+    json.total_item = response
+  });
+
+  event.sender.send('client_list_reply', json)
 });
 
 ipc.on('client_form', (event, data) => {
-    client.postClient(data).then(function () {
+  client.postClient(data).then(function () {
 
-    })
+  })
 });
 
 // ==========================================================================
 
 // Contract Function
 // ==========================================================================
-ipc.on('contract_list', function (event, id) {
-    contract.getContracts(id).then(function (response) {
-        event.sender.send('contract_list_reply', response);
-    })
+ipc.on('contract_list', async function (event, page, id) {
+  let json = {};
+  await contract.getContracts(page, id).then(function (response) {
+    json.contract_list = response
+  });
+
+  await contract.getTotalContrats()
+
+  event.sender.send('contract_list_reply', response);
 });
 
 ipc.on('contract_form', function (event, data) {
-    contract.postContract(data).then(function (response) {
-        event.sender.send('contract_form_reply')
-    })
+  contract.postContract(data).then(function (response) {
+    event.sender.send('contract_form_reply')
+  })
 });
 
 ipc.on('contract_delete', function (event, id) {
-    contract.deleteContract(id);
-    contract.getContracts().then(function (response) {
-        event.sender.send('contract_list_reply', response);
-    })
+  contract.deleteContract(id);
+  contract.getContracts().then(function (response) {
+    event.sender.send('contract_list_reply', response);
+  })
 });
 
 // PDF Function
 // ==========================================================================
 ipc.on('payment_form', function (event, data) {
-    payment.postPayment(data).then(function (response) {
-        event.sender.send('contract_form_reply')
-    })
+  payment.postPayment(data).then(function (response) {
+    event.sender.send('contract_form_reply')
+  })
 });
 
 // PDF Function
 // ==========================================================================
 
 ipc.on('pdf_get_data', function (event, id) {
-    contract.getContracts(id).then(function (response) {
-        event.sender.send('pdf_get_data_replay', response);
-    })
+  contract.getContracts(id).then(function (response) {
+    event.sender.send('pdf_get_data_replay', response);
+  })
 });

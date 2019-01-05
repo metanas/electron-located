@@ -5,21 +5,21 @@ $(document).ready(function () {
 
 ipc.on('building_list_reply', (event, data) => {
   let html = "";
-  data.building_list.forEach(function (item) {
-    html += "<div class=\"col-md-4\" style='margin-top: 15px'>" +
-      "  <div class=\"card\" style=\"width: 100%;\">" +
-      "    <img class=\"card-img-top\" src=\"http://www.eatlogos.com/building_logos/png/editable-building-logo-design.png\"\n" +
-      "         alt=\"Card image\">" +
-      "    <div class=\"card-body\">" +
-      "      <h4 class=\"card-title\">" + item['name'] + "</h4>" +
-      "      <p class=\"card-text\">" + item['address'] + "</p>" +
-      '      <a href="#" class="btn btn-primary" onclick="goto(' + item['id'] + ')">See Profile</a>' +
-      "    </div>" +
-      "  </div>" +
-      "</div>"
-  });
-  $('#content').html(html);
-
+  if (data.building_list) {
+    data.building_list.forEach(function (item) {
+      html += "<tr>" +
+        "<td><input type='checkbox' name='building[]'></td>" +
+        "<td>" + item['name'] + "</td>" +
+        "<td class='cut-text'>" + item['address'] + "</td>" +
+        "<td class='text-center'>" + item['postcode'] + "</td>" +
+        "<td class='text-center'>" + item['city'] + "</td>" +
+        "<td class='text-center'>" + item['nb_apartment'] + "</td>" +
+        "<td class='text-center'>" + item['nb_client'] + "</td>" +
+        "<td><span class='fas fa-eye' onclick='goto_info(" + item['id'] + ")'></span></td>" +
+        "</tr>"
+    });
+    $('#content').html(html);
+  }
   let total = (data.total_item.total / 20);
   if (total > 1) {
     Pagination.Init(document.getElementById('pagination'), {
@@ -37,5 +37,11 @@ function goto(id) {
 }
 
 function getData() {
-  let page = $("a.current").val()
+  let page = $("a.current").val();
+  ipc.send('building_list', page, global_id);
+
+}
+
+function goto_info(id) {
+
 }

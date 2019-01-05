@@ -1,9 +1,33 @@
-<div class="container">
-  <div class="row" id="content">
-  
+<div class="row">
+  <h1 class="col-10">Liste des appartement</h1>
+  <div class="clearfix col-2" style="margin-bottom: 10px">
+    <button class="float-right btn btn-danger" id="delete-button"><span class="fas fa-trash"></span></button>
   </div>
 </div>
-<div id="pagination"></div>
+<div class="row">
+  <table class="table table-hover table-striped">
+    <thead>
+    <tr>
+      <th><input type="checkbox" name="all"></th>
+      <th scope="col" class="text-center">N°</th>
+      <th scope="col" class="text-center">Etage</th>
+      <th scope="col">Adresse</th>
+      <th scope="col" class="text-center">Surface</th>
+      <th scope="col" class="text-center">Type</th>
+      <th scope="col" class="text-center">Meubler</th>
+      <th scope="col" class="text-center">Prix de location</th>
+      <th scope="col" class="text-center">Occupee ?</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody id="content">
+    <tr>
+      <td colspan="8" align="center">Il y a aucune Appartement!</td>
+    </tr>
+    </tbody>
+  </table>
+  <div id="pagination"></div>
+</div>
 
 <a href="#" onclick="myLoad('../apartment/apartment_form.html')">
   <span class="add-button" id="add"><i class="fa fa-plus"></i></span>

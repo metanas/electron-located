@@ -3,10 +3,13 @@ const path = require('path');
 
 let db = new sqlite.Database(path.join(__dirname, '../../database.db'));
 
-module.exports.getClients = function () {
+module.exports.getClients = function (page) {
   return new Promise(function (resolve, reject) {
+    let query = "SELECT * FROM client";
+    if (page)
+      query += ' LIMIT ' + ((page - 1) * 20) + ', 20';
     db.serialize(() => {
-      db.all("SELECT * FROM client", function (err, rows) {
+      db.all(query, function (err, rows) {
         if (!err) {
           resolve(rows)
         } else {
@@ -35,7 +38,7 @@ module.exports.getTotalClients = function () {
   return new Promise(function (resolve, reject) {
     let query = "SELECT total(*) FROM client";
     db.serialize(function () {
-      db.all(query, function (err, rows) {
+      db.get(query, function (err, rows) {
         if (!err) {
           resolve(rows)
         } else {

@@ -17,7 +17,16 @@ ipc.on("contract_list_reply", (event, data) => {
       '<td class="fas fa-eye"></td>' +
       '</tr>'
   });
-  $('#content').html(html)
+  $('#content').html(html);
+
+  let total = (data.total_item.total / 20);
+  if (total > 1) {
+    Pagination.Init(document.getElementById('pagination'), {
+      size: total, // pages size
+      page: $('a.current').val(),  // selected page
+      step: 3   // pages before and after current
+    });
+  }
 });
 
 $('input[name="all"]').on('click', function (e) {
