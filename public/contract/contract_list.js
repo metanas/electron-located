@@ -1,17 +1,18 @@
 $(document).ready(function () {
-  ipc.send("contract_list");
+  ipc.send("contract_list", 1);
 });
 
 ipc.on("contract_list_reply", (event, data) => {
   $('input[name="all"]').attr('checked', false);
   var html = "";
-  data.forEach(function (item) {
+  data.contract_list.forEach(function (item) {
     html += "<tr>" +
       '<td><input type="checkbox" name="contract[]" value="' + item['id'] + '"></td>' +
-      '<td scope="col">' + item['nSociety'] + '</td>' +
-      '<td scope="col">' + item['nBuilding'] + '</td>' +
-      '<td scope="col">' + item['nApartment'] + '</td>' +
-      '<td scope="col">' + item['firstname'] + " " + item['lastname'] + '</td>' +
+      '<td scope="col">' + item['type'] + " N<sup>o</sup> " + item['number'] + " Etage " + item['floor'] + '</td>' +
+      '<td scope="col">' + item['address'] + '</td>' +
+      '<td scope="col">' + item['client'] + '</td>' +
+      '<td scope="col">' + item['location_price'] + '</td>' +
+      '<td scope="col">' + item['advanced_price'] + '</td>' +
       '<td scope="col">' + item['date_begin'] + '</td>' +
       '<td scope="col">' + item['date_end'] + '</td>' +
       '<td class="fas fa-eye"></td>' +

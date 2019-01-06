@@ -3,11 +3,14 @@ let path = require('path');
 
 let db = new sqlite.Database(path.join(__dirname, '../../database.db'));
 
-module.exports.getContracts = function (id) {
+module.exports.getContracts = function (page, id) {
   return new Promise(function (resolve, reject) {
-    let query = "SELECT c.*, cl.id as id_client, cl.name, cl.cin, floor, area, nb_bed, description, type, location_price, advance_price, tax, other_charge, a.id as id_apartment, a.number as nApartment, b.address as aBuilding, postcode, city, b.telephone as BTele, b.name as nBuilding, headquarters, s.address as aSociety ,s.telephone as STele, image, s.name as nSociety FROM contract c LEFT JOIN client as cl on (c.id_client = cl.id) LEFT JOIN apartment as a on (c.id_apartment = a.id) LEFT JOIN building as b on (a.id_building = b.id) LEFT JOIN Society as s on (s.id = b.id_society)";
+    let query = "SELECT c.*, a.type, a.floor, a.number, b.address, c2.name as client FROM contract as c left join apartment a on c.id_apartment = a.id left join building b on a.id_building = b.id LEFT JOIN client c2 on c.id_client = c2.id";
     if (id) {
       query += "Where (date_end='' or strftime('%m/%Y') <= date_end) and strftime('%m/%Y') >= date_begin and c.id in (" + id.join() + ")"
+    }
+    if (page) {
+      query += " LIMIT " + ((page - 1) * 20) + ", 20"
     }
     db.serialize(function () {
       db.all(query, function (err, rows) {
@@ -23,7 +26,7 @@ module.exports.getContracts = function (id) {
 module.exports.getTotalContracts = function () {
   return new Promise(function (resolve, reject) {
     db.serialize(function () {
-      db.get('SELECT count(*) FROM contract', function (err, row) {
+      db.get('SELECT count(*) as total FROM contract', function (err, row) {
         if (!err) {
           resolve(row)
         } else {

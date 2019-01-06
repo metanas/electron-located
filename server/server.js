@@ -149,9 +149,11 @@ ipc.on('contract_list', async function (event, page, id) {
     json.contract_list = response
   });
 
-  await contract.getTotalContrats()
+  await contract.getTotalContracts().then(function (response) {
+    json.total_item = response;
+  });
 
-  event.sender.send('contract_list_reply', response);
+  event.sender.send('contract_list_reply', json);
 });
 
 ipc.on('contract_form', function (event, data) {

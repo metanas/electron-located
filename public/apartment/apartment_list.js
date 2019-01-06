@@ -30,7 +30,7 @@ ipc.on('apartment_list_reply', (event, data) => {
   if (total > 1) {
     Pagination.Init(document.getElementById('pagination'), {
       size: total, // pages size
-      page: 1,  // selected page
+      page: $('a.current').val(),  // selected page
       step: 3   // pages before and after current
     });
   }

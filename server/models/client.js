@@ -36,7 +36,7 @@ module.exports.getClient = function (id) {
 
 module.exports.getTotalClients = function () {
   return new Promise(function (resolve, reject) {
-    let query = "SELECT total(*) FROM client";
+    let query = "SELECT count(*) as total FROM client";
     db.serialize(function () {
       db.get(query, function (err, rows) {
         if (!err) {
