@@ -4,7 +4,8 @@ $(document).ready(function () {
 
 ipc.on('society_info_reply', (event, data) => {
     console.log(data);
-    let html = "<div class='row'><div class='col-3'><img src='../../assert/" + data['image'] + "' style='min-width: 100%'> </div>"
+    let html = "<div class='row'><div class='col-3'>" +
+      "<img src='../../assert/" + data['image'] + "' style='min-width: 100%'> </div>"
         + "<div class='col-8'><h1>" + data['name'] + "</h1>" +
         "<p>" + data['headquarters'] + "</p>" +
         "<p>" + data['address'] + "</p>" +

@@ -7,7 +7,6 @@ let client = require('./models/client');
 let payment = require('./models/payment');
 let ipc = require('electron').ipcMain;
 let fs = require('fs');
-let path = require('path');
 
 // app.get('/dashboard', function (req, res) {
 //   dashboard.getDashboard().then(function (response) {
@@ -172,16 +171,29 @@ ipc.on('contract_delete', function (event, id) {
 // PDF Function
 // ==========================================================================
 ipc.on('payment_form', function (event, data) {
-  payment.postPayment(data).then(function (response) {
+  payment.postPayment(data).then(function () {
     event.sender.send('contract_form_reply')
   })
 });
 
-// PDF Function
-// ==========================================================================
 
 ipc.on('pdf_get_data', function (event, id) {
   contract.getContracts(id).then(function (response) {
     event.sender.send('pdf_get_data_replay', response);
   })
+});
+
+// Payment Function
+// ==========================================================================
+ipc.on('payment_list', async (event, page) => {
+  let json = {};
+  await payment.getPayments(page).then((response) => {
+    json.payment_list = response;
+  });
+
+  await payment.getTotalPayments().then((response) => {
+    json.total_item = response;
+  });
+
+  event.sender.send("payment_list_reply", json);
 });

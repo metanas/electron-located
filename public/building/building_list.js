@@ -22,9 +22,12 @@ ipc.on('building_list_reply', (event, data) => {
   }
   let total = (data.total_item.total / 20);
   if (total > 1) {
+    let page = 1;
+    if($('a.current').val())
+      page = $('a.current').val();
     Pagination.Init(document.getElementById('pagination'), {
       size: total, // pages size
-      page: $('a.current').val(),  // selected page
+      page: page,  // selected page
       step: 3   // pages before and after current
     });
   }
