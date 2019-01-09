@@ -19,42 +19,42 @@ function createWindow() {
   pdfWindow.loadFile('public/common/pdf.html');
 
   pdfWindow.webContents.openDevTools();
-  var menu = Menu.buildFromTemplate([
-    {
-      label: 'File',
-      submenu: [
-        {
-          label: 'Société',
-        },
-        {
-          label: 'Exit', click() {
-            app.quit()
-          }
-        }
-      ]
-    }, {
-      label: 'Edit',
-      submenu: [{
-        label: 'Undo',
-        role: 'undo'
-      }, {
-        label: 'Copier',
-        role: 'copy'
-      },
-        {
-          label: "couper",
-          role: 'cut'
-        }, {label: 'coller', role: 'paste'}]
-    }
-  ]);
-  Menu.setApplicationMenu(menu);
+  // var menu = Menu.buildFromTemplate([
+  //   {
+  //     label: 'File',
+  //     submenu: [
+  //       {
+  //         label: 'Société',
+  //       },
+  //       {
+  //         label: 'Exit', click() {
+  //           app.quit()
+  //         }
+  //       }
+  //     ]
+  //   }, {
+  //     label: 'Edit',
+  //     submenu: [{
+  //       label: 'Undo',
+  //       role: 'undo'
+  //     }, {
+  //       label: 'Copier',
+  //       role: 'copy'
+  //     },
+  //       {
+  //         label: "couper",
+  //         role: 'cut'
+  //       }, {label: 'coller', role: 'paste'}]
+  //   }
+  // ]);
+  // Menu.setApplicationMenu(menu);
   // and load the index.html of the app.
   mainWindow.loadFile('public/common/home.html');
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
   let server = require('./server/server');
-
+  server.init();
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
     // Dereference the window object, usually you would store windows

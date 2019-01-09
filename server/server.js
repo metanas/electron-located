@@ -197,3 +197,16 @@ ipc.on('payment_list', async (event, page) => {
 
   event.sender.send("payment_list_reply", json);
 });
+
+
+module.exports.init = function () {
+  contract.getContracts(null, null, true).then(function (response) {
+    response.forEach(function (item) {
+      let data = {
+        id_contract: item.id,
+        price: item.location_price
+      };
+      payment.postPayment(data)
+    })
+  })
+};

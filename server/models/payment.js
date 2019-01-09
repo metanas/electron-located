@@ -31,7 +31,7 @@ module.exports.getPayments = function (page) {
 module.exports.getTotalPayments = function () {
   return new Promise(function (resolve, reject) {
     db.serialize(function () {
-      db.get("SELECT count(*) FROM payment", function (err, row) {
+      db.get("SELECT count(*) as total FROM payment", function (err, row) {
         if(!err){
           resolve(row)
         }else{

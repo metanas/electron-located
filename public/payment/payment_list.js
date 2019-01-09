@@ -3,7 +3,7 @@ $(document).ready(function () {
 });
 
 ipc.on('payment_list_reply', (event, data) => {
-  if (data) {
+  if (data.payment_list.length > 0) {
     let html = "";
     data.payment_list.forEach(function (item) {
       html += "<tr>" +
