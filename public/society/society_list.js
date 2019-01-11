@@ -3,7 +3,7 @@ $(document).ready(function () {
 });
 
 ipc.on('society_list_reply', (event, data) => {
-  if (data) {
+  if (data.society_list.length >0) {
     let html = "";
     data.society_list.forEach(function (item) {
       html += "<tr>" +
