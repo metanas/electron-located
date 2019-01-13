@@ -86,15 +86,41 @@ module.exports.getTotalApartments = function () {
 module.exports.postApartment = function (data) {
   return new Promise(function (resolve, reject) {
     db.serialize(function () {
-      var stmt = db.prepare("INSERT INTO apartment (number, floor, area, description, location_price, type, id_building, date_added) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, strftime('%d/%m/%Y','now'))");
-      stmt.run([data.number, data.floor, data.area, data.description, data.location_price, data.type, data.id_building]);
-      resolve("Success")
+      var stmt = db.prepare("INSERT INTO apartment (number, floor, area, description, location_price, type, id_building, date_added) VALUES(?, ?, ?, ?, ?, ?, ?, strftime('%d/%m/%Y','now'))");
+      stmt.run([data.number, data.floor, data.area, data.description, data.location_price, data.type, data.id_building], function (err) {
+        if (!err) {
+          resolve(this.lastID)
+        } else {
+          reject(err);
+        }
+      });
     });
   })
 };
 
 module.exports.deleteApartment = (id) => {
+  return new Promise(function (resolve, reject) {
+    db.serialize(function () {
+      db.run("DELETE FROM apartment WHERE id in (?)", id.join(), function (err) {
+        if(!err){
+          resolve(this.lastID)
+        }else{
+          reject(err)
+        }
+      })
+    })
+  })
+};
+
+module.exports.deleteApartmentImage = function (id) {
   db.serialize(function () {
-    db.run("DELETE FROM apartment WHERE id=?", [id])
+    db.run("DELETE FROM apartment_image where id in (?)", id.join())
+  })
+};
+
+module.exports.postApartmentImage = function (name, id) {
+  db.serialize(function () {
+    db.run("INSERT INTO apartment_image (name, id_apartment) VALUES (?, ?)", [name, id], function (err) {
+    })
   })
 };

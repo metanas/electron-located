@@ -1,85 +1,88 @@
 <div class="container">
-    <div class="row">
-        <div class="form-group" id="images-flied">
-
-            <div class="box">
-                <div class="js--image-preview"></div>
-                <div class="upload-options">
-                    <label>
-                        <input type="file" name="images" class="image-upload" accept="image/*"/>
-                    </label>
-                </div>
+  <div class="row">
+    <div class="col-md-12" id="images-flied">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="box">
+            <div class="js--image-preview"></div>
+            <div class="upload-options">
+              <label>
+                <input type="file" name="images[]" class="image-upload" accept="image/*"/>
+              </label>
             </div>
+          </div>
         </div>
-        <div class="col-md-12 form-group">
-            <label for="society_list">Society:</label>
-            <select name="id_society" id="society_list" class="form-control">
+        <div class="col-md-4">
+          <div class="box">
+            <div class="js--image-preview"></div>
+            <div class="upload-options">
+              <label>
+                <input type="file" name="images[]" class="image-upload" accept="image/*"/>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="box">
+            <div class="js--image-preview"></div>
+            <div class="upload-options">
+              <label>
+                <input type="file" name="images[]" class="image-upload" accept="image/*"/>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 form-group">
+      <label for="society_list">Society:</label>
+      <select name="id_society" id="society_list" class="form-control">
 
-            </select>
-        </div>
-        <div class="col-md-12 form-group">
-            <label for="building_list">Bâtiment:</label>
-            <select name="id_building" id="building_list" class="form-control">
+      </select>
+    </div>
+    <div class="col-md-12 form-group">
+      <label for="building_list">Bâtiment:</label>
+      <select name="id_building" id="building_list" class="form-control">
 
-            </select>
-        </div>
-        <div class="col-md-12 form-group">
-            <label for="select-type">Type:</label>
-            <select name="type" class="form-control" id="select-type">
-                <option value="magazin">Magazin</option>
-                <option value="magazin">Appatement</option>
-                <option value="magazin">Villa</option>
-                <option value="magazin">Maison</option>
-            </select>
-        </div>
-        <div class="col-md-12 form-group">
-            <label for="input-floor">Numero:</label>
-            <input type="number" name="number" class="form-control" id="input-number" placeholder="10">
-        </div>
-        <div class="col-md-12 form-group">
-            <label for="input-floor">Etage:</label>
-            <input type="number" name="floor" class="form-control" id="input-floor" placeholder="2">
-        </div>
-        <div class="col-md-12 form-group">
-            <label for="input-area">Surface:</label>
-            <input type="text" name="area" class="form-control" id="input-area" placeholder="Surface">
-        </div>
-        <div class="col-md-12 form-group">
-            <label for="input-number-bed">Nombre des chambres:</label>
-            <input type="text" name="nb_bed" class="form-control" id="input-number-bed" placeholder="4">
-        </div>
-        <div class="col-md-12 form-group">
-            <label for="input-description">Description:</label>
-            <textarea name="description" class="form-control" id="input-description" placeholder="Description">
+      </select>
+    </div>
+    <div class="col-md-12 form-group">
+      <label for="select-type">Type:</label>
+      <select name="type" class="form-control" id="select-type">
+        <option value="Magazin">Magazin</option>
+        <option value="Appatement">Appatement</option>
+        <option value="Villa">Villa</option>
+        <option value="Maison">Maison</option>
+        <option value="Garage">Garage</option>
+      </select>
+    </div>
+    <div class="col-md-12 form-group">
+      <label for="input-floor">Numero:</label>
+      <input type="number" name="number" class="form-control" id="input-number" placeholder="10">
+    </div>
+    <div class="col-md-12 form-group">
+      <label for="input-floor">Etage:</label>
+      <input type="number" name="floor" class="form-control" id="input-floor" placeholder="2">
+    </div>
+    <div class="col-md-12 form-group">
+      <label for="input-area">Surface:</label>
+      <input type="text" name="area" class="form-control" id="input-area" placeholder="Surface">
+    </div>
+    <div class="col-md-12 form-group">
+      <label for="input-description">Description:</label>
+      <textarea name="description" class="form-control" id="input-description" placeholder="Description">
       </textarea>
-        </div>
-        <div class="col-md-12 form-group">
-            <label for="input-location-price">Prix de location:</label>
-            <input type="text" name="location_price" class="form-control" id="input-location-price"
-                   placeholder="1000.00">
-        </div>
-        <div class="col-md-12 form-group">
-            <label for="input-advance-price">Prix d'avance:</label>
-            <input type="text" name="advance_price" class="form-control" id="input-advance-price"
-                   placeholder="1000.00">
-        </div>
-        <div class="col-md-12 form-group">
-            <label for="input-tax">Tax:</label>
-            <input type="text" name="tax" class="form-control" id="input-tax"
-                   placeholder="1000.00">
-        </div>
-        <div class="col-md-12 form-group">
-            <label for="input-other-charge">Autre charge:</label>
-            <input type="text" name="other_charge" class="form-control" id="input-other-charge"
-                   placeholder="1000.00">
-        </div>
     </div>
-    <div class="clearfix">
-        <button class="float-right btn btn-primary" id="add-button">Ajouter</button>
+    <div class="col-md-12 form-group">
+      <label for="input-location-price">Prix de location:</label>
+      <input type="text" name="location_price" class="form-control" id="input-location-price"
+             placeholder="1000.00">
     </div>
+  </div>
+  <div class="clearfix">
+    <button class="float-right btn btn-primary" id="add-button">Ajouter</button>
+  </div>
 </div>
 <link rel="stylesheet" href="../css/image_upload.css">
 <script src="../js/image_upload.js"></script>
 <script src="../apartment/apartment_form.js"></script>
-</body>
-</html>

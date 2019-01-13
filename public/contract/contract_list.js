@@ -46,7 +46,8 @@ $('#delete-button').on('click', function () {
   $.each($('input[name="contract[]"]:checked'), function () {
     id.push($(this).val())
   });
-  ipc.send('contract_delete', id)
+  ipc.send('contract_delete', id);
+  ipc.send("contract_list", 1);
 });
 
 $('#download-button').on('click', function () {

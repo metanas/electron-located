@@ -93,8 +93,8 @@ module.exports.deleteBuilding = function (id) {
 module.exports.postBuilding = function (data) {
   return new Promise(function (resolve, reject) {
     db.serialize(function () {
-      var stmt = db.prepare("INSERT INTO building (name,address, postcode, city, telephone, nb_floor, id_society, date_added) VALUES(?, ?, ?, ?, ?, ?, ?, strftime('%d/%m/%Y','now'))");
-      stmt.run([data.name, data.address, data.postcode, data.city, data.telephone, data.nb_floor, data.society_id]);
+      var stmt = db.prepare("INSERT INTO building (name, address, postcode, city, nb_floor, id_society, date_added) VALUES(?, ?, ?, ?, ?, ?, strftime('%d/%m/%Y','now'))");
+      stmt.run([data.name, data.address, data.postcode, data.city, data.nb_floor, data.society_id]);
     });
 
   });

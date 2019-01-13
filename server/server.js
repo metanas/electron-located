@@ -5,6 +5,7 @@ let apartment = require('./models/apartment');
 let contract = require('./models/contract');
 let client = require('./models/client');
 let payment = require('./models/payment');
+let common = require('./models/common');
 let ipc = require('electron').ipcMain;
 let fs = require('fs');
 
@@ -30,7 +31,6 @@ ipc.on('society_list', async (event, page) => {
 
 
 ipc.on('society_form', function (event, data) {
-  console.log(data);
   var image_path = data.image_path;
   var image_name = data.image_name;
   fs.copyFile(image_path, __dirname + "/../assert/" + image_name, function (err) {
@@ -98,7 +98,6 @@ ipc.on('apartment_list', async (event, page, id) => {
     })
   } else {
     await apartment.getApartments(page).then(function (response) {
-      console.log(response);
       json.apartment_list = response;
     });
 
@@ -110,9 +109,24 @@ ipc.on('apartment_list', async (event, page, id) => {
   event.sender.send("apartment_list_reply", json);
 });
 
-ipc.on('apartment_form', function (event, data) {
-  apartment.postApartment(data).then(function (response) {
-    event.sender.send('apartment_form_reply', response)
+ipc.on('apartment_form', async function (event, data) {
+  let id;
+  await apartment.postApartment(data).then(function (response) {
+    id = response;
+  });
+
+  for (let i = 0; i < data.image_path.length; i++) {
+    fs.copyFile(data.image_path[i], __dirname + "/../assert/" + data.image_name[i], function (err) {
+      if (!err) {
+        apartment.postApartmentImage(data.image_name[i], id)
+      }
+    });
+  }
+});
+
+ipc.on('apartment_delete', function (event, data) {
+  apartment.deleteApartment(data).then(function (response) {
+    event.sender.send("apartment_delete_reply", response)
   })
 });
 // ==========================================================================

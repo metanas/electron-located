@@ -5,31 +5,34 @@ $(document).ready(function () {
 
 ipc.on('building_list_reply', (event, data) => {
   let html = "";
-  if (data.building_list) {
+  if (data.building_list.length > 0) {
     data.building_list.forEach(function (item) {
-      html += "<tr>" +
-        "<td><input type='checkbox' name='building[]'></td>" +
-        "<td>" + item['name'] + "</td>" +
-        "<td class='cut-text'>" + item['address'] + "</td>" +
-        "<td class='text-center'>" + item['postcode'] + "</td>" +
-        "<td class='text-center'>" + item['city'] + "</td>" +
-        "<td class='text-center'>" + item['nb_apartment'] + "</td>" +
-        "<td class='text-center'>" + item['nb_client'] + "</td>" +
-        "<td><span class='fas fa-eye' onclick='goto_info(" + item['id'] + ")'></span></td>" +
-        "</tr>"
+      if (item.id)
+        html += "<tr>" +
+          "<td><input type='checkbox' name='building[]'></td>" +
+          "<td>" + item['name'] + "</td>" +
+          "<td class='cut-text'>" + item['address'] + "</td>" +
+          "<td class='text-center'>" + item['postcode'] + "</td>" +
+          "<td class='text-center'>" + item['city'] + "</td>" +
+          "<td class='text-center'>" + item['nb_apartment'] + "</td>" +
+          "<td class='text-center'>" + item['nb_client'] + "</td>" +
+          "<td><span class='fas fa-eye' onclick='goto_info(" + item['id'] + ")'></span></td>" +
+          "</tr>"
     });
+    if(html)
     $('#content').html(html);
-  }
-  let total = (data.total_item.total / 20);
-  if (total > 1) {
-    let page = 1;
-    if($('a.current').val())
-      page = $('a.current').val();
-    Pagination.Init(document.getElementById('pagination'), {
-      size: total, // pages size
-      page: page,  // selected page
-      step: 3   // pages before and after current
-    });
+
+    let total = (data.total_item.total / 20);
+    if (total > 1) {
+      let page = 1;
+      if ($('a.current').val())
+        page = $('a.current').val();
+      Pagination.Init(document.getElementById('pagination'), {
+        size: total, // pages size
+        page: page,  // selected page
+        step: 3   // pages before and after current
+      });
+    }
   }
 });
 

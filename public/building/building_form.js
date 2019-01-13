@@ -3,8 +3,8 @@ $(document).ready(function () {
 });
 
 ipc.on('society_list_reply', (event, data) => {
-  html = "";
-  data.forEach(function (item) {
+  let html = '<option value="" >Selectionner une Société..</option>';
+  data.society_list.forEach(function (item) {
     html += '<option value="' + item['id'] + '">' + item['name'] + '</option>'
   });
   $('select[name="society_id"]').html(html)
@@ -17,7 +17,6 @@ $('#add-button').on('click', function () {
     nb_floor: $('input[name="nb_floor"]').val(),
     city: $('input[name="city"]').val(),
     postcode: $('input[name="postcode"]').val(),
-    telephone: $('input[name="telephone"]').val(),
     society_id: $('select[name="society_id"]').val()
   };
 
