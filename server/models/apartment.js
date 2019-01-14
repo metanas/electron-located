@@ -102,7 +102,7 @@ module.exports.postApartment = function (data) {
 module.exports.deleteApartment = (id) => {
   return new Promise(function (resolve, reject) {
     db.serialize(function () {
-      db.run("DELETE FROM apartment WHERE id in (?)", id.join(), function (err) {
+      db.run("DELETE FROM apartment WHERE id in (" + id.join() + ")", function (err) {
         if (!err) {
           resolve(this.lastID)
         } else {
@@ -115,7 +115,7 @@ module.exports.deleteApartment = (id) => {
 
 module.exports.deleteApartmentImage = function (id) {
   db.serialize(function () {
-    db.run("DELETE FROM apartment_image where id in (?)", id.join())
+    db.run("DELETE FROM apartment_image where id in (" + id.join() + ")")
   })
 };
 

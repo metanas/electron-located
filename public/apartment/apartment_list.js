@@ -67,12 +67,12 @@ $('input[name="all"]').on('click', function (e) {
 
 $('#delete-button').on('click', function () {
   var id = [];
-  $.map($('input[name="apartment[]"]:checked'), function (item) {
+  $.map($('input[name="item[]"]:checked'), function (item) {
     id.push($(item).val())
   });
   ipc.send('apartment_delete', id);
 });
 
 ipc.on("apartment_delete_reply", (event, data) => {
-  ipc.send('apartment_list', 1, global_id);
+  event.sender.send('apartment_list', 1, global_id);
 });

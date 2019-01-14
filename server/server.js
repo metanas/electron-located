@@ -48,6 +48,12 @@ ipc.on('society_info', function (event, id) {
     event.sender.send('society_info_reply', response)
   })
 });
+
+ipc.on('society_delete', function (event, id) {
+  society.deleteSociety(id).then(function (response) {
+    event.sender.send('society_delete_reply')
+  })
+});
 // ==========================================================================
 
 
@@ -80,6 +86,12 @@ ipc.on('building_list', async function (event, page, id) {
 ipc.on('building_form', function (event, data) {
   building.postBuilding(data).then(function (response) {
 
+  })
+});
+
+ipc.on('building_delete', function (event, id) {
+  building.deleteBuilding(id).then(function (response) {
+    event.sender.send('building_delete_reply')
   })
 });
 // ==========================================================================
@@ -158,6 +170,11 @@ ipc.on('client_form', (event, data) => {
   })
 });
 
+ipc.on('client_delete', function (event, id) {
+  client.deleteClient(id).then(function (response) {
+    event.sender.send('client_delete_reply')
+  })
+});
 // ==========================================================================
 
 // Contract Function
@@ -182,10 +199,9 @@ ipc.on('contract_form', function (event, data) {
 });
 
 ipc.on('contract_delete', function (event, id) {
-  contract.deleteContract(id);
-  contract.getContracts().then(function (response) {
-    event.sender.send('contract_list_reply', response);
-  })
+  contract.deleteContract(id).then(function (response) {
+    event.sender.send("contract_delete_reply")
+  });
 });
 
 // PDF Function
@@ -198,7 +214,7 @@ ipc.on('payment_form', function (event, data) {
 
 
 ipc.on('pdf_get_data', function (event, id) {
-  contract.getContracts(id).then(function (response) {
+  contract.getContracts(null, id, null).then(function (response) {
     event.sender.send('pdf_get_data_replay', response);
   })
 });
@@ -218,6 +234,10 @@ ipc.on('payment_list', async (event, page) => {
   event.sender.send("payment_list_reply", json);
 });
 
+ipc.on("payment_update", (event) => {
+  this.init();
+  event.sender.send("payment_update_reply")
+});
 
 module.exports.init = function () {
   contract.getContracts(null, null, true).then(function (response) {

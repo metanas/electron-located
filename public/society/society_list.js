@@ -3,11 +3,11 @@ $(document).ready(function () {
 });
 
 ipc.on('society_list_reply', (event, data) => {
-  if (data.society_list.length >0) {
-    let html = "";
+  let html = "";
+  if (data.society_list.length > 0) {
     data.society_list.forEach(function (item) {
       html += "<tr>" +
-        "<td><input type='checkbox' name='item[]'></td>" +
+        "<td><input type='checkbox' name='item[]' value='" + item['id'] + "'></td>" +
         "<td>" + item['name'] + "</td>" +
         "<td class='cut-text'>" + item['address'] + "</td>" +
         "<td>" + item['headquarters'] + "</td>" +
@@ -18,20 +18,23 @@ ipc.on('society_list_reply', (event, data) => {
         "<td><span class='fas fa-eye' onclick='goto_info(" + item['id'] + ")'></span></td>" +
         "</tr>"
     });
-
-    $('#content').html(html);
-    let total = (data.total_item.total / 20);
-    if (total > 1) {
-      let page = 1;
-      if($('a.current').val())
-        page = $('a.current').val();
-      Pagination.Init(document.getElementById('pagination'), {
-        size: total, // pages size
-        page: page,  // selected page
-        step: 3   // pages before and after current
-      });
-    }
+  } else {
+    html = "<td colspan=\"9\" align=\"center\">Il y a aucune societe!</td>"
   }
+
+  $('#content').html(html);
+  let total = (data.total_item.total / 20);
+  if (total > 1) {
+    let page = 1;
+    if ($('a.current').val())
+      page = $('a.current').val();
+    Pagination.Init(document.getElementById('pagination'), {
+      size: total, // pages size
+      page: page,  // selected page
+      step: 3   // pages before and after current
+    });
+  }
+
 });
 
 function goto(id) {
@@ -56,4 +59,16 @@ $('input[name="all"]').on('click', function (e) {
   } else {
     $('input[name="item[]"]').attr('checked', false);
   }
+});
+
+$('#delete-button').on('click', function () {
+  let id = [];
+  $.map($('input[name="item[]"]:checked'), function (item) {
+    id.push($(item).val())
+  });
+  ipc.send('society_delete', id);
+});
+
+ipc.on("society_delete_reply", function (event) {
+  event.sender.send('society_list', 1);
 });

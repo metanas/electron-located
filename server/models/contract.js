@@ -10,6 +10,9 @@ module.exports.getContracts = function (page, id, active) {
       query += " Where (date_end='' or strftime('%m/%Y') <= date_end) and strftime('%m/%Y') >= date_begin";
       // and c.id in (" + id.join() + ")"
     }
+    if(id)
+      query += " WHERE c.id in (" + id.join() + ")";
+
     if (page) {
       query += " LIMIT " + ((page - 1) * 20) + ", 20"
     }
@@ -47,10 +50,14 @@ module.exports.postContract = function (data) {
 };
 
 module.exports.deleteContract = function (id) {
-  return new Promise(function () {
+  return new Promise(function (resolve, reject) {
     db.serialize(function () {
       let query = "DELETE FROM contract WHERE id in (" + id.join() + ")";
-      db.run(query)
+      db.run(query, function (err) {
+        if(!err){
+          resolve(this.lastID)
+        }
+      })
     })
   })
 };

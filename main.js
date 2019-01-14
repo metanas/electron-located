@@ -18,7 +18,6 @@ function createWindow() {
   pdfWindow = new BrowserWindow({width: 1500, height: 600, show: false, parent: mainWindow});
   pdfWindow.loadFile('public/common/pdf.html');
 
-  pdfWindow.webContents.openDevTools();
   // var menu = Menu.buildFromTemplate([
   //   {
   //     label: 'File',

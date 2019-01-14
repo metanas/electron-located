@@ -8,7 +8,7 @@ ipc.on('payment_list_reply', (event, data) => {
     if (data.payment_list.length > 0) {
       data.payment_list.forEach(function (item) {
         html += "<tr>" +
-          "<td><input type='checkbox' name='item[]'></td>" +
+          "<td><input type='checkbox' name='item[]' value='" + item['id_contract'] + "'></td>" +
           "<td>" + item['type'] + " N<sup>o</sup> " + item['number'] + " Etage " + item['floor'] + "</td>" +
           "<td class='cut-text'>" + item['address'] + "</td>" +
           "<td class='text-center'>" + item['city'] + "</td>" +
@@ -60,4 +60,20 @@ $('input[name="all"]').on('click', function (e) {
   } else {
     $('input[name="item[]"]').attr('checked', false);
   }
+});
+
+$("#refresh-button").on("click", function () {
+  ipc.send("payment_update");
+});
+
+ipc.on("payment_update_reply", (event) => {
+  ipc.send('payment_list', 1);
+});
+
+$("#download-button").on("click", function () {
+  let id = [];
+  $.map($("input[name='item[]']:checked"), function (item) {
+    id.push($(item).val());
+  });
+  ipc.send("pdf_get_data", id)
 });

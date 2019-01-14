@@ -51,11 +51,12 @@ $('#delete-button').on('click', function () {
   $.map($('input[name="item[]"]:checked'), function (item) {
     id.push($(item).val())
   });
-  console.log(id);
   ipc.send('contract_delete', id);
-  ipc.send("contract_list", 1);
 });
 
+ipc.on("contract_delete_reply", function (event) {
+  event.sender.send("contract_list", 1);
+});
 // $('#download-button').on('click', function () {
 //   var id = [];
 //   $.each($('input[name="contract[]"]:checked'), function () {

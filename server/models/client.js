@@ -50,9 +50,15 @@ module.exports.getTotalClients = function () {
 };
 
 module.exports.deleteClient = function (id) {
-  db.serialize(function () {
-    db.run("DELETE FROM client WHERE id=?", [id])
-  })
+  return new Promise(function (resolve, reject) {
+    db.serialize(function () {
+      db.run("DELETE FROM client WHERE id in (" + id.join() + ")", function (err) {
+        if(!err){
+          resolve(this.lastID)
+        }
+      })
+    })
+  });
 };
 
 module.exports.postClient = function (data) {

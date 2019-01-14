@@ -66,13 +66,20 @@ module.exports.getTotalSocieties = function () {
 };
 
 module.exports.deleteSociety = function (id) {
-  db.serialize(function () {
-    db.all("SELECT id FROM building where id_society=?", [id], function (err, rows) {
-      rows.forEach(function (id_building) {
-        building.deleteBuilding(id_building)
+  return new Promise(function (resolve, reject) {
+    db.serialize(function () {
+      db.all("SELECT id FROM building where id_society in (" + id.join() + ")", function (err, rows) {
+        rows.forEach(function (id_building) {
+          building.deleteBuilding(id_building)
+        })
+      });
+      db.run("DELETE FROM society WHERE id in (" + id.join() + ")", function (err) {
+        console.log(err);
+        if (!err) {
+          resolve(this.lastID)
+        }
       })
-    });
-    db.run("DELETE FROM society WHERE id=?", [id])
+    })
   })
 };
 

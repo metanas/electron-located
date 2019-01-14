@@ -22,7 +22,7 @@ module.exports.getBuildingsFromSociety = function (page, id) {
 
 module.exports.getBuildings = function (page) {
   return new Promise(function (resolve, reject) {
-    let query = 'SELECT b.*, count(a.id) as nb_apartment, count(c.id) as nb_client from building as b left join apartment a on b.id = a.id_building left join contract c on a.id = c.id_apartment';
+    let query = 'SELECT * from building';
     if (page) {
       query += ' LIMIT ' + ((page - 1) * 20) + ', 20';
     }
@@ -83,9 +83,15 @@ module.exports.getTotalBuildings = function () {
 };
 
 module.exports.deleteBuilding = function (id) {
-  db.serialize(function () {
-    db.run("DELETE FROM apartment WHERE id_building=?", [id])
-      .run("DELETE FROM building WHERE id=?", [id])
+  return new Promise(function (resolve, reject) {
+    db.serialize(function () {
+      db.run("DELETE FROM apartment WHERE id_building in (" + id.join() + ")")
+        .run("DELETE FROM building WHERE id in (" + id.join() + ")" , function (err) {
+          if(!err){
+            resolve(this.lastID)
+          }
+        })
+    })
   })
 };
 
