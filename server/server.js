@@ -109,6 +109,12 @@ ipc.on('apartment_list', async (event, page, id) => {
   event.sender.send("apartment_list_reply", json);
 });
 
+ipc.on("apartment_info", function (event, id) {
+  apartment.getApartment(id).then(function (response) {
+    event.sender.send("apartment_info_reply", response)
+  })
+});
+
 ipc.on('apartment_form', async function (event, data) {
   let id;
   await apartment.postApartment(data).then(function (response) {

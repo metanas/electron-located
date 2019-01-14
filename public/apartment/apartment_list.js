@@ -5,11 +5,12 @@ $(document).ready(function () {
 
 ipc.on('apartment_list_reply', (event, data) => {
   console.log(data);
-  let html = "";
+  let html = " <td colspan=\"10\" align=\"center\">Il y a aucune Appartement!</td>\n";
   if (data.apartment_list.length > 0) {
+    html = "";
     data.apartment_list.forEach(function (item) {
       html += "<tr>" +
-        "<td><input type='checkbox' name='apartment[]' value='" + item['id'] + "'></td>" +
+        "<td><input type='checkbox' name='item[]' value='" + item['id'] + "'></td>" +
         "<td class='text-center'>" + item['type'] + "</td>" +
         "<td class='text-center'>" + item['number'] + "</td>" +
         "<td class='cut-text'>" + item['address'] + "..</td>" +
@@ -25,21 +26,21 @@ ipc.on('apartment_list_reply', (event, data) => {
       html += "<td><span class='fas fa-eye' onclick='goto_info(" + item['id'] + ")'></span></td>" +
         "</tr>"
     });
-
-    $('#content').html(html);
-
-    let total = (data.total_item.total / 20);
-    if (total > 1) {
-      let page = 1;
-      if ($('a.current').val())
-        page = $('a.current').val();
-      Pagination.Init(document.getElementById('pagination'), {
-        size: total, // pages size
-        page: page,  // selected page
-        step: 3   // pages before and after current
-      });
-    }
   }
+  $('#content').html(html);
+
+  let total = (data.total_item.total / 20);
+  if (total > 1) {
+    let page = 1;
+    if ($('a.current').val())
+      page = $('a.current').val();
+    Pagination.Init(document.getElementById('pagination'), {
+      size: total, // pages size
+      page: page,  // selected page
+      step: 3   // pages before and after current
+    });
+  }
+
 });
 
 function goto(id) {
@@ -55,6 +56,14 @@ function getData() {
   let page = $("a.current").val();
   ipc.send('apartment_list', page, global_id);
 }
+
+$('input[name="all"]').on('click', function (e) {
+  if (e.target.checked) {
+    $('input[name="item[]"]').attr('checked', true);
+  } else {
+    $('input[name="item[]"]').attr('checked', false);
+  }
+});
 
 $('#delete-button').on('click', function () {
   var id = [];

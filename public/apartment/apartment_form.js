@@ -1,5 +1,5 @@
 $(document).ready(
-  ipc.send('society_list')
+  ipc.send('society_list',null)
 );
 
 
@@ -41,7 +41,7 @@ $('#add-button').on('click', function () {
     area: $('input[name="area"]').val(),
     description: $('textarea[name="description"]').val(),
     location_price: $('input[name="location_price"]').val(),
-    type: $('select[name="type"]:selected').val(),
+    type: $('#select-type').val(),
     id_building: $('select[name="id_building"]:selected').val(),
   };
   ipc.send('apartment_form', data);

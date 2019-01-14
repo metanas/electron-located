@@ -1,30 +1,32 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12 form-group">
-      <label for="input-firstname">Nom:</label>
-      <input type="text" name="firstname" class="form-control" id="input-firstname" placeholder="Nom">
+<div class="row">
+  <div class="col-md-12 form-group">
+    <label>Gender:</label><br/>
+    <div class="form-check-inline">
+      <label class="custom-radio">Societe
+        <input type="radio" name="type" checked="checked" value="Societe">
+        <span class="checkmark"></span>
+      </label>
+      <label class="custom-radio">Personne
+        <input type="radio" name="type" value="Personne">
+        <span class="checkmark"></span>
+      </label>
     </div>
-    <div class="col-md-12 form-group">
-      <label for="input-lastname">Prenom:</label>
-      <input type="text" name="lastname" class="form-control" id="input-lastname" placeholder="Prenom">
-    </div>
-    <div class="col-md-12 form-group">
-      <label for="input-cin">CIN:</label>
-      <input type="text" name="cin" class="form-control" id="input-cin" placeholder="CIN">
-    </div>
-    <div class="col-md-12 form-group">
-      <label>Gender:</label><br/>
-      <div class="form-check-inline">
-        <label class="custom-radio">Homme
-          <input type="radio" name="gender" checked="checked" value="male">
-          <span class="checkmark"></span>
-        </label>
-        <label class="custom-radio">Femme
-          <input type="radio" name="gender" value="female">
-          <span class="checkmark"></span>
-        </label>
-      </div>
-    </div>
+  </div>
+  <div class="col-md-12 form-group">
+    <label for="input-name">Nom:</label>
+    <input type="text" name="name" class="form-control" id="input-name" placeholder="Nom">
+  </div>
+  <div class="col-md-12 form-group">
+    <label for="input-address">Adresse:</label>
+    <input type="text" name="address" class="form-control" id="input-address" placeholder="Adresse">
+  </div>
+  <div class="col-md-12 form-group">
+    <label for="input-telephone">Telephone:</label>
+    <input type="text" name="telephone" class="form-control" id="input-telephone" placeholder="telephone">
+  </div>
+  <div class="col-md-12 form-group">
+    <label for="input-identification">CIN/CNE:</label>
+    <input type="text" name="identification" class="form-control" id="input-identification" placeholder="CIN/CNE">
   </div>
 </div>
 <div class="clearfix">

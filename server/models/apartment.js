@@ -11,6 +11,7 @@ module.exports.getApartmentsFromBuilding = function (page, id) {
     db.serialize(function () {
       db.all(query, [id], function (err, rows) {
         if (!err) {
+          console.log(rows);
           resolve(rows)
         } else {
           reject(err)
@@ -41,7 +42,7 @@ module.exports.getApartments = function (page) {
 module.exports.getApartment = function (id) {
   return new Promise(function (resolve, reject) {
     db.serialize(function () {
-      db.all('SELECT * FROM apartment where id=?', [id], function (err, rows) {
+      db.get('SELECT * FROM apartment where id=?', [id], function (err, rows) {
         if (!err) {
           resolve(rows)
         } else {
@@ -102,9 +103,9 @@ module.exports.deleteApartment = (id) => {
   return new Promise(function (resolve, reject) {
     db.serialize(function () {
       db.run("DELETE FROM apartment WHERE id in (?)", id.join(), function (err) {
-        if(!err){
+        if (!err) {
           resolve(this.lastID)
-        }else{
+        } else {
           reject(err)
         }
       })
@@ -121,6 +122,34 @@ module.exports.deleteApartmentImage = function (id) {
 module.exports.postApartmentImage = function (name, id) {
   db.serialize(function () {
     db.run("INSERT INTO apartment_image (name, id_apartment) VALUES (?, ?)", [name, id], function (err) {
+    })
+  })
+};
+
+module.exports.getFreeApartment = function () {
+  return new Promise(function (resolve, reject) {
+    db.serialize(function () {
+      db.all("SELECT * FROM apartment where id not in (select id_apartment from contract where date_end < strftime(\"%m/%Y\", 'now'))", function (err, rows) {
+        if (!err) {
+          resolve(rows)
+        } else {
+          reject(err)
+        }
+      })
+    })
+  })
+};
+
+module.exports.getFreeApartmentFormBuilding = function (id) {
+  return new Promise(function (resolve, reject) {
+    db.serialize(function () {
+      db.all("SELECT * FROM apartment where id not in (select id_apartment from contract where date_end < strftime(\"%m/%Y\", 'now'))", function (err, rows) {
+        if (!err) {
+          resolve(rows)
+        } else {
+          reject(err)
+        }
+      })
     })
   })
 };

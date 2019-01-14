@@ -5,19 +5,23 @@ $(document).ready(function () {
 ipc.on('payment_list_reply', (event, data) => {
   if (data.payment_list.length > 0) {
     let html = "";
-    data.payment_list.forEach(function (item) {
-      html += "<tr>" +
-        "<td><input type='checkbox' name='payment[]'></td>" +
-        "<td>" + item['type'] + " N<sup>o</sup> " + item['number'] + " Etage " + item['floor'] + "</td>" +
-        "<td class='cut-text'>" + item['address'] + "</td>" +
-        "<td class='text-center'>" + item['city'] + "</td>" +
-        "<td class='text-center'>" + item['name'] + "</td>" +
-        "<td class='text-center'>" + item['price'] + " DHS</td>" +
-        "<td class='text-center'>" + item['price_paid'] + " DHS</td>" +
-        "<td class='text-center'>" + item['date'] + "</td>" +
-        "<td><span class='fas fa-eye' onclick='goto_info(" + item['id_contract'] + ", "+ item['date'] + " )'></span></td>" +
-      "</tr>"
-    });
+    if (data.payment_list.length > 0) {
+      data.payment_list.forEach(function (item) {
+        html += "<tr>" +
+          "<td><input type='checkbox' name='item[]'></td>" +
+          "<td>" + item['type'] + " N<sup>o</sup> " + item['number'] + " Etage " + item['floor'] + "</td>" +
+          "<td class='cut-text'>" + item['address'] + "</td>" +
+          "<td class='text-center'>" + item['city'] + "</td>" +
+          "<td class='text-center'>" + item['name'] + "</td>" +
+          "<td class='text-center'>" + item['price'] + " DHS</td>" +
+          "<td class='text-center'>" + item['price_paid'] + " DHS</td>" +
+          "<td class='text-center'>" + item['date'] + "</td>" +
+          "<td><span class='fas fa-eye' onclick='goto_info(" + item['id_contract'] + ", " + item['date'] + " )'></span></td>" +
+          "</tr>"
+      });
+    } else {
+      html = "<td colspan=\"9\" align=\"center\">Il y a aucune Facture!</td>\n"
+    }
 
     $('#content').html(html);
     let total = (data.total_item.total / 20);
@@ -49,3 +53,11 @@ function getData() {
   ipc.send('society_list', page)
 
 }
+
+$('input[name="all"]').on('click', function (e) {
+  if (e.target.checked) {
+    $('input[name="item[]"]').attr('checked', true);
+  } else {
+    $('input[name="item[]"]').attr('checked', false);
+  }
+});

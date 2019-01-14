@@ -7,7 +7,7 @@ ipc.on('society_list_reply', (event, data) => {
     let html = "";
     data.society_list.forEach(function (item) {
       html += "<tr>" +
-        "<td><input type='checkbox' name='society[]'></td>" +
+        "<td><input type='checkbox' name='item[]'></td>" +
         "<td>" + item['name'] + "</td>" +
         "<td class='cut-text'>" + item['address'] + "</td>" +
         "<td>" + item['headquarters'] + "</td>" +
@@ -49,3 +49,11 @@ function getData() {
   ipc.send('society_list', page)
 
 }
+
+$('input[name="all"]').on('click', function (e) {
+  if (e.target.checked) {
+    $('input[name="item[]"]').attr('checked', true);
+  } else {
+    $('input[name="item[]"]').attr('checked', false);
+  }
+});

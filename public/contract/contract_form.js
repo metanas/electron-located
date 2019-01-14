@@ -4,16 +4,23 @@ $(document).ready(function () {
 });
 
 $('#select-society').on('change', function () {
-  ipc.send('building_list', $('select[name="society"]:selected').val())
+  ipc.send('building_list', null, $('select[name="society"]:selected').val())
 });
 
 $('#select-building').on('change', function () {
-  ipc.send('apartment_list', $('select[name="building"]:selected').val())
+  ipc.send('apartment_list', null, $('select[name="building"]:selected').val())
+});
+$('#select-apartment').on('change', function () {
+  ipc.send('apartment_info', $('#select-apartment').val())
+});
+
+ipc.on("apartment_info_reply", function (event, data) {
+  $("#input-price").val(data['location_price']);
 });
 
 ipc.on('society_list_reply', function (event, data) {
   let html = "<option value=\"\">Choisie une Societe</option>";
-  data.forEach(function (item) {
+  data.society_list.forEach(function (item) {
     html += '<option value=\"' + item['id'] + '\">' + item['name'] + '</option>'
   });
   $('#select-society').html(html)
@@ -21,7 +28,7 @@ ipc.on('society_list_reply', function (event, data) {
 
 ipc.on('building_list_reply', function (event, data) {
   let html = "<option value=\"\">Choisie un Immeuble</option>";
-  data.forEach(function (item) {
+  data.building_list.forEach(function (item) {
     html += '<option value=\"' + item['id'] + '\">' + item['name'] + '</option>'
   });
   $('#select-building').html(html)
@@ -29,7 +36,7 @@ ipc.on('building_list_reply', function (event, data) {
 
 ipc.on('apartment_list_reply', function (event, data) {
   let html = "<option value=\"\">Choisie une Appartement</option>";
-  data.forEach(function (item) {
+  data.apartment_list.forEach(function (item) {
     html += '<option value=\"' + item['id'] + '\">' + item['number'] + " etage " + item['floor'] + '</option>'
   });
   $('#select-apartment').html(html)
@@ -37,8 +44,8 @@ ipc.on('apartment_list_reply', function (event, data) {
 
 ipc.on('client_list_reply', function (event, data) {
   let html = "<option value=''>Choisie un Client</option>";
-  data.forEach(function (item) {
-    html += '<option value="' + item['id'] + '">' + item['firstname'] + ' ' + item['lastname'] + '</option>'
+  data.client_list.forEach(function (item) {
+    html += '<option value="' + item['id'] + '">' + item['name'] + '</option>'
   });
   $("#select-client").html(html)
 });
@@ -60,6 +67,9 @@ $('#add-button').on('click', function () {
   var data = {
     apartment: $('#select-apartment').val(),
     client: $('#select-client').val(),
+    price: $('#select-client').val(),
+    advanced_price: $('#select-client').val(),
+    tax: $('#select-client').val(),
     dateBegin: $('#input-date-begin').val(),
     dateEnd: $('#input-date-end').val()
   };

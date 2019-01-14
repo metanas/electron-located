@@ -7,10 +7,10 @@ ipc.on('client_list_reply', (event, data) => {
   if (data.client_list) {
     data.client_list.forEach((item) => {
       html += "<tr>" +
-        "<td><input type='checkbox' name='building[]'></td>" +
+        "<td><input type='checkbox' name='item[]'></td>" +
         "<td>" + item['name'] + "</td>" +
         "<td class='cut-text'>" + item['type'] + "</td>" +
-        "<td class='text-center'>" + item['cin'] + "</td>" +
+        "<td class='text-center'>" + item['identification'] + "</td>" +
         "<td class='text-center'>" + item['address'] + "</td>" +
         "<td class='text-center'>" + item['telephone'] + "</td>" +
         "<td class='text-center'>-</td>" +
@@ -29,5 +29,13 @@ ipc.on('client_list_reply', (event, data) => {
         step: 3   // pages before and after current
       });
     }
+  }
+});
+
+$('input[name="all"]').on('click', function (e) {
+  if (e.target.checked) {
+    $('input[name="item[]"]').attr('checked', true);
+  } else {
+    $('input[name="item[]"]').attr('checked', false);
   }
 });

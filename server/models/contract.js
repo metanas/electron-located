@@ -17,7 +17,7 @@ module.exports.getContracts = function (page, id, active) {
       db.all(query, function (err, rows) {
         if (!err) {
           resolve(rows);
-        }else
+        } else
           reject(err);
       })
     })
@@ -41,7 +41,7 @@ module.exports.getTotalContracts = function () {
 module.exports.postContract = function (data) {
   return new Promise(function () {
     db.serialize(function () {
-      db.run("INSERT INTO contract (id_apartment, id_client, date_begin, date_end, date_added) VALUES (?, ?, ?, ?, strftime('%d/%m/%Y','now'))", [data.apartment, data.client, data.dateBegin, data.dateEnd])
+      db.run("INSERT INTO contract (id_apartment, id_client, advanced_price, tax, date_begin, date_end, date_added) VALUES (?, ?, ?, ?, ?, ?, strftime('%d/%m/%Y','now'))", [data.apartment, data.client, data.advanced_price, data.tax, data.dateBegin, data.dateEnd])
     })
   });
 };

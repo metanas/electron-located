@@ -9,7 +9,7 @@ ipc.on('building_list_reply', (event, data) => {
     data.building_list.forEach(function (item) {
       if (item.id)
         html += "<tr>" +
-          "<td><input type='checkbox' name='building[]'></td>" +
+          "<td><input type='checkbox' name='item[]'></td>" +
           "<td>" + item['name'] + "</td>" +
           "<td class='cut-text'>" + item['address'] + "</td>" +
           "<td class='text-center'>" + item['postcode'] + "</td>" +
@@ -51,3 +51,11 @@ function getData() {
 function goto_info(id) {
 
 }
+
+$('input[name="all"]').on('click', function (e) {
+  if (e.target.checked) {
+    $('input[name="item[]"]').attr('checked', true);
+  } else {
+    $('input[name="item[]"]').attr('checked', false);
+  }
+});

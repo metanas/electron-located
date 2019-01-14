@@ -13,7 +13,7 @@ module.exports.postPayment = function (data) {
 
 module.exports.getPayments = function (page) {
   return new Promise(function (resolve, reject) {
-    let query = "SELECT p.*, a.number, a.floor, a.type, c2.name,b.address,b.city FROM payment as p left join contract c on p.id_contract = c.id left join apartment a on c.id_apartment = a.id left join client c2 on c.id_client = c2.id left join building b on a.id_building = b.id order by date DESC";
+    let query = "SELECT p.*, a.number, a.floor, a.type, c2.name, b.address, b.city FROM payment as p left join contract c on p.id_contract = c.id left join apartment a on c.id_apartment = a.id left join client c2 on c.id_client = c2.id left join building b on a.id_building = b.id order by date DESC";
     if (page)
       query += " LIMIT " + ((page - 1) * 20) + ", 20";
     db.serialize(function () {

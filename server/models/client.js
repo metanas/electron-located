@@ -58,8 +58,8 @@ module.exports.deleteClient = function (id) {
 module.exports.postClient = function (data) {
   return new Promise(function (resolve, reject) {
     db.serialize(function () {
-      var stmt = db.prepare("INSERT INTO client (name, cin, gender, date_added) VALUES (?, ? ,? ,?, strftime('%d/%m/%Y','now'))");
-      stmt.run([data.firstname, data.lastname, data.cin, data.gender])
+      var stmt = db.prepare("INSERT INTO client (type, name, address, telephone, identification, date_added) VALUES (?, ?, ?, ?, ?, strftime('%d/%m/%Y','now'))");
+      stmt.run([data.type, data.name, data.address, data.telephone, data.identification])
     })
   })
 };
