@@ -13,8 +13,8 @@ ipc.on('client_list_reply', (event, data) => {
         "<td class='text-center'>" + item['identification'] + "</td>" +
         "<td class='text-center'>" + item['address'] + "</td>" +
         "<td class='text-center'>" + item['telephone'] + "</td>" +
-        "<td class='text-center'>-</td>" +
-        "<td><span class='fas fa-eye' onclick='goto_info(" + item['id'] + ")'></span></td>" +
+        "<td class='text-center'>" + (item['total_price_paid'] - item['total_price']) + " DHS</td>" +
+        "<td><span class='fas fa-eye' style='cursor: pointer' onclick='goto_info(" + item['id'] + ")'></span></td>" +
         "</tr>"
     });
   } else {
@@ -55,3 +55,8 @@ $('#delete-button').on('click', function () {
 ipc.on("client_delete_reply", (event, data) => {
   event.sender.send('client_list', 1);
 });
+
+function goto_info(id) {
+  global_id = id;
+  myLoad("../client/client_info.html")
+}

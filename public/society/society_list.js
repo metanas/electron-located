@@ -3,6 +3,7 @@ $(document).ready(function () {
 });
 
 ipc.on('society_list_reply', (event, data) => {
+  console.log("test");
   let html = "";
   if (data.society_list.length > 0) {
     data.society_list.forEach(function (item) {
@@ -12,10 +13,10 @@ ipc.on('society_list_reply', (event, data) => {
         "<td class='cut-text'>" + item['address'] + "</td>" +
         "<td>" + item['headquarters'] + "</td>" +
         "<td>" + item['telephone'] + "</td>" +
-        "<td>" + item['nb_building'] + "</td>" +
-        "<td>" + item['rev_total'] + "</td>" +
-        "<td>" + item['rev_refund'] + "</td>" +
-        "<td><span class='fas fa-eye' onclick='goto_info(" + item['id'] + ")'></span></td>" +
+        "<td class='text-center'>" + item['nb_buildings'] + "</td>" +
+        "<td class='text-center'>" + item['total_price'] + " DHS</td>" +
+        "<td class='text-center'>" + item['total_price_paid'] + " DHS</td>" +
+        "<td><span class='fas fa-eye' style='cursor: pointer' onclick='goto_info(" + item['id'] + ")'></span></td>" +
         "</tr>"
     });
   } else {

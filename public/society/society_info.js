@@ -4,7 +4,7 @@ $(document).ready(function () {
 
 ipc.on('society_info_reply', (event, data) => {
     let html = "<div class='row'><div class='col-3'>" +
-      "<img src='../../assert/" + data['image'] + "' style='min-width: 100%'> </div>"
+      "<img src='../../assert/" + data['image'] + "' class='img-fluid'> </div>"
         + "<div class='col-8'><h1>" + data['name'] + "</h1>" +
         "<p>" + data['headquarters'] + "</p>" +
         "<p>" + data['address'] + "</p>" +
@@ -14,4 +14,6 @@ ipc.on('society_info_reply', (event, data) => {
     $('#building-count').html(data['nb_building']);
     $('#apartment-count').html(data['apart_count']);
     $('#client-count').html(data['apart_taken']);
+    $('#total-price').html(data['total_price'] + " DHS");
+    $('#total-price-paid').html(data['total_price_paid'] + " DHS");
 });

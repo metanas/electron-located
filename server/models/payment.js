@@ -32,9 +32,23 @@ module.exports.getTotalPayments = function () {
   return new Promise(function (resolve, reject) {
     db.serialize(function () {
       db.get("SELECT count(*) as total FROM payment", function (err, row) {
-        if(!err){
+        if (!err) {
           resolve(row)
-        }else{
+        } else {
+          reject(err)
+        }
+      })
+    })
+  })
+};
+
+module.exports.getPaymentUnpaidClient = function (id) {
+  return new Promise(function (resolve, reject) {
+    db.serialize(() => {
+      db.get("SELECT count(*) as total_unpaid FROM payment p left join contract c on p.id_contract = c.id where c.id_client=? and (p.price - p.price_paid <> 0)", [id], function (err, row) {
+        if (!err) {
+          resolve(row)
+        } else {
           reject(err)
         }
       })

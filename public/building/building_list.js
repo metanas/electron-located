@@ -15,7 +15,7 @@ ipc.on('building_list_reply', (event, data) => {
         "<td class='text-center'>" + item['city'] + "</td>" +
         "<td class='text-center'>" + item['nb_apartment'] + "</td>" +
         "<td class='text-center'>" + item['nb_client'] + "</td>" +
-        "<td><span class='fas fa-eye' onclick='goto_info(" + item['id'] + ")'></span></td>" +
+        "<td><span class='fas fa-eye' style='cursor: pointer' onclick='goto_info(" + item['id'] + ")'></span></td>" +
         "</tr>"
     });
   } else {

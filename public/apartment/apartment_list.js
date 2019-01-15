@@ -23,7 +23,7 @@ ipc.on('apartment_list_reply', (event, data) => {
       else
         html += "<td class='text-center'>-</td>";
 
-      html += "<td><span class='fas fa-eye' onclick='goto_info(" + item['id'] + ")'></span></td>" +
+      html += "<td><span class='fas fa-eye' style='cursor: pointer' onclick='goto_info(" + item['id'] + ")'></span></td>" +
         "</tr>"
     });
   }

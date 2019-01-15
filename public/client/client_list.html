@@ -2,6 +2,7 @@
   <h1 class="col-10">Liste des Clients</h1>
   <div class="clearfix col-2" style="margin-bottom: 10px">
     <button class="float-right btn btn-danger" id="delete-button"><span class="fas fa-trash"></span></button>
+    <button class="float-right btn btn-primary" id="add-button" onclick="myLoad('../client/client_form.html')" style="margin-right: 10px"><span class="fas fa-plus"></span></button>
   </div>
 </div>
 <div class="row" >
@@ -26,8 +27,5 @@
   </table>
   <div id="pagination"></div>
 </div>
-<a href="#" onclick="myLoad('../client/client_form.html')">
-  <span class="add-button" id="add"><i class="fa fa-plus"></i></span>
-</a>
 <script src="../client/client_list.js"></script>
 <script src="../js/pagination.js"></script>

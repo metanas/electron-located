@@ -170,6 +170,19 @@ ipc.on('client_form', (event, data) => {
   })
 });
 
+ipc.on('client_info', async (event, id) => {
+  let json = {};
+  await client.getClient(id).then(function (response) {
+    json.info = response
+  });
+
+  await payment.getPaymentUnpaidClient(id).then(function (response) {
+    json.unpaid = response['total_unpaid']
+  });
+
+  event.sender.send("client_info_reply", json)
+});
+
 ipc.on('client_delete', function (event, id) {
   client.deleteClient(id).then(function (response) {
     event.sender.send('client_delete_reply')

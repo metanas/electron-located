@@ -2,6 +2,8 @@
     <h1 class="col-10">Liste des societes</h1>
     <div class="clearfix col-2" style="margin-bottom: 10px">
         <button class="float-right btn btn-danger" id="delete-button"><span class="fas fa-trash"></span></button>
+        <button class="float-right btn btn-primary" id="add-button" onclick="myLoad('../society/society_form.html')" style="margin-right: 10px"><span class="fas fa-plus"></span></button>
+
     </div>
 </div>
 <div class="row">
@@ -13,9 +15,9 @@
             <th scope="col">Adresse</th>
             <th scope="col">Siege</th>
             <th scope="col">Telephone</th>
-            <th scope="col">nombre des Immeubles</th>
-            <th scope="col">Revenue total</th>
-            <th scope="col">Revenue reculte</th>
+            <th scope="col" class='text-center'>nombre des Immeubles</th>
+            <th scope="col" class='text-center'>Revenue total</th>
+            <th scope="col" class='text-center'>Revenue reculte</th>
             <th></th>
         </tr>
         </thead>
@@ -27,9 +29,5 @@
     </table>
     <div id="pagination"></div>
 </div>
-<a href="#" onclick="myLoad('../society/society_form.html')">
-    <span class="add-button" id="add"><i class="fa fa-plus"></i></span>
-</a>
-
 <script src="../society/society_list.js"></script>
 <script src="../js/pagination.js"></script>

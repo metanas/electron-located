@@ -16,7 +16,7 @@ ipc.on('payment_list_reply', (event, data) => {
           "<td class='text-center'>" + item['price'] + " DHS</td>" +
           "<td class='text-center'>" + item['price_paid'] + " DHS</td>" +
           "<td class='text-center'>" + item['date'] + "</td>" +
-          "<td><span class='fas fa-eye' onclick='goto_info(" + item['id_contract'] + ", " + item['date'] + " )'></span></td>" +
+          "<td><span class='fas fa-eye' style='cursor: pointer' onclick='goto_info(" + item['id_contract'] + ", " + item['date'] + " )'></span></td>" +
           "</tr>"
       });
     } else {

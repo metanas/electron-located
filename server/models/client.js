@@ -5,7 +5,7 @@ let db = new sqlite.Database(path.join(__dirname, '../../database.db'));
 
 module.exports.getClients = function (page) {
   return new Promise(function (resolve, reject) {
-    let query = "SELECT * FROM client";
+    let query = "SELECT c2.*, sum(p.price) as total_price, sum(p.price_paid) as total_price_paid FROM client c2 left join contract c on c2.id = c.id_client left join payment p on c.id = p.id_contract";
     if (page)
       query += ' LIMIT ' + ((page - 1) * 20) + ', 20';
     db.serialize(() => {
@@ -23,8 +23,9 @@ module.exports.getClients = function (page) {
 module.exports.getClient = function (id) {
   return new Promise(function (resolve, reject) {
     db.serialize(() => {
-      db.all("SELECT * FROM client where id=?", [id], function (err, rows) {
+      db.get("SELECT c2.*, sum(p.price) as total_price, sum(p.price_paid) as total_price_paid FROM client c2 left join contract c on c2.id = c.id_client left join payment p on c.id = p.id_contract where c2.id=?", [id], function (err, rows) {
         if (!err) {
+          console.log(rows);
           resolve(rows)
         } else {
           reject(err)
@@ -53,7 +54,7 @@ module.exports.deleteClient = function (id) {
   return new Promise(function (resolve, reject) {
     db.serialize(function () {
       db.run("DELETE FROM client WHERE id in (" + id.join() + ")", function (err) {
-        if(!err){
+        if (!err) {
           resolve(this.lastID)
         }
       })
