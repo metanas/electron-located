@@ -8,14 +8,14 @@ ipc.on('building_list_reply', (event, data) => {
   if (data.building_list.length > 0) {
     data.building_list.forEach(function (item) {
       html += "<tr>" +
-        "<td><input type='checkbox' name='item[]' value='" + item['id'] + "'> </td>" +
-        "<td>" + item['name'] + "</td>" +
-        "<td class='cut-text'>" + item['address'] + "</td>" +
-        "<td class='text-center'>" + item['postcode'] + "</td>" +
-        "<td class='text-center'>" + item['city'] + "</td>" +
-        "<td class='text-center'>" + item['nb_apartment'] + "</td>" +
-        "<td class='text-center'>" + item['nb_client'] + "</td>" +
-        "<td><span class='fas fa-eye' style='cursor: pointer' onclick='goto_info(" + item['id'] + ")'></span></td>" +
+        "<td><input type='checkbox' name='item[]' value='" + item.info['id'] + "'> </td>" +
+        "<td>" + item.info['name'] + "</td>" +
+        "<td class='cut-text'>" + item.info['address'] + "</td>" +
+        "<td class='text-center'>" + item.info['postcode'] + "</td>" +
+        "<td class='text-center'>" + item.info['city'] + "</td>" +
+        "<td class='text-center'>" + item.totalApartments['total'] + "</td>" +
+        "<td class='text-center'>" + item.totalClients['total'] + "</td>" +
+        "<td><span class='fas fa-eye' style='cursor: pointer' onclick='goto_info(" + item.info['id'] + ")'></span></td>" +
         "</tr>"
     });
   } else {
@@ -51,7 +51,7 @@ function getData() {
 }
 
 function goto_info(id) {
-
+  alert("not implemented")
 }
 
 $('input[name="all"]').on('click', function (e) {

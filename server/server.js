@@ -18,8 +18,18 @@ let fs = require('fs');
 // ==========================================================================
 ipc.on('society_list', async (event, page) => {
   let json = {};
-  await society.getSocieties(page).then(function (response) {
-    json.society_list = response;
+  await society.getSocieties(page).then(async function (response) {
+    json.society_list = [];
+    for (let i = 0; i < response.length; i++) {
+      let list = {};
+      list.info = response[i];
+
+      list.totalBuildings = await society.getTotalSocietyBuildings(response[i].id);
+
+      list.totalPayment = await society.getSocietySumPaymentValue(response[i].id);
+
+      json.society_list.push(list);
+    }
   });
 
   await society.getTotalSocieties().then(function (response) {
@@ -36,6 +46,7 @@ ipc.on('society_form', function (event, data) {
   fs.copyFile(image_path, __dirname + "/../assert/" + image_name, function (err) {
     if (!err) {
       society.postSociety(data).then(function (response) {
+        event.sender.send("society_form_reply")
       })
     } else {
       console.log(err)
@@ -62,16 +73,41 @@ ipc.on('society_delete', function (event, id) {
 ipc.on('building_list', async function (event, page, id) {
   let json = {};
   if (id !== null) {
-    await building.getBuildingsFromSociety(page, id).then(function (response) {
-      json.building_list = response;
+    await society.getSocietyBuildings(page, id).then(async function (response) {
+      json.building_list = [];
+
+      for (let i = 0; i < response.length; i++) {
+        let list = {};
+
+        list.info = response[i];
+
+        list.totalApartments = await building.getTotalBuildingApartments(response[i].id);
+
+        list.totalClient = await building.getTotalBuildingClientsById(response[i].id);
+
+        json.building_list.push(list);
+      }
+
     });
 
-    await building.getTotalBuildingApartments(id).then(function (response) {
+    await society.getTotalSocietyBuildings(id).then(function (response) {
       json.total_item = response;
     })
   } else {
-    await building.getBuildings(page).then(function (response) {
-      json.building_list = response;
+    await building.getBuildings(page).then(async function (response) {
+      json.building_list = [];
+
+      for (let i = 0; i < response.length; i++) {
+        let list = {};
+
+        list.info = response[i];
+
+        list.totalApartments = await building.getTotalBuildingApartments(response[i].id);
+
+        list.totalClients = await building.getTotalBuildingClientsById(response[i].id);
+
+        json.building_list.push(list);
+      }
     });
 
     await building.getTotalBuildings().then(function (response) {
@@ -85,6 +121,7 @@ ipc.on('building_list', async function (event, page, id) {
 
 ipc.on('building_form', function (event, data) {
   building.postBuilding(data).then(function (response) {
+    event.sender.send("building_form_reply")
 
   })
 });
@@ -101,7 +138,7 @@ ipc.on('building_delete', function (event, id) {
 ipc.on('apartment_list', async (event, page, id) => {
   let json = {};
   if (id !== null) {
-    await apartment.getApartmentsFromBuilding(page, id).then(function (response) {
+    await building.getBuildingApartments(page, id).then(function (response) {
       json.apartment_list = response;
     });
 
@@ -140,6 +177,8 @@ ipc.on('apartment_form', async function (event, data) {
       }
     });
   }
+
+  event.sender.send("apartment_form_reply")
 });
 
 ipc.on('apartment_delete', function (event, data) {
@@ -153,8 +192,17 @@ ipc.on('apartment_delete', function (event, data) {
 // ==========================================================================
 ipc.on('client_list', async function (event, page) {
   let json = {};
-  await client.getClients(page).then(function (response) {
-    json.client_list = response
+  await client.getClients(page).then(async function (response) {
+    json.client_list = [];
+    for (let i = 0; i < response.length; i++) {
+      let list = {};
+
+      list.info = response[i];
+
+      list.totalPayment = await client.getClientSumPaymentValue(response[i].id);
+
+      json.client_list.push(list);
+    }
   });
 
   await client.getTotalClients().then(function (response) {
@@ -166,7 +214,7 @@ ipc.on('client_list', async function (event, page) {
 
 ipc.on('client_form', (event, data) => {
   client.postClient(data).then(function () {
-
+    event.sender.send("client_form_reply")
   })
 });
 
@@ -177,9 +225,8 @@ ipc.on('client_info', async (event, id) => {
   });
 
   await payment.getPaymentUnpaidClient(id).then(function (response) {
-    json.unpaid = response['total_unpaid']
+    json.unpaid = response
   });
-
   event.sender.send("client_info_reply", json)
 });
 
@@ -225,18 +272,79 @@ ipc.on('payment_form', function (event, data) {
   })
 });
 
-
-ipc.on('pdf_get_data', function (event, id) {
-  contract.getContracts(null, id, null).then(function (response) {
-    event.sender.send('pdf_get_data_replay', response);
+ipc.on("payment_put", (event, data) => {
+  payment.putPayment(data.id, data.price).then(function (response) {
+    event.sender.send("payment_put_reply")
   })
+});
+
+ipc.on("payment_info", async (event, id) => {
+  let bill = {};
+
+  bill.payment = await payment.getPayment(id);
+
+  bill.contract = await contract.getContract(bill.payment['id_contract']);
+
+  bill.apartment = await apartment.getApartment(bill.contract['id_apartment']);
+
+  bill.society = await society.getSociety(bill.apartment['id_society']);
+
+  bill.client = await client.getClient(bill.contract['id_client']);
+
+  event.sender.send("payment_info_reply", bill);
+});
+
+
+ipc.on('pdf_get_data', async function (event, id) {
+  let json = [];
+  console.log(id);
+  // if (id !== "all") {
+  for (let i = 0; i < id.length; i++) {
+    let bill = {};
+
+    payment.updatePayment(id[i]);
+
+    bill.payment = await payment.getPayment(id[i]);
+
+    bill.contract = await contract.getContract(bill.payment['id_contract']);
+
+    bill.apartment = await apartment.getApartment(bill.contract['id_apartment']);
+
+    bill.society = await society.getSociety(bill.apartment['id_society']);
+
+    bill.client = await client.getClient(bill.contract['id_client']);
+
+    json.push(bill);
+  }
+  // } else {
+  //   payment.getPayments(null, null).then(async function (response) {
+  //     for (let i = 0; i < response.length; i++) {
+  //       let bill = {};
+  //
+  //       payment.updatePayment(response[i].id);
+  //
+  //       bill.payment = response[i];
+  //
+  //       bill.contract = await contract.getContract(bill.payment['id_contract']);
+  //
+  //       bill.apartment = await apartment.getApartment(bill.contract['id_apartment']);
+  //
+  //       bill.society = await society.getSociety(bill.apartment['id_society']);
+  //
+  //       bill.client = await client.getClient(bill.contract['id_client']);
+  //
+  //       json.push(bill);
+  //     }
+  //   })
+  // }
+  event.sender.send('pdf_get_data_replay', json);
 });
 
 // Payment Function
 // ==========================================================================
-ipc.on('payment_list', async (event, page) => {
+ipc.on('payment_list', async (event, page, id) => {
   let json = {};
-  await payment.getPayments(page).then((response) => {
+  await payment.getPayments(page, id).then((response) => {
     json.payment_list = response;
   });
 
@@ -254,10 +362,13 @@ ipc.on("payment_update", (event) => {
 
 module.exports.init = function () {
   contract.getContracts(null, null, true).then(function (response) {
+    var d = new Date();
+    var date = d.getUTCFullYear() + "" + (d.getUTCMonth() + 1);
     response.forEach(function (item) {
       let data = {
+        id: item['id'] + "#" + item['id_apartment'] + "" + item['id_client'] + "" + date,
         id_contract: item.id,
-        price: item.location_price
+        price: parseFloat(item.location_price + item.tax)
       };
       payment.postPayment(data)
     })

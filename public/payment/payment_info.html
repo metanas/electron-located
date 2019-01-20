@@ -1,0 +1,37 @@
+<div class="row">
+  <h1 class="col-10">Payment Info</h1>
+  <div class="clearfix col-2" style="margin-bottom: 10px">
+    <button class="float-right btn btn-outline-primary" id="download-button"><span class="fas fa-download"></span></button>
+    <button class="float-right btn btn-success" id="update-button" data-toggle="modal" data-target="#myModal" style="margin-right: 10px"><span class="fas fa-dollar-sign"></span></button>
+
+  </div>
+</div>
+<div class="row" id="content">
+
+</div>
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <input type="text" name="price" class="form-control">
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="send-update" data-dismiss="modal">Save</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<script src="../payment/payment_info.js"></script>

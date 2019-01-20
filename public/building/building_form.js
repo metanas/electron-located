@@ -5,7 +5,7 @@ $(document).ready(function () {
 ipc.on('society_list_reply', (event, data) => {
   let html = '<option value="" >Selectionner une Société..</option>';
   data.society_list.forEach(function (item) {
-    html += '<option value="' + item['id'] + '">' + item['name'] + '</option>'
+    html += '<option value="' + item.info['id'] + '">' + item.info['name'] + '</option>'
   });
   $('select[name="society_id"]').html(html)
 });
@@ -21,4 +21,8 @@ $('#add-button').on('click', function () {
   };
 
   ipc.send('building_form', data);
+});
+
+ipc.on("building_form_reply", function (event) {
+  myLoad("../building/building_list.html");
 });

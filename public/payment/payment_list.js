@@ -8,7 +8,7 @@ ipc.on('payment_list_reply', (event, data) => {
     if (data.payment_list.length > 0) {
       data.payment_list.forEach(function (item) {
         html += "<tr>" +
-          "<td><input type='checkbox' name='item[]' value='" + item['id_contract'] + "'></td>" +
+          "<td><input type='checkbox' name='item[]' value='" + item['id'] + "'></td>" +
           "<td>" + item['type'] + " N<sup>o</sup> " + item['number'] + " Etage " + item['floor'] + "</td>" +
           "<td class='cut-text'>" + item['address'] + "</td>" +
           "<td class='text-center'>" + item['city'] + "</td>" +
@@ -16,7 +16,7 @@ ipc.on('payment_list_reply', (event, data) => {
           "<td class='text-center'>" + item['price'] + " DHS</td>" +
           "<td class='text-center'>" + item['price_paid'] + " DHS</td>" +
           "<td class='text-center'>" + item['date'] + "</td>" +
-          "<td><span class='fas fa-eye' style='cursor: pointer' onclick='goto_info(" + item['id_contract'] + ", " + item['date'] + " )'></span></td>" +
+          "<td><span class='fas fa-eye' style='cursor: pointer' onclick='goto_info(\"" + item['id'] + "\")'></span></td>" +
           "</tr>"
       });
     } else {
@@ -43,7 +43,7 @@ function goto(id) {
   myLoad('../building/building_list.html')
 }
 
-function goto_info(id, date) {
+function goto_info(id) {
   global_id = id;
   myLoad('../payment/payment_info.html')
 }
@@ -56,8 +56,10 @@ function getData() {
 
 $('input[name="all"]').on('click', function (e) {
   if (e.target.checked) {
+    all = "all";
     $('input[name="item[]"]').attr('checked', true);
   } else {
+    all = "";
     $('input[name="item[]"]').attr('checked', false);
   }
 });
@@ -71,9 +73,13 @@ ipc.on("payment_update_reply", (event) => {
 });
 
 $("#download-button").on("click", function () {
+  // if (all !== "all") {
   let id = [];
   $.map($("input[name='item[]']:checked"), function (item) {
     id.push($(item).val());
   });
-  ipc.send("pdf_get_data", id)
+  ipc.send("print-to-pdf", id)
+  // } else {
+  //   ipc.send("print-to-pdf", all)
+  // }
 });

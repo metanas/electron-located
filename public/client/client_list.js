@@ -7,14 +7,14 @@ ipc.on('client_list_reply', (event, data) => {
   if (data.client_list) {
     data.client_list.forEach((item) => {
       html += "<tr>" +
-        "<td><input type='checkbox' name='item[]' value='" + item['id'] + "'></td>" +
-        "<td>" + item['name'] + "</td>" +
-        "<td class='cut-text'>" + item['type'] + "</td>" +
-        "<td class='text-center'>" + item['identification'] + "</td>" +
-        "<td class='text-center'>" + item['address'] + "</td>" +
-        "<td class='text-center'>" + item['telephone'] + "</td>" +
-        "<td class='text-center'>" + (item['total_price_paid'] - item['total_price']) + " DHS</td>" +
-        "<td><span class='fas fa-eye' style='cursor: pointer' onclick='goto_info(" + item['id'] + ")'></span></td>" +
+        "<td><input type='checkbox' name='item[]' value='" + item.info['id'] + "'></td>" +
+        "<td>" + item.info['name'] + "</td>" +
+        "<td class='cut-text'>" + item.info['type'] + "</td>" +
+        "<td class='text-center'>" + item.info['identification'] + "</td>" +
+        "<td class='text-center'>" + item.info['address'] + "</td>" +
+        "<td class='text-center'>" + item.info['telephone'] + "</td>" +
+        "<td class='text-center'>" + (item.totalPayment['total_price_paid'] - item.totalPayment['total_price']) + " DHS</td>" +
+        "<td><span class='fas fa-eye' style='cursor: pointer' onclick='goto_info(" + item.info['id'] + ")'></span></td>" +
         "</tr>"
     });
   } else {

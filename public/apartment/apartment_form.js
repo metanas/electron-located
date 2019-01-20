@@ -6,15 +6,15 @@ $(document).ready(
 ipc.on('society_list_reply', (event, data) => {
   var html = "<option value=''>Selectionner une Société..</option>";
   data.society_list.forEach(function (item) {
-    html += '<option value="' + item['id'] + '">' + item['name'] + '</option>'
+    html += '<option value="' + item.info['id'] + '">' + item.info['name'] + '</option>'
   });
   $('#society_list').html(html)
 });
 
 ipc.on('building_list_reply', (event, data) => {
-  var html = "";
+  var html = "<option value=''>Selectionner un Immeuble..</option>";
   data.building_list.forEach(function (item) {
-    html += '<option value="' + item['id'] + '">' + item['name'] + '</option>';
+    html += '<option value="' + item.info['id'] + '">' + item.info['name'] + '</option>';
   });
   $('#building_list').html(html)
 });
@@ -42,7 +42,12 @@ $('#add-button').on('click', function () {
     description: $('textarea[name="description"]').val(),
     location_price: $('input[name="location_price"]').val(),
     type: $('#select-type').val(),
-    id_building: $('select[name="id_building"]:selected').val(),
+    id_society : $('select[name="id_society"]').val(),
+    id_building: $('select[name="id_building"]').val(),
   };
   ipc.send('apartment_form', data);
+});
+
+ipc.on("apartment_form_reply", function (event) {
+  myLoad("../apartment/apartment_list.html");
 });

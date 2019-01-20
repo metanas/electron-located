@@ -10,13 +10,13 @@ ipc.on("contract_list_reply", (event, data) => {
       html += "<tr>" +
         '<td><input type="checkbox" name="item[]" value="' + item['id'] + '"></td>' +
         '<td scope="col">' + item['type'] + " N<sup>o</sup> " + item['number'] + " Etage " + item['floor'] + '</td>' +
-        '<td scope="col">' + item['address'] + '</td>' +
+        '<td scope="col" class="cut-text">' + item['aBuilding'] + '</td>' +
         '<td scope="col">' + item['client'] + '</td>' +
-        '<td scope="col">' + item['location_price'] + '</td>' +
-        '<td scope="col">' + item['advanced_price'] + '</td>' +
+        '<td scope="col">' + parseFloat(item['location_price']) + ' DHS</td>' +
+        '<td scope="col">' + parseFloat(item['advanced_price']) + ' DHS</td>' +
         '<td scope="col">' + item['date_begin'] + '</td>' +
         '<td scope="col">' + item['date_end'] + '</td>' +
-        '<td class="fas fa-eye"></td>' +
+        '<td class="fas fa-eye" onclick="goto_info(' + item['id'] + ')"></td>' +
         '</tr>'
     });
   } else {
@@ -57,6 +57,11 @@ $('#delete-button').on('click', function () {
 ipc.on("contract_delete_reply", function (event) {
   event.sender.send("contract_list", 1);
 });
+
+function goto_info(id) {
+  alert("not implemented")
+}
+
 // $('#download-button').on('click', function () {
 //   var id = [];
 //   $.each($('input[name="contract[]"]:checked'), function () {

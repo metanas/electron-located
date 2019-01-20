@@ -10,3 +10,7 @@ $('#add-button').on('click', function () {
     };
     ipc.send('society_form', data);
 });
+
+ipc.on("society_form_reply", function (event) {
+   myLoad("../society/society_list.html");
+});

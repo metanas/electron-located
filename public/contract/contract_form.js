@@ -21,7 +21,7 @@ ipc.on("apartment_info_reply", function (event, data) {
 ipc.on('society_list_reply', function (event, data) {
   let html = "<option value=\"\">Choisie une Societe</option>";
   data.society_list.forEach(function (item) {
-    html += '<option value=\"' + item['id'] + '\">' + item['name'] + '</option>'
+    html += '<option value=\"' + item.info['id'] + '\">' + item.info['name'] + '</option>'
   });
   $('#select-society').html(html)
 });
@@ -29,7 +29,7 @@ ipc.on('society_list_reply', function (event, data) {
 ipc.on('building_list_reply', function (event, data) {
   let html = "<option value=\"\">Choisie un Immeuble</option>";
   data.building_list.forEach(function (item) {
-    html += '<option value=\"' + item['id'] + '\">' + item['name'] + '</option>'
+    html += '<option value=\"' + item.info['id'] + '\">' + item.info['name'] + '</option>'
   });
   $('#select-building').html(html)
 });
@@ -37,7 +37,7 @@ ipc.on('building_list_reply', function (event, data) {
 ipc.on('apartment_list_reply', function (event, data) {
   let html = "<option value=\"\">Choisie une Appartement</option>";
   data.apartment_list.forEach(function (item) {
-    html += '<option value=\"' + item['id'] + '\">' + item['number'] + " etage " + item['floor'] + '</option>'
+    html += '<option value=\"' + item['id'] + '\">' + item['type'] + " N<sup>o</sup>" + item['number'] + " etage " + item['floor'] + '</option>'
   });
   $('#select-apartment').html(html)
 });
@@ -45,7 +45,7 @@ ipc.on('apartment_list_reply', function (event, data) {
 ipc.on('client_list_reply', function (event, data) {
   let html = "<option value=''>Choisie un Client</option>";
   data.client_list.forEach(function (item) {
-    html += '<option value="' + item['id'] + '">' + item['name'] + '</option>'
+    html += '<option value="' + item.info['id'] + '">' + item.info['name'] + '</option>'
   });
   $("#select-client").html(html)
 });
@@ -67,11 +67,15 @@ $('#add-button').on('click', function () {
   var data = {
     apartment: $('#select-apartment').val(),
     client: $('#select-client').val(),
-    price: $('#select-client').val(),
-    advanced_price: $('#select-client').val(),
-    tax: $('#select-client').val(),
+    price: $('#input-price').val(),
+    advanced_price: $('#input-advanced-price').val(),
+    tax: $('#input-tax').val(),
     dateBegin: $('#input-date-begin').val(),
     dateEnd: $('#input-date-end').val()
   };
   ipc.send('contract_form', data);
+});
+
+ipc.on("contract_form_reply", function (event) {
+  myLoad("../contract/contract_list.html");
 });

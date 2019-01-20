@@ -9,3 +9,7 @@ $('#add-button').on('click', function () {
   ipc.send('client_form', data);
 });
 
+ipc.on("client_form_reply", function (event) {
+  myLoad("../client/client_list.html");
+});
+

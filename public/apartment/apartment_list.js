@@ -49,7 +49,7 @@ function goto(id) {
 }
 
 function goto_info(id) {
-
+  alert("not implemented")
 }
 
 function getData() {

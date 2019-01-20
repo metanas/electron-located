@@ -11,8 +11,8 @@ ipc.on('client_info_reply', (event, data) => {
     "<p>" + data.info['address'] + "</p>" +
     "<p>Tel: " + data.info['telephone'] + "</p></div></div>";
   $('.jumbotron').html(html);
-console.log(data);
-  $('#advance-price').html(data.unpaid);
-  $('#total-price').html(data.info['total_price'] + " DHS");
-  $('#total-price-paid').html(data.info['total_price_paid'] + " DHS");
+
+  $('#unpaid-payment').html(parseInt(data.unpaid['total_unpaid']));
+  $('#total-price').html(parseFloat(data.info['total_price'] - data.info['total_price_paid']) + " DHS");
+  $('#total-price-paid').html(parseFloat(data.info['total_price_paid']) + " DHS");
 });
