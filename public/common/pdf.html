@@ -20,7 +20,6 @@
   });
 
   ipcRenderer.on('pdf_get_data_replay', function (event, data) {
-    console.log(data);
     let html = "";
     data.forEach(function (item) {
       html += "<div class=\"col-md-12 col-sm-12\">";

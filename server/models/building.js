@@ -70,7 +70,7 @@ module.exports.getBuildingClientsById = function (id) {
 module.exports.getBuilding = function (id) {
   return new Promise(function (resolve, reject) {
     db.serialize(function () {
-      db.all('SELECT * FROM building where id=?', [id], function (err, rows) {
+      db.get('SELECT * FROM building where id=?', [id], function (err, rows) {
         if (!err) {
           resolve(rows)
         } else {

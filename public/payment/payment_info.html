@@ -1,7 +1,7 @@
 <div class="row">
   <h1 class="col-10">Payment Info</h1>
   <div class="clearfix col-2" style="margin-bottom: 10px">
-    <button class="float-right btn btn-outline-primary" id="download-button"><span class="fas fa-download"></span></button>
+    <button class="float-right btn btn-outline-primary" id="download-button"><span class="fas fa-print"></span></button>
     <button class="float-right btn btn-success" id="update-button" data-toggle="modal" data-target="#myModal" style="margin-right: 10px"><span class="fas fa-dollar-sign"></span></button>
 
   </div>
@@ -23,6 +23,12 @@
       <!-- Modal body -->
       <div class="modal-body">
         <input type="text" name="price" class="form-control">
+
+        <select name="payment-mode" id="payment">
+          <option value="chèque">Par chèque</option>
+          <option value="espèce">Espèce</option>
+          <option value="carte de credit">Carte de credit</option>
+        </select>
       </div>
 
       <!-- Modal footer -->

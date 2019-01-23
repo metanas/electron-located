@@ -4,11 +4,11 @@ $(document).ready(function () {
 });
 
 $('#select-society').on('change', function () {
-  ipc.send('building_list', null, $('select[name="society"]:selected').val())
+  ipc.send('building_list', null, $('select[name="society"]').val())
 });
 
 $('#select-building').on('change', function () {
-  ipc.send('apartment_list', null, $('select[name="building"]:selected').val())
+  ipc.send('apartment_list', null, $('select[name="building"]').val())
 });
 $('#select-apartment').on('change', function () {
   ipc.send('apartment_info', $('#select-apartment').val())
@@ -35,9 +35,9 @@ ipc.on('building_list_reply', function (event, data) {
 });
 
 ipc.on('apartment_list_reply', function (event, data) {
-  let html = "<option value=\"\">Choisie une Appartement</option>";
+  let html = "<option value=\"\">Choisie un bien</option>";
   data.apartment_list.forEach(function (item) {
-    html += '<option value=\"' + item['id'] + '\">' + item['type'] + " N<sup>o</sup>" + item['number'] + " etage " + item['floor'] + '</option>'
+    html += '<option value="' + item.info['id'] + '">' + item.info['type'] + " N<sup>o</sup>" + item.info['number'] + " etage " + item.info['floor'] + '</option>'
   });
   $('#select-apartment').html(html)
 });

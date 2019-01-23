@@ -3,7 +3,6 @@ $(document).ready(function () {
 });
 
 ipc.on('society_list_reply', (event, data) => {
-  console.log("test");
   let html = "";
   if (data.society_list.length > 0) {
     data.society_list.forEach(function (item) {
@@ -11,11 +10,7 @@ ipc.on('society_list_reply', (event, data) => {
         "<td><input type='checkbox' name='item[]' value='" + item.info['id'] + "'></td>" +
         "<td>" + item.info['name'] + "</td>" +
         "<td class='cut-text'>" + item.info['address'] + "</td>" +
-        "<td>" + item.info['headquarters'] + "</td>" +
-        "<td>" + item.info['telephone'] + "</td>" +
         "<td class='text-center'>" + item.totalBuildings['total'] + "</td>" +
-        "<td class='text-center'>" + parseFloat(item.totalPayment['total_price']) + " DHS</td>" +
-        "<td class='text-center'>" + parseInt(item.totalPayment['total_price_paid']) + " DHS</td>" +
         "<td><span class='fas fa-eye' style='cursor: pointer' onclick='goto_info(" + item.info['id'] + ")'></span></td>" +
         "</tr>"
     });

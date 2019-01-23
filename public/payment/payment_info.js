@@ -70,6 +70,7 @@ ipc.on("payment_info_reply", function (event, item) {
 
   $("#send-update").on("click", function () {
     data = {
+      mode: $("#payment").val(),
       price: $("input[name='price']").val(),
       id: item.payment['id']
     };

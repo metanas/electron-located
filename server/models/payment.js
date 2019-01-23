@@ -11,12 +11,26 @@ module.exports.postPayment = function (data) {
   })
 };
 
-module.exports.putPayment = (id, price) => {
-  return new Promise( (resolve, reject) => {
+module.exports.putPayment = (id, price, mode) => {
+  return new Promise((resolve, reject) => {
     db.serialize(function () {
-      db.run("UPDATE payment SET price_paid=? WHERE id=?",[price, id], function (err) {
-        if(!err){
+      db.run("UPDATE payment SET price_paid=?, mode=? WHERE id=?", [price, mode, id], function (err) {
+        if (!err) {
           resolve(this.lastID)
+        }
+      })
+    })
+  })
+};
+
+module.exports.getTotalPaymentFormSociety = function (id) {
+  return new Promise(function (resolve, reject) {
+    db.serialize(function () {
+      db.get("SELECT count(*) as total FROM payment where id like '" + id + "#%'", function (err, row) {
+        if (!err) {
+          resolve(row)
+        } else {
+          reject(err)
         }
       })
     })

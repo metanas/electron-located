@@ -51,7 +51,7 @@ function createWindow() {
   mainWindow.loadFile('public/common/home.html');
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
   let server = require('./server/server');
   server.init();
   // Emitted when the window is closed.

@@ -5,7 +5,7 @@ let db = new sqlite.Database(path.join(__dirname, '../../database.db'));
 
 module.exports.getContracts = function (page, id, active) {
   return new Promise(function (resolve, reject) {
-    let query = "SELECT c.*, a.type, a.floor, a.number, b.address as aBuilding, c2.name as client, a.location_price  FROM contract as c left join apartment a on c.id_apartment = a.id left join building b on a.id_building = b.id LEFT JOIN client c2 on c.id_client = c2.id";
+    let query = "SELECT * FROM contract";
     if (active) {
       query += " Where (date_end='' or strftime('%m/%Y') <= date_end) and strftime('%m/%Y') >= date_begin";
       // and c.id in (" + id.join() + ")"
@@ -19,13 +19,26 @@ module.exports.getContracts = function (page, id, active) {
     db.serialize(function () {
       db.all(query, function (err, rows) {
         if (!err) {
-          console.log(rows);
           resolve(rows);
         } else
           reject(err);
       })
     })
   });
+};
+
+module.exports.getContractFormApartment = (id) => {
+  return new Promise(function (resolve, reject) {
+    db.serialize(function () {
+      db.get("SELECT * FROM contract where id_apartment=?", [id], function (err, row) {
+        if (!err) {
+          resolve(row)
+        } else {
+          reject(err)
+        }
+      })
+    })
+  })
 };
 
 module.exports.getContract = function (id) {

@@ -1,5 +1,6 @@
 $(document).ready(function () {
-  ipc.send('client_info', global_id)
+  ipc.send('client_info', global_id);
+  global_id = null
 });
 
 ipc.on('client_info_reply', (event, data) => {

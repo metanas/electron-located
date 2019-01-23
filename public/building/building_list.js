@@ -11,8 +11,6 @@ ipc.on('building_list_reply', (event, data) => {
         "<td><input type='checkbox' name='item[]' value='" + item.info['id'] + "'> </td>" +
         "<td>" + item.info['name'] + "</td>" +
         "<td class='cut-text'>" + item.info['address'] + "</td>" +
-        "<td class='text-center'>" + item.info['postcode'] + "</td>" +
-        "<td class='text-center'>" + item.info['city'] + "</td>" +
         "<td class='text-center'>" + item.totalApartments['total'] + "</td>" +
         "<td class='text-center'>" + item.totalClients['total'] + "</td>" +
         "<td><span class='fas fa-eye' style='cursor: pointer' onclick='goto_info(" + item.info['id'] + ")'></span></td>" +
@@ -71,6 +69,5 @@ $('#delete-button').on('click', function () {
 });
 
 ipc.on("building_delete_reply", function (event) {
-  console.log('re');
   event.sender.send('building_list', 1, null);
 });

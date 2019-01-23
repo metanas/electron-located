@@ -12,6 +12,7 @@ ipc.on('society_list_reply', (event, data) => {
 });
 
 ipc.on('building_list_reply', (event, data) => {
+  console.log(data);
   var html = "<option value=''>Selectionner un Immeuble..</option>";
   data.building_list.forEach(function (item) {
     html += '<option value="' + item.info['id'] + '">' + item.info['name'] + '</option>';

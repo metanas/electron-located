@@ -5,25 +5,26 @@ $(document).ready(function () {
 
 ipc.on('apartment_list_reply', (event, data) => {
   console.log(data);
-  let html = " <td colspan=\"10\" align=\"center\">Il y a aucune Appartement!</td>\n";
+  let html = " <td colspan=\"7\" align=\"center\">Il y a aucun bien!</td>\n";
   if (data.apartment_list.length > 0) {
     html = "";
     data.apartment_list.forEach(function (item) {
       html += "<tr>" +
         "<td><input type='checkbox' name='item[]' value='" + item['id'] + "'></td>" +
-        "<td class='text-center'>" + item['type'] + "</td>" +
-        "<td class='text-center'>" + item['number'] + "</td>" +
-        "<td class='cut-text'>" + item['address'] + "..</td>" +
-        "<td class='text-center'>" + item['floor'] + "</td>" +
-        "<td class='text-center'>" + item['area'] + " m<sup>2</sup></td>" +
-        "<td class='text-center'>" + item['state'] + "</td>" +
-        "<td class='text-center'>" + item['location_price'] + " DHS</td>";
-      if (item['client'] !== null)
-        html += "<td class='text-center'>" + item['client'] + "</td>";
+        "<td class='cut-text'>" + item.building['name'] + "</td>" +
+        "<td class='text-center'>" + item.info['type'] + "</td>" +
+        "<td class='text-center'>" + item.info['number'] + "</td>" +
+        "<td class='text-center'>" + item.info['floor'] + "</td>";
+      if (typeof item.contract != "undefined")
+        html += "<td class='text-center'>" + parseFloat(item.info['location_price'] + item.contract.tax) + " DHS</td>";
+      else
+        html += "<td class='text-center'>" + parseFloat(item.info['location_price']) + " DHS</td>";
+      if (typeof item.client != "undefined")
+        html += "<td class='text-center'>" + item.client.name + "</td>";
       else
         html += "<td class='text-center'>-</td>";
 
-      html += "<td><span class='fas fa-eye' style='cursor: pointer' onclick='goto_info(" + item['id'] + ")'></span></td>" +
+      html += "<td><span class='fas fa-eye' style='cursor: pointer' onclick='goto_info(" + item.info['id'] + ")'></span></td>" +
         "</tr>"
     });
   }
@@ -49,7 +50,8 @@ function goto(id) {
 }
 
 function goto_info(id) {
-  alert("not implemented")
+  global_id = id;
+  myLoad("../apartment/apartment_info.html");
 }
 
 function getData() {

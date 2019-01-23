@@ -8,17 +8,15 @@ ipc.on('client_list_reply', (event, data) => {
     data.client_list.forEach((item) => {
       html += "<tr>" +
         "<td><input type='checkbox' name='item[]' value='" + item.info['id'] + "'></td>" +
-        "<td>" + item.info['name'] + "</td>" +
-        "<td class='cut-text'>" + item.info['type'] + "</td>" +
-        "<td class='text-center'>" + item.info['identification'] + "</td>" +
-        "<td class='text-center'>" + item.info['address'] + "</td>" +
+        "<td class='text-center'>" + item.info['type'] + "</td>" +
+        "<td class='text-center'>" + item.info['name'] + "</td>" +
         "<td class='text-center'>" + item.info['telephone'] + "</td>" +
         "<td class='text-center'>" + (item.totalPayment['total_price_paid'] - item.totalPayment['total_price']) + " DHS</td>" +
         "<td><span class='fas fa-eye' style='cursor: pointer' onclick='goto_info(" + item.info['id'] + ")'></span></td>" +
         "</tr>"
     });
   } else {
-    html = "<td colspan=\"8\" align=\"center\">Il y a aucun Client!</td>"
+    html = "<td colspan=\"6\" align=\"center\">Il y a aucun Client!</td>"
   }
 
   $('#content').html(html);

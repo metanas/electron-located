@@ -45,13 +45,15 @@ ipc.on('society_form', function (event, data) {
   var image_name = data.image_name;
   fs.copyFile(image_path, __dirname + "/../assert/" + image_name, function (err) {
     if (!err) {
-      society.postSociety(data).then(function (response) {
-        event.sender.send("society_form_reply")
-      })
+
     } else {
       console.log(err)
     }
   });
+
+  society.postSociety(data).then(function (response) {
+    event.sender.send("society_form_reply")
+  })
 });
 
 ipc.on('society_info', function (event, id) {
@@ -71,6 +73,7 @@ ipc.on('society_delete', function (event, id) {
 // Building Function
 // ==========================================================================
 ipc.on('building_list', async function (event, page, id) {
+  console.log(id);
   let json = {};
   if (id !== null) {
     await society.getSocietyBuildings(page, id).then(async function (response) {
@@ -121,9 +124,10 @@ ipc.on('building_list', async function (event, page, id) {
 
 ipc.on('building_form', function (event, data) {
   building.postBuilding(data).then(function (response) {
-    event.sender.send("building_form_reply")
 
-  })
+  });
+
+  event.sender.send("building_form_reply")
 });
 
 ipc.on('building_delete', function (event, id) {
@@ -138,16 +142,44 @@ ipc.on('building_delete', function (event, id) {
 ipc.on('apartment_list', async (event, page, id) => {
   let json = {};
   if (id !== null) {
-    await building.getBuildingApartments(page, id).then(function (response) {
-      json.apartment_list = response;
+    await building.getBuildingApartments(page, id).then(async function (response) {
+      json.apartment_list = [];
+      for (let i = 0; i < response.length; i++) {
+        let list = {};
+
+        list.info = response[i];
+
+        list.building = await building.getBuilding(response[i].id_building);
+
+        list.contract = await contract.getContractFormApartment(response[i].id);
+
+        if (typeof list['contract'] !== "undefined")
+          list.client = await client.getClient(list.contract['id_client']);
+
+        json.apartment_list.push(list)
+      }
     });
 
     await apartment.getTotalBuildingApartments(id).then(function (response) {
       json.total_item = response;
     })
   } else {
-    await apartment.getApartments(page).then(function (response) {
-      json.apartment_list = response;
+    await apartment.getApartments(page).then(async function (response) {
+      json.apartment_list = [];
+      for (let i = 0; i < response.length; i++) {
+        let list = {};
+
+        list.info = response[i];
+
+        list.building = await building.getBuilding(response[i].id_building);
+
+        list.contract = await contract.getContractFormApartment(response[i].id);
+
+        if (typeof list['contract'] !== "undefined")
+          list.client = await client.getClient(list.contract['id_client']);
+
+        json.apartment_list.push(list)
+      }
     });
 
     await apartment.getTotalApartments().then((response) => {
@@ -158,10 +190,20 @@ ipc.on('apartment_list', async (event, page, id) => {
   event.sender.send("apartment_list_reply", json);
 });
 
-ipc.on("apartment_info", function (event, id) {
-  apartment.getApartment(id).then(function (response) {
-    event.sender.send("apartment_info_reply", response)
-  })
+ipc.on("apartment_info", async function (event, id) {
+  let json = {};
+  await apartment.getApartment(id).then(async function (response) {
+    json.apartment = response;
+
+    json.society = await society.getSociety(response['id_society']);
+
+    json.contract = await contract.getContractFormApartment(response.id);
+
+    if (typeof json['contract'] !== "undefined")
+      json.client = await client.getClient(json.contract['id_client']);
+
+  });
+  event.sender.send("apartment_info_reply", json)
 });
 
 ipc.on('apartment_form', async function (event, data) {
@@ -214,8 +256,9 @@ ipc.on('client_list', async function (event, page) {
 
 ipc.on('client_form', (event, data) => {
   client.postClient(data).then(function () {
-    event.sender.send("client_form_reply")
-  })
+
+  });
+  event.sender.send("client_form_reply")
 });
 
 ipc.on('client_info', async (event, id) => {
@@ -241,8 +284,22 @@ ipc.on('client_delete', function (event, id) {
 // ==========================================================================
 ipc.on('contract_list', async function (event, page, id) {
   let json = {};
-  await contract.getContracts(page, id).then(function (response) {
-    json.contract_list = response
+  await contract.getContracts(page, id).then(async function (response) {
+    json.contract_list = [];
+
+    for (let i = 0; i < response.length; i++) {
+      let list = {};
+
+      list.info = response[i];
+
+      list.apartment = await apartment.getApartment(response[i]['id_apartment']);
+      console.log(list);
+      list.building = await building.getBuilding(list.apartment['id_building']);
+
+      list.client = await client.getClient(response[i]['id_client']);
+
+      json.contract_list.push(list);
+    }
   });
 
   await contract.getTotalContracts().then(function (response) {
@@ -254,8 +311,9 @@ ipc.on('contract_list', async function (event, page, id) {
 
 ipc.on('contract_form', function (event, data) {
   contract.postContract(data).then(function (response) {
-    event.sender.send('contract_form_reply')
-  })
+
+  });
+  event.sender.send('contract_form_reply')
 });
 
 ipc.on('contract_delete', function (event, id) {
@@ -268,14 +326,17 @@ ipc.on('contract_delete', function (event, id) {
 // ==========================================================================
 ipc.on('payment_form', function (event, data) {
   payment.postPayment(data).then(function () {
-    event.sender.send('contract_form_reply')
-  })
+
+  });
+  event.sender.send('contract_form_reply')
 });
 
 ipc.on("payment_put", (event, data) => {
-  payment.putPayment(data.id, data.price).then(function (response) {
-    event.sender.send("payment_put_reply")
-  })
+  payment.putPayment(data.id, data.price, data.mode).then(function (response) {
+
+  });
+
+  event.sender.send("payment_put_reply")
 });
 
 ipc.on("payment_info", async (event, id) => {
@@ -297,7 +358,6 @@ ipc.on("payment_info", async (event, id) => {
 
 ipc.on('pdf_get_data', async function (event, id) {
   let json = [];
-  console.log(id);
   // if (id !== "all") {
   for (let i = 0; i < id.length; i++) {
     let bill = {};
@@ -360,17 +420,23 @@ ipc.on("payment_update", (event) => {
   event.sender.send("payment_update_reply")
 });
 
-module.exports.init = function () {
-  contract.getContracts(null, null, true).then(function (response) {
-    var d = new Date();
-    var date = d.getUTCFullYear() + "" + (d.getUTCMonth() + 1);
-    response.forEach(function (item) {
-      let data = {
-        id: item['id'] + "#" + item['id_apartment'] + "" + item['id_client'] + "" + date,
-        id_contract: item.id,
-        price: parseFloat(item.location_price + item.tax)
-      };
-      payment.postPayment(data)
-    })
-  })
-};
+module.exports.init = async function () {
+  contract.getContracts(null, null, true).then(async function (response) {
+      for (let i = 0; i < response.length; i++) {
+        let society_item = await society.getSocietyFromContract(response[i]['id_apartment']);
+
+        let apartment_item = await apartment.getApartment(response[i]['id_apartment']);
+
+        payment.getTotalPaymentFormSociety(society_item['id']).then(function (payment_count) {
+          let data = {
+            id: society_item['id'] + "#" + parseInt(society_item['start'] + payment_count.total + 1),
+            id_contract: response[i].id,
+            price: parseFloat(apartment_item.location_price + response[i].tax)
+          };
+          payment.postPayment(data)
+        });
+      }
+    }
+  )
+}
+;

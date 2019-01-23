@@ -8,19 +8,16 @@ ipc.on("contract_list_reply", (event, data) => {
   if (data.contract_list.length > 0) {
     data.contract_list.forEach(function (item) {
       html += "<tr>" +
-        '<td><input type="checkbox" name="item[]" value="' + item['id'] + '"></td>' +
-        '<td scope="col">' + item['type'] + " N<sup>o</sup> " + item['number'] + " Etage " + item['floor'] + '</td>' +
-        '<td scope="col" class="cut-text">' + item['aBuilding'] + '</td>' +
-        '<td scope="col">' + item['client'] + '</td>' +
-        '<td scope="col">' + parseFloat(item['location_price']) + ' DHS</td>' +
-        '<td scope="col">' + parseFloat(item['advanced_price']) + ' DHS</td>' +
-        '<td scope="col">' + item['date_begin'] + '</td>' +
-        '<td scope="col">' + item['date_end'] + '</td>' +
+        '<td><input type="checkbox" name="item[]" value="' + item.info['id'] + '"></td>' +
+        '<td scope="col" class="cut-text">' + item.building['name'] + '</td>' +
+        '<td scope="col">' + item.apartment['type'] + " N<sup>o</sup> " + item.apartment['number'] + " Etage " + item.apartment['floor'] + '</td>' +
+        '<td scope="col">' + item.client['name'] + '</td>' +
+        '<td scope="col">' + parseFloat(item.apartment['location_price'] + item.info['tax']) + ' DHS</td>' +
         '<td class="fas fa-eye" onclick="goto_info(' + item['id'] + ')"></td>' +
         '</tr>'
     });
   } else {
-    html = "<td colspan=\"9\" align=\"center\">Il y a pas de contrat!</td>"
+    html = "<td colspan=\"6\" align=\"center\">Il y a pas de contrat!</td>"
   }
 
   $('#content').html(html);
