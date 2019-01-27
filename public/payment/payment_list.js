@@ -10,9 +10,8 @@ ipc.on('payment_list_reply', (event, data) => {
         html += "<tr>" +
           "<td><input type='checkbox' name='item[]' value='" + item['id'] + "'></td>" +
           "<td>" + item['type'] + " N<sup>o</sup> " + item['number'] + " Etage " + item['floor'] + "</td>" +
-          "<td class='cut-text'>" + item['address'] + "</td>" +
-          "<td class='text-center'>" + item['city'] + "</td>" +
-          "<td class='text-center'>" + item['name'] + "</td>" +
+          "<td class='cut-text'>" + item['name'] + "</td>" +
+          "<td class='text-center'>" + item['client'] + "</td>" +
           "<td class='text-center'>" + item['price'] + " DHS</td>" +
           "<td class='text-center'>" + item['price_paid'] + " DHS</td>" +
           "<td class='text-center'>" + item['date'] + "</td>" +

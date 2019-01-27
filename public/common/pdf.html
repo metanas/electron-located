@@ -21,8 +21,11 @@
 
   ipcRenderer.on('pdf_get_data_replay', function (event, data) {
     let html = "";
+    let i = 0;
     data.forEach(function (item) {
-      html += "<div class=\"col-md-12 col-sm-12\">";
+      if (i % 3 === 0)
+        html += "<div style='height: 1500px'>";
+      html += "<div class=\"col-md-12\">";
 
       html += "      <div class=\"row\" style=\"border-bottom: 1px dashed;padding: 4px\">";
       html += "      <div class=\"col-md-3\" style=\"border-right: 1px dashed;line-height: 0.4; font-size: 14px\">" +
@@ -85,7 +88,11 @@
         "<div class='col-md-12' align='right'>N<sup>o</sup>: " + item.payment['id'].split("#")[1] + "</div>" +
         "      </div>" +
         "</div>" +
-        "</div>"
+        "</div>";
+      i++;
+      if (i % 3 === 0) {
+        html += "</div>"
+      }
     });
 
     $('#content').html(html);

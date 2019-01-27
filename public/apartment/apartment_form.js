@@ -1,27 +1,11 @@
-$(document).ready(
-  ipc.send('society_list',null)
-);
-
-
-ipc.on('society_list_reply', (event, data) => {
-  var html = "<option value=''>Selectionner une Société..</option>";
-  data.society_list.forEach(function (item) {
-    html += '<option value="' + item.info['id'] + '">' + item.info['name'] + '</option>'
-  });
-  $('#society_list').html(html)
+$(document).ready(function () {
+  ipc.send('building_info', global_id);
+  global_id = null;
 });
 
-ipc.on('building_list_reply', (event, data) => {
-  console.log(data);
-  var html = "<option value=''>Selectionner un Immeuble..</option>";
-  data.building_list.forEach(function (item) {
-    html += '<option value="' + item.info['id'] + '">' + item.info['name'] + '</option>';
-  });
-  $('#building_list').html(html)
-});
-
-$('#society_list').change(function () {
-  ipc.send('building_list', null, $('select[name="id_society"]').val())
+ipc.on("building_info_reply", function (event, data) {
+  $("input[name=\"id_building\"]").val(data.building.name);
+  $("input[name=\"id_building\"]").data("val", data.building.id);
 });
 
 $('#add-button').on('click', function () {
@@ -34,7 +18,7 @@ $('#add-button').on('click', function () {
       images_path.push(image.files[0].path);
     }
   });
-  var data = {
+  const data = {
     image_path: images_path,
     image_name: images_name,
     number: $('input[name="number"]').val(),
@@ -43,8 +27,7 @@ $('#add-button').on('click', function () {
     description: $('textarea[name="description"]').val(),
     location_price: $('input[name="location_price"]').val(),
     type: $('#select-type').val(),
-    id_society : $('select[name="id_society"]').val(),
-    id_building: $('select[name="id_building"]').val(),
+    id_building: $("input[name=\"id_building\"]").data("val")
   };
   ipc.send('apartment_form', data);
 });

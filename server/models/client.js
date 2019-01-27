@@ -20,7 +20,7 @@ module.exports.getClients = function (page) {
   })
 };
 
-module.exports.getClientSumPaymentValue = function(id){
+module.exports.getClientSumPaymentValue = function (id) {
   return new Promise(function (resolve, reject) {
     db.serialize(() => {
       db.get("SELECT COALESCE(sum(p.price), 0) as total_price, COALESCE(sum(p.price_paid), 0) as total_price_paid FROM client c2 left join contract c on c2.id = c.id_client left join payment p on c.id = p.id_contract where c2.id=?", [id], function (err, rows) {
@@ -37,7 +37,7 @@ module.exports.getClientSumPaymentValue = function(id){
 module.exports.getClient = function (id) {
   return new Promise(function (resolve, reject) {
     db.serialize(() => {
-      db.get("SELECT c2.*, sum(p.price) as total_price, sum(p.price_paid) as total_price_paid FROM client c2 left join contract c on c2.id = c.id_client left join payment p on c.id = p.id_contract where c2.id=?", [id], function (err, rows) {
+      db.get("SELECT c2.*, COALESCE(sum(p.price),0) as total_price, COALESCE(sum(p.price_paid),0) as total_price_paid FROM client c2 left join contract c on c2.id = c.id_client left join payment p on c.id = p.id_contract where c2.id=?", [id], function (err, rows) {
         if (!err) {
           resolve(rows)
         } else {

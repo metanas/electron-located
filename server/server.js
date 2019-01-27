@@ -73,7 +73,6 @@ ipc.on('society_delete', function (event, id) {
 // Building Function
 // ==========================================================================
 ipc.on('building_list', async function (event, page, id) {
-  console.log(id);
   let json = {};
   if (id !== null) {
     await society.getSocietyBuildings(page, id).then(async function (response) {
@@ -120,6 +119,20 @@ ipc.on('building_list', async function (event, page, id) {
 
   event.sender.send('building_list_reply', json)
 
+});
+
+ipc.on("building_info", async function (event, id) {
+  let json = {};
+
+  json.building = await building.getBuilding(id);
+
+  json.society = await society.getSociety(json.building['id_society']);
+
+  json.apartment_total = await apartment.getTotalBuildingApartments(id);
+
+  json.apartments_list = await apartment.getBuildingApartments(id);
+
+  event.sender.send("building_info_reply", json)
 });
 
 ipc.on('building_form', function (event, data) {
@@ -195,13 +208,15 @@ ipc.on("apartment_info", async function (event, id) {
   await apartment.getApartment(id).then(async function (response) {
     json.apartment = response;
 
-    json.society = await society.getSociety(response['id_society']);
+    json.society = await society.getSociety(json.apartment['id_society']);
 
     json.contract = await contract.getContractFormApartment(response.id);
 
-    if (typeof json['contract'] !== "undefined")
+    if (typeof json['contract'] !== "undefined") {
       json.client = await client.getClient(json.contract['id_client']);
 
+      json.payment = await payment.getTotalUnPaidPayment(json.contract['id']);
+    }
   });
   event.sender.send("apartment_info_reply", json)
 });
@@ -293,7 +308,7 @@ ipc.on('contract_list', async function (event, page, id) {
       list.info = response[i];
 
       list.apartment = await apartment.getApartment(response[i]['id_apartment']);
-      console.log(list);
+
       list.building = await building.getBuilding(list.apartment['id_building']);
 
       list.client = await client.getClient(response[i]['id_client']);
@@ -323,6 +338,8 @@ ipc.on('contract_delete', function (event, id) {
 });
 
 // PDF Function
+// ==========================================================================
+// Payment Function
 // ==========================================================================
 ipc.on('payment_form', function (event, data) {
   payment.postPayment(data).then(function () {
@@ -400,8 +417,6 @@ ipc.on('pdf_get_data', async function (event, id) {
   event.sender.send('pdf_get_data_replay', json);
 });
 
-// Payment Function
-// ==========================================================================
 ipc.on('payment_list', async (event, page, id) => {
   let json = {};
   await payment.getPayments(page, id).then((response) => {

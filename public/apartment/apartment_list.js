@@ -4,7 +4,6 @@ $(document).ready(function () {
 });
 
 ipc.on('apartment_list_reply', (event, data) => {
-  console.log(data);
   let html = " <td colspan=\"7\" align=\"center\">Il y a aucun bien!</td>\n";
   if (data.apartment_list.length > 0) {
     html = "";

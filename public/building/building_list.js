@@ -49,7 +49,8 @@ function getData() {
 }
 
 function goto_info(id) {
-  alert("not implemented")
+  global_id = id;
+  myLoad("../building/building_info.html");
 }
 
 $('input[name="all"]').on('click', function (e) {

@@ -1,39 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4ad85c6c-4898-4e0c-8676-81d0d927634d" name="Default Changelist" comment="fix">
-      <change afterPath="$PROJECT_DIR$/public/apartment/apartment_info.js" afterDir="false" />
+    <list default="true" id="4ad85c6c-4898-4e0c-8676-81d0d927634d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/apartment/apartment_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/apartment/apartment_form.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/apartment/apartment_form.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/apartment/apartment_form.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/apartment/apartment_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/apartment/apartment_info.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/apartment/apartment_info.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/apartment/apartment_info.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/apartment/apartment_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/apartment/apartment_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/apartment/apartment_list.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/apartment/apartment_list.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/building/building_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/building/building_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/building/building_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/building/building_info.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/building/building_info.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/building/building_info.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/building/building_list.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/building/building_list.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/client/client_info.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/client/client_info.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/client/client_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/client/client_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/client/client_list.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/client/client_list.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/common/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/common/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/common/pdf.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/common/pdf.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/contract/contract_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/contract/contract_form.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/contract/contract_form.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/contract/contract_form.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/contract/contract_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/contract/contract_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/contract/contract_list.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/contract/contract_list.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/payment/payment_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/payment/payment_info.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/payment/payment_info.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/payment/payment_info.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/payment/payment_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/payment/payment_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/society/society_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/society/society_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/society/society_form.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/society/society_form.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/society/society_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/society/society_info.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/society/society_info.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/society/society_info.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/society/society_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/society/society_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/society/society_list.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/society/society_list.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/payment/payment_list.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/payment/payment_list.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/models/apartment.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/apartment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/models/building.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/building.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/models/contract.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/contract.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/client.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/models/payment.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/payment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/models/society.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/society.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -47,72 +35,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/server/server.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="197" column="52" selection-start-line="197" selection-start-column="52" selection-end-line="197" selection-end-column="52" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/models/contract.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1">
-              <caret line="19" selection-start-line="19" selection-end-line="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/models/apartment.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="25" column="47" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/society/society_form.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1073">
-              <caret line="37" column="84" selection-start-line="37" selection-start-column="84" selection-end-line="37" selection-end-column="84" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/apartment/apartment_list.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1284">
-              <caret line="77" column="45" selection-start-line="77" selection-start-column="41" selection-end-line="77" selection-end-column="45" />
-              <folding>
-                <element signature="n#style#0;n#span#0;n#td#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/apartment/apartment_info.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="12" column="37" lean-forward="true" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/apartment/apartment_info.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="6" column="20" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="20" />
+            <state relative-caret-position="240">
+              <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -120,30 +47,99 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/apartment/apartment_list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="6" column="6" lean-forward="true" selection-end-line="6" selection-end-column="6" />
+            <state relative-caret-position="435">
+              <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#1;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/society/society_form.js">
+        <entry file="file://$PROJECT_DIR$/public/building/building_form.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="18" selection-start-line="18" selection-end-line="18" />
+            <state relative-caret-position="754">
+              <caret line="26" column="43" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="43" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/models/society.js">
+        <entry file="file://$PROJECT_DIR$/public/building/building_form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="705">
-              <caret line="142" selection-start-line="142" selection-end-line="142" />
+            <state relative-caret-position="203">
+              <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/server.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="250">
+              <caret line="281" column="21" selection-start-line="281" selection-start-column="21" selection-end-line="281" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/models/client.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="28">
+              <caret line="39" column="96" selection-start-line="39" selection-start-column="96" selection-end-line="39" selection-end-column="96" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/common/pdf.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#3;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#5;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#7;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#9;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#hr#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#hr#1;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="464">
+              <caret line="16" column="61" lean-forward="true" selection-start-line="16" selection-start-column="61" selection-end-line="16" selection-end-column="61" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/building/building_info.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="174">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/building/building_info.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="261">
+              <caret line="9" column="30" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="30" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -161,10 +157,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>nb_flour</find>
-      <find>shouldStopExecution</find>
-      <find>// selected page</find>
-      <find>strftime</find>
       <find>a.tax</find>
       <find>console.</find>
       <find>client_form</find>
@@ -191,6 +183,10 @@
       <find>appartement</find>
       <find>society_form</find>
       <find>form</find>
+      <find>payment</find>
+      <find>building_info</find>
+      <find>apartment_form</find>
+      <find>sum</find>
     </findStrings>
     <replaceStrings>
       <replace>Société</replace>
@@ -209,31 +205,21 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/public/building/building_info.js" />
-        <option value="$PROJECT_DIR$/public/building/building_info.html" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/public/contract/contract_info.html" />
         <option value="$PROJECT_DIR$/public/js/image_upload.js" />
         <option value="$PROJECT_DIR$/public/js/pagination.js" />
         <option value="$PROJECT_DIR$/public/css/sidebar.css" />
-        <option value="$PROJECT_DIR$/public/css/style.css" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/public/building/building_form.html" />
         <option value="$PROJECT_DIR$/public/css/image_upload.css" />
-        <option value="$PROJECT_DIR$/public/apartment/apartment_form.html" />
         <option value="$PROJECT_DIR$/server/models/common.js" />
         <option value="$PROJECT_DIR$/public/client/client_form.html" />
         <option value="$PROJECT_DIR$/public/client/client_info.html" />
-        <option value="$PROJECT_DIR$/server/models/client.js" />
-        <option value="$PROJECT_DIR$/public/payment/payment_list.js" />
-        <option value="$PROJECT_DIR$/public/contract/contract_form.html" />
         <option value="$PROJECT_DIR$/public/client/client_form.js" />
         <option value="$PROJECT_DIR$/public/building/building_form.js" />
-        <option value="$PROJECT_DIR$/main.js" />
         <option value="$PROJECT_DIR$/public/society/society_info.js" />
         <option value="$PROJECT_DIR$/public/client/client_info.js" />
-        <option value="$PROJECT_DIR$/public/common/pdf.html" />
-        <option value="$PROJECT_DIR$/public/payment/payment_list.html" />
         <option value="$PROJECT_DIR$/public/society/society_list.js" />
         <option value="$PROJECT_DIR$/public/society/society_list.html" />
         <option value="$PROJECT_DIR$/server/models/building.js" />
@@ -243,23 +229,33 @@
         <option value="$PROJECT_DIR$/public/contract/contract_list.js" />
         <option value="$PROJECT_DIR$/public/payment/payment_info.html" />
         <option value="$PROJECT_DIR$/public/payment/payment_info.js" />
-        <option value="$PROJECT_DIR$/public/apartment/apartment_form.js" />
-        <option value="$PROJECT_DIR$/server/models/payment.js" />
-        <option value="$PROJECT_DIR$/public/building/building_list.js" />
-        <option value="$PROJECT_DIR$/public/contract/contract_form.js" />
-        <option value="$PROJECT_DIR$/public/apartment/apartment_list.html" />
         <option value="$PROJECT_DIR$/public/contract/contract_list.html" />
         <option value="$PROJECT_DIR$/public/society/society_info.html" />
         <option value="$PROJECT_DIR$/public/building/building_list.html" />
-        <option value="$PROJECT_DIR$/public/common/home.html" />
         <option value="$PROJECT_DIR$/server/models/society.js" />
         <option value="$PROJECT_DIR$/public/society/society_form.js" />
         <option value="$PROJECT_DIR$/public/society/society_form.html" />
         <option value="$PROJECT_DIR$/public/apartment/apartment_list.js" />
-        <option value="$PROJECT_DIR$/public/apartment/apartment_info.js" />
+        <option value="$PROJECT_DIR$/public/css/style.css" />
+        <option value="$PROJECT_DIR$/public/contract/contract_form.html" />
+        <option value="$PROJECT_DIR$/public/common/home.html" />
+        <option value="$PROJECT_DIR$/public/apartment/apartment_form.html" />
+        <option value="$PROJECT_DIR$/public/payment/payment_list.html" />
+        <option value="$PROJECT_DIR$/server/models/payment.js" />
+        <option value="$PROJECT_DIR$/public/payment/payment_list.js" />
+        <option value="$PROJECT_DIR$/public/building/building_list.js" />
         <option value="$PROJECT_DIR$/server/models/apartment.js" />
+        <option value="$PROJECT_DIR$/public/contract/contract_form.js" />
+        <option value="$PROJECT_DIR$/public/apartment/apartment_form.js" />
         <option value="$PROJECT_DIR$/public/apartment/apartment_info.html" />
+        <option value="$PROJECT_DIR$/public/apartment/apartment_info.js" />
+        <option value="$PROJECT_DIR$/public/apartment/apartment_list.html" />
+        <option value="$PROJECT_DIR$/public/building/building_info.html" />
         <option value="$PROJECT_DIR$/server/server.js" />
+        <option value="$PROJECT_DIR$/public/building/building_info.js" />
+        <option value="$PROJECT_DIR$/server/models/client.js" />
+        <option value="$PROJECT_DIR$/public/common/pdf.html" />
+        <option value="$PROJECT_DIR$/main.js" />
       </list>
     </option>
   </component>
@@ -275,7 +271,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -302,6 +297,24 @@
             <path>
               <item name="Located" type="b2602c69:ProjectViewProjectNode" />
               <item name="electron-located" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="building" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Located" type="b2602c69:ProjectViewProjectNode" />
+              <item name="electron-located" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Located" type="b2602c69:ProjectViewProjectNode" />
+              <item name="electron-located" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="contract" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Located" type="b2602c69:ProjectViewProjectNode" />
+              <item name="electron-located" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -314,6 +327,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -402,7 +416,10 @@
       <workItem from="1547683812661" duration="4665000" />
       <workItem from="1547759024372" duration="45403000" />
       <workItem from="1548103125373" duration="19891000" />
-      <workItem from="1548192730556" duration="7218000" />
+      <workItem from="1548192730556" duration="7261000" />
+      <workItem from="1548276043350" duration="8988000" />
+      <workItem from="1548354967861" duration="5115000" />
+      <workItem from="1548590012732" duration="15311000" />
     </task>
     <task id="LOCAL-00001" summary="init project">
       <created>1545087773759</created>
@@ -544,11 +561,18 @@
       <option name="project" value="LOCAL" />
       <updated>1548018021083</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="fix">
+      <created>1548202551925</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1548202551925</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="372706000" />
+    <option name="totallyTimeSpent" value="402163000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -563,8 +587,8 @@
     <frame x="0" y="35" width="3200" height="1765" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49275362" visible="true" weight="0.20912547" />
-      <window_info id="Structure" order="1" sideWeight="0.5072464" side_tool="true" weight="0.20912547" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5353645" visible="true" weight="0.16159695" />
+      <window_info id="Structure" order="1" sideWeight="0.46463546" side_tool="true" weight="0.16159695" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -633,15 +657,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="fix" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/renderer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/sidebar.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
@@ -656,13 +671,6 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1244">
-          <caret line="142" column="26" selection-start-line="138" selection-start-column="1" selection-end-line="142" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -701,34 +709,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/apartment/apartment_form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="754">
-          <caret line="50" column="62" selection-start-line="50" selection-start-column="51" selection-end-line="50" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/client/client_form.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="624">
           <caret line="34" column="32" lean-forward="true" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/common/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1450">
-          <caret line="50" column="61" selection-start-line="50" selection-start-column="61" selection-end-line="50" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/building/building_info.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/building/building_info.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="3" column="8" lean-forward="true" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -763,57 +747,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/common/pdf.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="18" column="34" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="34" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#3;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#5;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#7;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#9;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#hr#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#hr#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/models/client.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/client/client_form.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="348">
           <caret line="12" column="39" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/payment/payment_list.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#td#8;n#tr#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/payment/payment_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#2;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -905,34 +842,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/models/building.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2291">
-          <caret line="79" column="6" lean-forward="true" selection-start-line="79" selection-start-column="6" selection-end-line="79" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/apartment/apartment_form.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/building/building_form.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="754">
-          <caret line="26" column="43" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/building/building_form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/building/building_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="812">
@@ -944,94 +853,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/building/building_list.js">
+    <entry file="file://$PROJECT_DIR$/server/models/contract.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="667">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/contract/contract_form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="812">
-          <caret line="28" column="62" lean-forward="true" selection-start-line="28" selection-start-column="51" selection-end-line="28" selection-end-column="62" />
-          <folding>
-            <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/contract/contract_form.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2262">
-          <caret line="78" column="27" selection-start-line="78" selection-start-column="8" selection-end-line="78" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/models/payment.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="812">
-          <caret line="28" column="38" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="57" column="36" selection-start-line="57" selection-start-column="36" selection-end-line="57" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/models/society.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="142" selection-start-line="142" selection-end-line="142" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/society/society_form.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/apartment/apartment_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="6" column="6" lean-forward="true" selection-end-line="6" selection-end-column="6" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/apartment/apartment_list.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1284">
-          <caret line="77" column="45" selection-start-line="77" selection-start-column="41" selection-end-line="77" selection-end-column="45" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#td#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/apartment/apartment_info.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="12" column="37" lean-forward="true" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/apartment/apartment_info.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="6" column="20" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="20" />
+        <state relative-caret-position="1015">
+          <caret line="35" column="12" selection-start-line="35" selection-start-column="12" selection-end-line="35" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -1042,24 +867,221 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/models/apartment.js">
+    <entry file="file://$PROJECT_DIR$/public/apartment/apartment_list.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="25" column="47" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="47" />
+        <state relative-caret-position="2233">
+          <caret line="77" column="45" selection-start-line="77" selection-start-column="41" selection-end-line="77" selection-end-column="45" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/models/contract.js">
+    <entry file="file://$PROJECT_DIR$/public/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1">
-          <caret line="19" selection-start-line="19" selection-end-line="29" />
+        <state relative-caret-position="9193">
+          <caret line="317" column="1" selection-start-line="317" selection-start-column="1" selection-end-line="317" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/society/society_form.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/models/society.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4118">
+          <caret line="142" selection-start-line="142" selection-end-line="142" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/common/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1500">
+          <caret line="12" column="44" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/models/payment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="41" column="78" selection-start-line="41" selection-start-column="74" selection-end-line="41" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/payment/payment_list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="13" column="51" selection-start-line="13" selection-start-column="51" selection-end-line="13" selection-end-column="51" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#td#8;n#tr#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/building/building_list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="52" column="43" selection-start-line="52" selection-start-column="43" selection-end-line="52" selection-end-column="43" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#td#5;n#tr#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/payment/payment_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#2;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/models/building.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="482">
+          <caret line="69" selection-start-line="69" selection-end-line="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/contract/contract_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="55" column="35" lean-forward="true" selection-start-line="55" selection-start-column="35" selection-end-line="55" selection-end-column="35" />
+          <folding>
+            <element signature="n#style#0;n#label#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/contract/contract_form.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="15" column="32" lean-forward="true" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/contract/contract_info.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/apartment/apartment_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="79" column="36" lean-forward="true" selection-start-line="79" selection-start-column="36" selection-end-line="79" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/apartment/apartment_form.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="8" column="60" selection-start-line="8" selection-start-column="60" selection-end-line="8" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/models/apartment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/apartment/apartment_info.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/apartment/apartment_info.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/building/building_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/apartment/apartment_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/building/building_form.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="754">
+          <caret line="26" column="43" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/building/building_info.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="9" column="30" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="30" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/building/building_info.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/server.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
-          <caret line="197" column="52" selection-start-line="197" selection-start-column="52" selection-end-line="197" selection-end-column="52" />
+          <caret line="281" column="21" selection-start-line="281" selection-start-column="21" selection-end-line="281" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/models/client.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="39" column="96" selection-start-line="39" selection-start-column="96" selection-end-line="39" selection-end-column="96" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/common/pdf.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#3;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#5;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#7;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#9;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#hr#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#hr#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="464">
+          <caret line="16" column="61" lean-forward="true" selection-start-line="16" selection-start-column="61" selection-end-line="16" selection-end-column="61" />
         </state>
       </provider>
     </entry>

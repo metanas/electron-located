@@ -20,6 +20,24 @@ module.exports.getApartments = function (page) {
   });
 };
 
+module.exports.getBuildingApartments = (id, page) => {
+  return new Promise(function (resolve, reject) {
+    let query = 'SELECT * FROM apartment where id_building=? order by number';
+    if (page) {
+      query += " LIMIT " + ((page - 1) * 20) + ", 20";
+    }
+    db.serialize(function () {
+      db.all(query, [id], function (err, rows) {
+        if (!err) {
+          resolve(rows)
+        } else {
+          reject(err)
+        }
+      })
+    })
+  })
+};
+
 module.exports.getApartment = function (id) {
   return new Promise(function (resolve, reject) {
     db.serialize(function () {

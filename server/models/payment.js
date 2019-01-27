@@ -39,7 +39,7 @@ module.exports.getTotalPaymentFormSociety = function (id) {
 
 module.exports.getPayments = function (page, id) {
   return new Promise(function (resolve, reject) {
-    let query = "SELECT p.*, a.number, a.floor, a.type, c2.name, b.address, b.city FROM payment as p left join contract c on p.id_contract = c.id left join apartment a on c.id_apartment = a.id left join client c2 on c.id_client = c2.id left join building b on a.id_building = b.id order by date DESC";
+    let query = "SELECT p.*, a.number, a.floor, a.type, c2.name client, b.name FROM payment as p left join contract c on p.id_contract = c.id left join apartment a on c.id_apartment = a.id left join client c2 on c.id_client = c2.id left join building b on a.id_building = b.id order by date DESC";
     if (page)
       query += " LIMIT " + ((page - 1) * 20) + ", 20";
     if (id)
@@ -77,6 +77,20 @@ module.exports.getTotalPayments = function () {
         if (!err) {
           resolve(row)
         } else {
+          reject(err)
+        }
+      })
+    })
+  })
+};
+
+module.exports.getTotalUnPaidPayment = function(id){
+  return new Promise(function (resolve, reject) {
+    db.serialize(function () {
+      db.get("SELECT count(*) as total from payment where id_contract=? and (price - price_paid <> 0)", [id], function (err, row) {
+        if(!err){
+          resolve(row)
+        }else{
           reject(err)
         }
       })

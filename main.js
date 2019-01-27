@@ -53,7 +53,7 @@ function createWindow() {
   // Open the DevTools.
   // mainWindow.webContents.openDevTools();
   let server = require('./server/server');
-  server.init();
+  // server.init();
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
     // Dereference the window object, usually you would store windows
