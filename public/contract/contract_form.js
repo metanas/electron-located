@@ -43,5 +43,5 @@ $('#add-button').on('click', function () {
 });
 
 ipc.on("contract_form_reply", function (event) {
-  myLoad("../contract/contract_list.html");
+  myLoad("../apartment/apartment_list.html");
 });

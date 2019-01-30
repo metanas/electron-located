@@ -4,6 +4,7 @@ $(document).ready(function () {
 });
 
 ipc.on("apartment_info_reply", (event, data) => {
+  debugger;
   $("h1").html(data.apartment['type'] + " N<sup>o</sup> " + data.apartment.number + " Etage: " + data.apartment.floor);
   $("h1").data('id', data.apartment.id);
 
@@ -13,9 +14,17 @@ ipc.on("apartment_info_reply", (event, data) => {
   if (typeof data.payment !== "undefined")
     $(".card-counter.danger").prepend("<span class=\"count-numbers\">" + data['payment'].total + "</span>" +
       "<span class=\"count-name\">Facture non Paye</span>");
-  if (typeof data.contract === "undefined")
-    $(".add-button").remove();
-  else {
+  if (typeof data.contract === "undefined") {
+    $("#add-button").html("<span class='fas fa-plus'></span>");
+    $("#add-button").on("click", function () {
+      global_id = $("h1").data('id');
+      myLoad("../contract/contract_form.html");
+    });
+  } else {
+    $("#add-button").on("click", function () {
+      global_id = data.contract.id;
+      myLoad("../contract/contract_info.html");
+    });
     $('.start').html("<strong>date debut</strong> " + data.contract['date_begin']);
     let date = (data.contract['date_end']) ? data.contract['date_end'] : "-";
     $('.ends').html("<strong>date debut</strong> " + date);

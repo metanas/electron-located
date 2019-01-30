@@ -270,8 +270,14 @@ ipc.on('client_list', async function (event, page) {
 });
 
 ipc.on('client_form', (event, data) => {
-  client.postClient(data).then(function () {
 
+
+  client.postClient(data).then(function (id) {
+    data.telephone.forEach(function (item) {
+      client.addTelephone(item, id).then(function (response) {
+
+      })
+    })
   });
   event.sender.send("client_form_reply")
 });

@@ -21,8 +21,14 @@
     <input type="text" name="address" class="form-control" id="input-address" placeholder="Adresse">
   </div>
   <div class="col-md-12 form-group">
-    <label for="input-telephone">Telephone:</label>
-    <input type="text" name="telephone" class="form-control" id="input-telephone" placeholder="telephone">
+    <label>Telephone:</label>
+    <div class="col-md-12">
+      <div class="row">
+        <input type="text" name="name-telephone[]" class="form-control col-md-4" placeholder="domicile">
+        <input type="tel" name="telephone[]" class="form-control col-md-8" placeholder="telephone">
+      </div>
+    </div>
+    <button class="btn btn-primary" id="add-telephone" style="margin-top: 10px"><span class="fas fa-plus"></span></button>
   </div>
   <div class="col-md-12 form-group">
     <label for="input-identification">CIN/CNE:</label>
